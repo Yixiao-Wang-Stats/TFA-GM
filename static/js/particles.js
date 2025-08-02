@@ -1,38 +1,61 @@
-!function(){
-  function n(n,e,t){ return n.getAttribute(e)||t }
-  function e(n){ return document.getElementsByTagName(n) }
-  function t(){
-    var t=e("script"),o=t.length,i=t[o-1];
-    return{
-      l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.3),c:n(i,"color","0,0,0"),n:n(i,"count",49)
-    }
+//look at fixes in the Pen https://codepen.io/ghaste/pen/OJqLbvg
+//for adding mouse trail to a page that scrolls beyond the viewport, as would be the case with most websites - lol
+let x1=0, y1=0;
+window.client
+const 
+  dist_to_draw = 20,
+  delay = 1000,
+  fsize = [
+    '1.1rem', '1.4rem', '.8rem', '1.7rem'
+  ],
+  colors = [
+  '#E23636',
+  '#F9F3EE',
+  '#E1F8DC',
+  '#B8AFE6',
+  '#AEE1CD',
+  '#5EB0E5'
+],
+  rand = (min, max) => 
+    Math.floor(Math.random() * (max - min + 1)) + min,
+  selRand = (o) => o[rand(0, o.length -1)],
+  distanceTo =  (x1, y1, x2, y2) => 
+    Math.sqrt((Math.pow(x2-x1,2))+(Math.pow(y2-y1,2))),
+  shouldDraw = (x, y) => 
+    (distanceTo(x1, y1, x, y) >= dist_to_draw),
+  addStr = (x, y) => {
+    const str = document.createElement("div");
+    str.innerHTML = '&#10022;';
+    str.className = 'star';
+    str.style.top = `${y + rand(-20,20)}px`;
+    str.style.left = `${x}px`;
+    str.style.color = selRand(colors);
+    str.style.fontSize = selRand(fsize);
+    document.body.appendChild(str);
+    //console.log(rand(0, 3));
+    const fs = 10 + 5 * parseFloat(getComputedStyle(str).fontSize);
+    //console.log(vh, y, fs);
+    //console.log((y+fs)>vh?vh-y:fs);
+    str.animate({
+      translate: `0 ${fs}px`,
+      opacity: 0,
+      transform: `rotateX(${rand(1, 500)}deg) rotateY(${rand(1, 500)}deg)`
+    }, {
+      duration: delay,
+      fill: 'forwards',
+
+    });
+    //could add a animation terminate listener, but why add the additional load
+    setTimeout(() => {
+        str.remove();
+      }, delay);
   }
-  function o(){
-    a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
-    c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+addEventListener("mousemove", (e) => {
+  const { pageX, pageY } = e; // 改用 pageX 和 pageY
+  if (shouldDraw(pageX, pageY)) { // 使用全局坐标
+    addStr(pageX, pageY); // 传递全局坐标
+    x1 = pageX; // 更新全局坐标
+    y1 = pageY;
   }
-  function i(){
-    r.clearRect(0,0,a,c);
-    var n,e,t,o,m,l;
-    s.forEach(function(i,x){
-      for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
-      null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
-      l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
-      t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
-    }),
-    x(i)
-  }
-  var a,c,u,m=document.createElement("canvas"),
-  d=t(),l="c_n"+d.l,r=m.getContext("2d"),
-  x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
-  function(n){ window.setTimeout(n,1e3/45) },
-  w=Math.random,y={x:null,y:null,max:2e4};
-  m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
-  window.onmousemove=function(n){ n=n||window.event,y.x=n.clientX,y.y=n.clientY },
-  window.onmouseout=function(){ y.x=null,y.y=null };
-  for(var s=[],f=0;d.n>f;f++){
-    var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
-  }
-  u=s.concat([y]),
-  setTimeout(function(){i()},100)
-}();
+});
+
