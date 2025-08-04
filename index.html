@@ -14,8 +14,9 @@
   <meta name="keywords" content="Real-Time Video Generation with Pyramid Attention Broadcast">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Real-Time Video Generation with Pyramid Attention Broadcast</title>
-
+  
   <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./juxtapose/css/button.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/tab_gallery.css">
@@ -33,6 +34,7 @@
   <script src="./static/js/index.js"></script>
   <script src="./static/js/magnifier.js"></script>
   <script src="./static/js/particles.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
   <link href="https://fonts.cdnfonts.com/css/menlo" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/image_card_fader.css">
   <link rel="stylesheet" href="./static/css/image_card_slider.css">
@@ -236,10 +238,13 @@
         </p>
       </div>
     </div>
+       
+
+
       <div class="has-text-centered" style="margin-top:2em;">
-      <img src="static/images/SLlpips.png" alt="SADA Motivation Diagram" style="max-width:500px; width:65%;">
-      <p style="font-size:0.95em; margin-top:0.5em;">
-        <i><b>Figure 1.</b>  The purple line represents <span style="
+          <div id="main" style="width: 800px; height: 500px; margin: auto;"></div>
+        <p id="figure1-caption" style="font-size:0.95em; margin-top:0.5em;">
+          <i><b>Figure 1.</b>  The purple line represents <span style="
             background: linear-gradient(to right, #7b7bff, #cf77ef, #f3a3cd, #ffb68e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -253,6 +258,23 @@
 </section>
 
 
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Evaluations</h2>
+        
+        <h2 class="title is-4">Images</h2>
+        <div class="content has-text-justified">
+          <p>
+            Measured total latency of <span style="color: #e2001d;">P</span><span style="color: #a80057;">A</span><span style="color: #6d0092;">B</span> for different models for generating a single video on 8 NVIDIA H100 GPUs. When utilizing a single GPU, we achieve a speedup ranging from 1.26x to 1.32x, which remains stable across different schedulers. Scaling to multiple GPUs, our method achieves a speedup of up to 10.6x, which almost linearly scales with the number of GPUs due to our efficient improvement of sequence parallel.
+          </p>
+        </div>
+        
+<div style="text-align:center; margin-top:20px;">
+  <button id="replay-btn"><span>Replay Animation</span></button>
+</div>
 
 <div class="scene" data-speed="1">
   <div class="row">
@@ -315,7 +337,7 @@
   justify-content: center;
 }
 .row img {
-  width: 150px;
+  width: 100px;
   opacity: 0;
   transition: opacity 0.5s ease-in;
   border-radius: 5px;
@@ -341,7 +363,7 @@ function startAnimation() {
     imgs.forEach((img, i) => {
       setTimeout(() => {
         img.style.opacity = 1;
-      }, i * (1000 / speed));
+      }, i * (2000 / speed));
     });
   });
 }
@@ -357,7 +379,29 @@ let observer = new IntersectionObserver((entries, obs) => {
 
 // 改成监听第一个 .scene，而不是不存在的 #animation-section
 observer.observe(document.querySelector('.scene'));
+document.getElementById('replay-btn').addEventListener('click', startAnimation);
 </script>
+
+      </div>
+    </div>
+
+   
+  </div>
+  <br>
+
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">        
+        <div class="content has-text-justified">
+          <h2 class="title is-4">Quantitive Results</h2>
+          <div class="content has-text-centered">
+            <img src="./static/images/eval.png" style="width: 40%;"><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -592,6 +636,177 @@ observer.observe(document.querySelector('.scene'));
       y1 = pageY;
     }
   });
+</script>
+
+
+
+<script>
+    const otherData = [
+        { name: 'ToCa', x: 1.36, y: 0.3469, color: '#3B5B92', offset: 0.008 },
+        { name: 'DiTFastAttn2', x: 1.42, y: 0.3430, color: '#4FA3B5', offset: -0.008 },
+        { name: 'TeaCache', x: 2.00, y: 0.2160, color: '#8CA77B', offset: 0.011 },
+        { name: 'SADA', x: 2.02, y: 0.0600, color: '#E1B168', offset: -0.005 },
+        { name: 'TaylorSeer', x: 3.18, y: 0.4259, color: '#D46A6A', offset: 0.000 }
+    ];
+
+    const oursData = [
+        { name: 'Quality', x: 1.70, y: 0.0417, offset: 0.015 },
+        { name: 'Balanced', x: 1.92, y: 0.0436, offset: -0.005 },
+        { name: 'Medium', x: 2.25, y: 0.0655, offset: 0.012 },
+        { name: 'Fast', x: 2.91, y: 0.1353, offset: 0.008 },
+        { name: 'Turbo', x: 3.65, y: 0.2239, offset: 0.015 }
+    ];
+    const chart = echarts.init(document.getElementById('main'));
+    const option = {
+        backgroundColor: 'white',
+        tooltip: { 
+            trigger: 'axis',
+            formatter: function (params) {
+                // params 里可能包含多条数据，取折线的数据点
+                let linePoint = params.find(p => p.seriesType === 'line');
+                if (linePoint) {
+                    let speedup = linePoint.value[0].toFixed(2); // 两位小数
+                    let lpips = linePoint.value[1].toFixed(3);   // 三位小数
+                    return `Speedup: ${speedup}<br/>LPIPS: ${lpips}`;
+                }
+                return '';
+            }
+        },
+        grid: { left: 70, right: 20, top: 50, bottom: 60 },
+        xAxis: {
+            type: 'value',
+            name: 'Speedup (×)',
+            nameLocation: 'middle',
+            nameGap: 30,
+            min: 0.8,
+            max: 3.8,
+            axisLabel: { fontSize: 16, fontFamily: 'Times New Roman' },
+            nameTextStyle: { fontSize: 16, fontFamily: 'Times New Roman' }
+        },
+        yAxis: {
+            type: 'value',
+            name: 'LPIPS ↓',
+            nameLocation: 'middle',
+            nameGap: 40,
+            min: 0,
+            max: 0.45,
+            interval: 0.1,
+            axisLabel: { fontSize: 16, fontFamily: 'Times New Roman' },
+            nameTextStyle: { fontSize: 16, fontFamily: 'Times New Roman' }
+        },
+        series: [
+            {
+                type: 'custom',
+                renderItem: function (params, api) {
+                    const barWidthAbs = 0.10; // 固定宽度
+                    const idx = params.dataIndex;
+                    const item = otherData[idx];
+                    const xVal = api.value(0);
+                    const yVal = api.value(1);
+
+                    const coordLeft = api.coord([xVal - barWidthAbs / 2, yVal]);
+                    const coordRight = api.coord([xVal + barWidthAbs / 2, 0]);
+                    const coordTop = api.coord([xVal, yVal]);
+                    const coordBottom = api.coord([xVal, 0]);
+
+                    return {
+                        type: 'group',
+                        children: [
+                            {
+                                type: 'rect',
+                                shape: {
+                                    x: coordLeft[0],
+                                    y: coordTop[1],
+                                    width: coordRight[0] - coordLeft[0],
+                                    height: coordBottom[1] - coordTop[1]
+                                },
+                                style: {
+                                    fill: item.color,
+                                    opacity: 0.4
+                                }
+                            },
+                            {
+                                type: 'text',
+                                style: {
+                                    text: item.name,
+                                    x: coordTop[0],
+                                    y: coordTop[1] - 5,
+                                    textAlign: 'center',
+                                    textVerticalAlign: 'bottom',
+                                    fill: item.color,
+                                    fontWeight: 'bold',
+                                    fontFamily: 'Times New Roman',
+                                    fontSize: 14
+                                }
+                            }
+                        ]
+                    };
+                },
+                encode: { x: 0, y: 1 },
+                data: otherData.map(d => [d.x, d.y, d.color]),
+                tooltip: { show: false }
+            },
+            {
+                type: 'line',
+                data: [[1.0, 0.0], ...oursData.map(d => [d.x, d.y])],
+                symbol: 'circle',
+                symbolSize: 8,
+                itemStyle: { color: '#750014' },
+                lineStyle: { width: 3, color: '#750014' },
+                areaStyle: { color: 'rgba(117,0,20,0.2)' },
+                label: {
+                    show: true,
+                    position: 'top',
+                    fontWeight: 'bold',
+                    fontFamily: 'Times New Roman',
+                    fontSize: 14,
+                    formatter: function (params) {
+                        const point = oursData.find(o => o.x === params.value[0]);
+                        return point ? point.name : '';
+                    }
+                },
+                animationDuration: 2000,
+                animationEasing: 'linear'
+            }
+        ]
+    };
+
+    // 正常初始化图表并渲染一次（无动画）
+
+const initialOption = {
+    ...option,
+    series: [
+        option.series[0], // 只保留柱状图
+        { 
+            ...option.series[1],
+            data: [], // 折线图先空
+            animation: false 
+        }
+    ]
+};
+chart.setOption(initialOption, true);
+
+// 控制动画播放
+let animationPlayed = false;
+function playAnimation() {
+  if (animationPlayed) return;
+  animationPlayed = true;
+  chart.clear();                  // 清空画布
+  chart.setOption(option, true);  // 重新渲染，触发动画
+}
+
+// 观察 Figure 1 说明文字进入视口
+const observermain = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      playAnimation();
+      obs.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+
+observermain.observe(document.getElementById('figure1-caption'));
+
 </script>
 
 </body>
