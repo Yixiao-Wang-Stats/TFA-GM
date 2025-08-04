@@ -143,7 +143,16 @@
           <div class="is-size-5 publication-authors">
             (* indicates equal contribution)
           </div>
-
+           <div class="is-size-5 has-text-centered" style="margin-top: 0.5em; font-weight: bold;">
+             &nbsp;
+              🚀 <span style="
+  background: linear-gradient(to right, #7b7bff, #cf77ef, #f3a3cd, #ffb68e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;">
+  SADA
+</span> plugs straight into any project built on HuggingFace Diffusers 🤗
+            </div>
           <!-- <div class="is-size-5 publication-venue">
             in XXX
           </div> -->
@@ -213,25 +222,143 @@
     <div class="container is-max-desktop">
       <div class="content has-text-justified">
         <p>
-          <b>Real-Time Video Generation: Achieved <span style="font-size: 1.3em">🥳</span>!</b> We introduce <span class="custom-emoji"></span><b><span style="color: #ff0000;">P</span><span style="color: #f80007;">y</span><span style="color: #f1000e;">r</span><span style="color: #ea0015;">a</span><span style="color: #e4001c;">m</span><span style="color: #dd0022;">i</span><span style="color: #d60029;">d</span> <span style="color: #cf0030;">A</span><span style="color: #c80037;">t</span><span style="color: #c1003e;">t</span><span style="color: #ba0045;">e</span><span style="color: #b3004c;">n</span><span style="color: #ad0053;">t</span><span style="color: #a60059;">i</span><span style="color: #9f0060;">o</span><span style="color: #980067;">n</span> <span style="color: #91006e;">B</span><span style="color: #8a0075;">r</span><span style="color: #83007c;">o</span><span style="color: #7c0083;">a</span><span style="color: #76008a;">d</span><span style="color: #6f0090;">c</span><span style="color: #680097;">a</span><span style="color: #61009e;">s</span><span style="color: #5a00a5;">t</span></b> (<span style="color: #e2001d;">P</span><span style="color: #a80057;">A</span><span style="color: #6d0092;">B</span>), the first approach that achieves <b>real-time</b> DiT-based video generation. By mitigating redundant attention computation, <span style="color: #e2001d;">P</span><span style="color: #a80057;">A</span><span style="color: #6d0092;">B</span> achieves up to <b>21.6</b> FPS with <b>10.6x</b> acceleration, <b>without sacrificing quality</b> across popular DiT-based video generation models including <a href="https://github.com/hpcaitech/Open-Sora" style="color: blue;">Open-Sora</a>, <a href="https://github.com/PKU-YuanGroup/Open-Sora-Plan" style="color: blue;">Open-Sora-Plan</a>, and <a href="https://github.com/Vchitect/Latte" style="color: blue;">Latte</a>. Notably, as a <b>training-free</b> approach,  <span style="color: #e2001d;">P</span><span style="color: #a80057;">A</span><span style="color: #6d0092;">B</span> can enpower <b>any</b> future DiT-based video generation models with real-time capabilities.
-          <br>
+          <b>Any speedup ratio without quality loss. Any modality. Any model. Any scheduler.</b>  
+          Introducing 
+          <span style="
+            background: linear-gradient(to right, #7b7bff, #cf77ef, #f3a3cd, #ffb68e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;">
+            SADA
+          </span> — a <b>training-free</b> acceleration method for generative models, running with <b>just one line of code</b>. Fully open-source.  
+          Achieve <b>1.9×</b> <b>lossless acceleration</b> or <b>3.6×</b> speedup with LPIPS < 0.2 for <b>ultra-stable quality</b>.  
+          Works seamlessly with <b>images</b>, <b>videos</b>, and <b>audio</b> across U-Net, DiT, and beyond — delivering <b>instant compatibility</b> and <b>breakthrough performance</b>.
         </p>
       </div>
     </div>
-  </div>
-
-  <div class="container is-max-desktop">
-    <video class="video" autoplay controls muted loop playsinline>
-      <source src="./static/videos/compare.mp4" type="video/mp4">
-    </video>
-    <div class="columns is-centered">
-      <div class="content has-text-centered">
-        <span style="font-size: 0.8em; width: 80%; display: inline-block;"><br>Video 1: Comparison of video generation speeds between original method and ours. We test on Open-Sora with 5 videos of 4s (96 frames) 480p resolution. Baseline and ours use 1 and 8 NVIDIA H100 GPUs respectively.</span>
-        <br>
-      </div>
+      <div class="has-text-centered" style="margin-top:2em;">
+      <img src="static/images/SLlpips.png" alt="SADA Motivation Diagram" style="max-width:500px; width:65%;">
+      <p style="font-size:0.95em; margin-top:0.5em;">
+        <i><b>Figure 1.</b>  The purple line represents <span style="
+            background: linear-gradient(to right, #7b7bff, #cf77ef, #f3a3cd, #ffb68e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;">
+            SADA
+          </span>  results at different speed modes (Quality, Balanced, Medium, Fast, Turbo), <br>
+      showing superior performance in both speedup and LPIPS compared to other methods.</i>
+      </p>
     </div>
   </div>
 </section>
+
+
+
+<div class="scene" data-speed="1">
+  <div class="row">
+    <img src="static/images/boat/1.png">
+    <img src="static/images/car/1.png">
+    <img src="static/images/girl/1.png">
+    <img src="static/images/sheep/1.png">
+  </div>
+  <p>Original (1.0x)</p>
+</div>
+
+<div class="scene" data-speed="1.92">
+  <div class="row">
+    <img src="static/images/boat/2.png">
+    <img src="static/images/car/2.png">
+    <img src="static/images/girl/2.png">
+    <img src="static/images/sheep/2.png">
+  </div>
+  <p>Balanced (1.92x)</p>
+</div>
+
+<div class="scene" data-speed="2.25">
+  <div class="row">
+    <img src="static/images/boat/3.png">
+    <img src="static/images/car/3.png">
+    <img src="static/images/girl/3.png">
+    <img src="static/images/sheep/3.png">
+  </div>
+  <p>Medium (2.25x)</p>
+</div>
+
+<div class="scene" data-speed="2.91">
+  <div class="row">
+    <img src="static/images/boat/4.png">
+    <img src="static/images/car/4.png">
+    <img src="static/images/girl/4.png">
+    <img src="static/images/sheep/4.png">
+  </div>
+  <p>Fast (2.91x)</p>
+</div>
+
+<div class="scene" data-speed="3.64">
+  <div class="row">
+    <img src="static/images/boat/5.png">
+    <img src="static/images/car/5.png">
+    <img src="static/images/girl/5.png">
+    <img src="static/images/sheep/5.png">
+  </div>
+  <p>Turbo (3.64x)</p>
+</div>
+
+<style>
+.scene {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.row img {
+  width: 150px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.scene p {
+  font-weight: bold;
+  margin-top: 8px;
+  font-size: 1em;
+}
+</style>
+
+
+<script>
+function startAnimation() {
+  document.querySelectorAll('.scene').forEach(scene => {
+    let speed = parseFloat(scene.dataset.speed);
+    let imgs = scene.querySelectorAll('img');
+
+    // reset opacity before animation
+    imgs.forEach(img => img.style.opacity = 0);
+
+    imgs.forEach((img, i) => {
+      setTimeout(() => {
+        img.style.opacity = 1;
+      }, i * (1000 / speed));
+    });
+  });
+}
+
+let observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      startAnimation();
+      obs.disconnect(); // 只执行一次
+    }
+  });
+}, { threshold: 0.2 });
+
+// 改成监听第一个 .scene，而不是不存在的 #animation-section
+observer.observe(document.querySelector('.scene'));
+</script>
+
 
 
 <section class="section">
