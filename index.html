@@ -17,6 +17,7 @@
   
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./juxtapose/css/button.css">
+  <link rel="stylesheet" href="./juxtapose/css/navball.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/tab_gallery.css">
@@ -95,6 +96,42 @@
 
 
 <body>
+ <div class="card">
+    <a class="social-icons" href="#images">
+      <!-- 图像 -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM5 5h14v5l-3.5-4.5-2.5 3.01L9 5l-4 5V5zm0 14v-4.5l3-3.5 2.5 3L15 10l4 5.5V19H5z"/>
+      </svg>
+      <p>Image Demo</p>
+    </a>
+
+    <a class="social-icons" href="#videos">
+      <!-- 视频 -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M17 10.5V7c0-1.1-.9-2-2-2H5C3.9 5 3 5.9 3 7v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-3.5l4 4v-11l-4 4z"/>
+      </svg>
+      <p>Video Demo</p>
+    </a>
+
+    <a class="social-icons" href="#audios">
+      <!-- 音频 -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 3v10.55a4 4 0 1 0 2-3.45V3h-2z"/>
+      </svg>
+      <p>Audio Demo</p>
+    </a>
+
+    <a class="social-icons" href="#results">
+      <!-- 数值结果 -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M3 3h18v2H3V3zm0 16h18v2H3v-2zm0-8h18v2H3v-2z"/>
+      </svg>
+      <p>Quantitative Results</p>
+    </a>
+</div>
+
+  
+
   <div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
   <section class="hero is-small">
   <div class="hero-body">
@@ -219,6 +256,7 @@
 </section>
 
 
+
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -265,7 +303,7 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Evaluations</h2>
         
-        <h2 class="title is-4">Images</h2>
+        <h2 class="title is-4" id="images">Images</h2>
         <div class="content has-text-justified">
           <p>
             Measured total latency of <span style="color: #e2001d;">P</span><span style="color: #a80057;">A</span><span style="color: #6d0092;">B</span> for different models for generating a single video on 8 NVIDIA H100 GPUs. When utilizing a single GPU, we achieve a speedup ranging from 1.26x to 1.32x, which remains stable across different schedulers. Scaling to multiple GPUs, our method achieves a speedup of up to 10.6x, which almost linearly scales with the number of GPUs due to our efficient improvement of sequence parallel.
@@ -389,11 +427,43 @@ document.getElementById('replay-btn').addEventListener('click', startAnimation);
   </div>
   <br>
 
+
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">        
         <div class="content has-text-justified">
-          <h2 class="title is-4">Quantitive Results</h2>
+          <h2 class="title is-4" id="videos">Videos</h2>
+          <div class="content has-text-centered">
+            <img src="./static/images/eval.png" style="width: 40%;"><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">        
+        <div class="content has-text-justified">
+          <h2 class="title is-4" id="audios">Audios</h2>
+          <div class="content has-text-centered">
+            <img src="./static/images/eval.png" style="width: 40%;"><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">        
+        <div class="content has-text-justified">
+          <h2 class="title is-4" id="results">Quantitive Results</h2>
+
           <div class="content has-text-centered">
             <img src="./static/images/eval.png" style="width: 40%;"><br>
           </div>
@@ -404,159 +474,6 @@ document.getElementById('replay-btn').addEventListener('click', startAnimation);
 </section>
 
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Pyramid Attention Broadcast</h2>
-        
-        <h2 class="title is-4">Motivation</h2>
-        <div class="content has-text-justified">
-          <p>
-            Recently, Sora and other DiT-based video generation models have attracted significant attention. However, in contrast to image generation, there are few studies focused on accelerating the inference of DiT-based video generation models. Additionally, the inference cost for generating a single video can be substantial, often requiring tens of GPU minutes or even hours. Therefore, accelerating the inference of video generation models has become urgent for broader GenAI applications.
-          </p>
-          <div class="content has-text-centered">
-            <img src="./static/images/motivation.png" style="width: 50%;"><br>
-            <span style="font-size: 0.8em; width: 75%; display: inline-block;">Figure 1: We compare the attention outputs differences between the current and previous diffusion steps. Differences are quantified using Mean Square Error (MSE) and averaged across all layers for each diffusion step.</span>
-          </div>
-        </div>
-
-        <h2 class="title is-4">Implementation</h2>
-        <div class="content has-text-justified">
-          <p>
-            Our study reveals two key observations of attention mechanisms in video diffusion transformers: Firstly, attention differences across time steps exhibit a U-shaped pattern, with significant variations occurring during the first and last 15% of steps, while the middle 70% of steps are very stable with minor differences. Secondly, within the stable middle segment, the differences varies among attention types: spatial attention varies the most, involving high-frequency elements like edges and textures; temporal attention exhibits mid-frequency variations related to movements and dynamics in videos; cross-modal attention is the most stable, linking text with video content, analogous to low-frequency signals reflecting textual semantics.
-          </p>
-          <div class="content has-text-centered">
-            <img src="./static/images/method.png"><br>
-            <span style="font-size: 0.8em; width: 100%; display: inline-block;">Figure 2: We propose pyramid attention broadcast (shown on the right side) which sets different broadcast ranges for three attentions based on their differences. The smaller the variation in attention, the broader the broadcast range. During runtime, we broadcast attention results to the next several steps (shown on the left side) to avoid redundant attention computations. \( x_t \) refers to the features at timestep \( t \).</span>
-          </div>
-          <div class="content has-text-justified">
-            Building on these insights, we propose <span class="custom-emoji"></span><b><span style="color: #ff0000;">P</span><span style="color: #f80007;">y</span><span style="color: #f1000e;">r</span><span style="color: #ea0015;">a</span><span style="color: #e4001c;">m</span><span style="color: #dd0022;">i</span><span style="color: #d60029;">d</span> <span style="color: #cf0030;">A</span><span style="color: #c80037;">t</span><span style="color: #c1003e;">t</span><span style="color: #ba0045;">e</span><span style="color: #b3004c;">n</span><span style="color: #ad0053;">t</span><span style="color: #a60059;">i</span><span style="color: #9f0060;">o</span><span style="color: #980067;">n</span> <span style="color: #91006e;">B</span><span style="color: #8a0075;">r</span><span style="color: #83007c;">o</span><span style="color: #7c0083;">a</span><span style="color: #76008a;">d</span><span style="color: #6f0090;">c</span><span style="color: #680097;">a</span><span style="color: #61009e;">s</span><span style="color: #5a00a5;">t</span></b> to alleviate unnecessary attention computations. In the middle segment, where attentions show minor differences, we can broadcast one diffusion step's attention outputs to several subsequent steps, thereby significantly reducing computational costs. Furthermore, for more efficient computation and minimum quality loss, we set varied broadcast ranges for different attentions based on their stability and differences. This simple yet effective strategy achieves up to a 35% speedup with negligible quality loss, even without post-training.
-          </div>
-        </div>
-
-        <h2 class="title is-4">Parallelism</h2>
-        <div class="content has-text-centered">
-          <div class="content has-text-centered">
-            <img src="./static/images/parallel.png" style="width: 70%;"><br>
-            <span style="font-size: 0.8em; width: 80%; display: inline-block;">Figure 3: Comparison between original Dynamic Sequence Parallel (DSP) and ours. When temporal attention is broadcasted, we can avoid all communication.</span>
-          </div>
-          <div class="content has-text-justified">
-            To further enhance video generation speed, we improve sequence parallel based on <a href="https://arxiv.org/abs/2403.10266" target="_blank">Dynamic Sequence Parallelism</a> (DSP). Sequence parallelism segments videos into different parts across multiple GPUs, reducing the workload on each GPU and decreasing generation latency. However, DSP introduces significant communication overhead, requiring two all-to-all communications for temporal attention. By broadcasting temporal attention in <span style="color: #e2001d;">P</span><span style="color: #a80057;">A</span><span style="color: #6d0092;">B</span>, we eliminate these communications, as temporal attention no longer needs to be computed. This results in a significant reduction in communication overhead by over 50%, enabling more efficient distributed inference for real-time video generation.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Evaluations</h2>
-        
-        <h2 class="title is-4">Speedups</h2>
-        <div class="content has-text-centered">
-          <img src="./static/images/speedup.png">
-        </div>
-        <div class="content has-text-justified">
-          <p>
-            Measured total latency of <span style="color: #e2001d;">P</span><span style="color: #a80057;">A</span><span style="color: #6d0092;">B</span> for different models for generating a single video on 8 NVIDIA H100 GPUs. When utilizing a single GPU, we achieve a speedup ranging from 1.26x to 1.32x, which remains stable across different schedulers. Scaling to multiple GPUs, our method achieves a speedup of up to 10.6x, which almost linearly scales with the number of GPUs due to our efficient improvement of sequence parallel.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <h2 class="title is-4">Qualitative Results</h2>
-    <div class="container is-max-desktop">
-      <video class="video" autoplay controls muted loop playsinline>
-        <source src="./static/videos/video1.mp4" type="video/mp4">
-      </video>
-      <video class="video" autoplay controls muted loop playsinline>
-        <source src="./static/videos/video2.mp4" type="video/mp4">
-      </video>
-      <video class="video" autoplay controls muted loop playsinline>
-        <source src="./static/videos/video3.mp4" type="video/mp4">
-      </video>
-      <br>
-    </div>
-  </div>
-  <br>
-
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">        
-        <div class="content has-text-justified">
-          <h2 class="title is-4">Quantitive Results</h2>
-          <div class="content has-text-centered">
-            <img src="./static/images/eval.png" style="width: 40%;"><br>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related works</h2>
-        <div class="content has-text-justified">
-          <p>
-            <li>
-              Zangwei Zheng, Xiangyu Peng, Tianji Yang, Chenhui Shen, Shenggui Li, Hongxin Liu, Yukun Zhou, Tianyi Li, and Yang You. <a href="https://github.com/hpcaitech/Open-Sora">Open-Sora: Democratizing Efficient Video Production for All</a>. GitHub, 2024.
-            </li>
-            <li>
-              PKU-Yuan Lab and Tuzhan AI etc. <a href="https://github.com/PKU-YuanGroup/Open-Sora-Plan">Open-Sora-Plan</a>. GitHub, 2024.
-            </li>
-            <li>
-              Xin Ma, Yaohui Wang, Gengyun Jia, Xinyuan Chen, Ziwei Liu, Yuan-Fang Li, Cunjian Chen, and Yu Qiao. <a href="https://arxiv.org/abs/2401.03048">Latte: Latent Diffusion Transformer for Video Generation</a>. arXiv, 2024.
-            </li>
-            <li>
-              Xuanlei Zhao, Shenggan Cheng, Chang Chen, Zangwei Zheng, Ziming Liu, Zheming Yang, and Yang You. <a href="https://arxiv.org/abs/2401.03048">DSP: Dynamic Sequence Parallelism for Multi-Dimensional Transformers</a>. arXiv, 2024.
-            </li>
-            <li>
-              Muyang Li, Tianle Cai, Jiaxin Cao, Qinsheng Zhang, Han Cai, Junjie Bai, Yangqing Jia, Ming-Yu Liu, Kai Li, and Song Han. <a href="https://arxiv.org/abs/2402.19481">DistriFusion: Distributed Parallel Inference for High-Resolution Diffusion Models</a>. In CVPR, 2024.
-            </li>
-            <li>
-              Xinyin Ma, Gongfan Fang, and Xinchao Wang. <a href="https://arxiv.org/abs/2312.00858">DeepCache: Accelerating Diffusion Models for Free</a>. In CVPR, 2024.
-            </li>
-            <li>
-              Ziqi Huang, Yinan He, Jiashuo Yu, Fan Zhang, Chenyang Si, Yuming Jiang, Yuanhan Zhang, Tianxing Wu, Qingyang Jin, Nattapol Chanpaisit, Yaohui Wang, Xinyuan Chen, Limin Wang, Dahua Lin, Yu Qiao, and Ziwei Liu. <a href="https://arxiv.org/abs/2311.17982">VBench: Comprehensive Benchmark Suite for Video Generative Models</a>. In CVPR, 2024.
-            </li>
-            <li>
-              David Junhao Zhang, Jay Zhangjie Wu, Jia-Wei Liu, Rui Zhao, Lingmin Ran, Yuchao Gu, Difei Gao, and Mike Zheng Shou. <a href="https://arxiv.org/abs/2406.11816">Show-1: Marrying Pixel and Latent Diffusion Models for Text-to-Video Generation</a>. arXiv, 2024.
-            </li>
-            <li>
-              Uriel Singer, Adam Polyak, Thomas Hayes, Xi Yin, Jie An, Songyang Zhang, Qiyuan Hu, Harry Yang, Oron Ashual, Oran Gafni, Devi Parikh, Sonal Gupta, and Yaniv Taigman. <a href="https://arxiv.org/abs/2209.14792">Make-A-Video: Text-to-Video Generation without Text-Video Data</a>. In ICLR, 2023.
-            </li>
-            <li>
-              Omer Bar-Tal, Hila Chefer, Omer Tov, Charles Herrmann, Roni Paiss, Shiran Zada, Ariel Ephrat, Junhwa Hur, Guanghui Liu, Amit Raj, Yuanzhen Li, Michael Rubinstein, Tomer Michaeli, Oliver Wang, Deqing Sun, Tali Dekel, and Inbar Mosseri. <a href="https://arxiv.org/abs/2401.12945">Lumiere: A Space-Time Diffusion Model for Video Generation</a>. arXiv, 2024.
-            </li>
-            <li>
-              Andreas Blattmann, Robin Rombach, Huan Ling, Tim Dockhorn, Seung Wook Kim, Sanja Fidler, and Karsten Kreis. <a href="https://arxiv.org/abs/2304.08818">Align your Latents:
-                High-Resolution Video Synthesis with Latent Diffusion Models</a>. In CVPR, 2023.
-            </li>
-            <li>
-              Zhengqing Yuan, Ruoxi Chen, Zhaoxu Li, Haolong Jia, Lifang He, Chi Wang, and Lichao Sun. <a href="https://arxiv.org/abs/2403.13248">Mora: Enabling Generalist Video Generation via A Multi-Agent Framework</a>. In CVPR, 2023.
-            </li>
-          </p>
-        </div>
-
-        <h2 class="title is-3">Acknowledgments</h2>
-        <div class="content has-text-justified">
-          <p>
-            Xuanlei, Xiaolong, and Kai contribute equally to this work. Kai and Yang are equal advising.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">

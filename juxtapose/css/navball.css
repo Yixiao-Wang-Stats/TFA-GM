@@ -1,0 +1,72 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 60px;
+  height: auto;
+  background-color: transparent;
+  border-radius: 30px;
+  padding-block: 15px;
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  z-index: 9999;
+  overflow: visible;
+}
+.social-icons {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s;
+  color: white;
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  border-radius: 50%;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 8px 15px -3px;
+  height: 50px;
+  width: 50px;
+  overflow: visible; /* 允许气泡超出按钮范围 */
+}
+
+/* 气泡文本 */
+.social-icons > p {
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  border-radius: 7px;
+  opacity: 0;
+  padding: 3px 8px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+  font-size: 14px;
+  color: white;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+
+.social-icons:hover > p {
+  opacity: 1;
+}
+
+/* 悬停时其他图标变暗 */
+.card:hover > .social-icons:not(:hover) {
+  filter: blur(2px);
+  transform: scale(0.9);
+}
+
+.card svg {
+  height: 30px;
+  width: 30px;
+  fill: white; /* 保证 SVG 图标是白色 */
+}
+
+html {
+  scroll-behavior: smooth;
+}
