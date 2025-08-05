@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-<meta property='og:title' content='Real-Time Video Generation with Pyramid Attention Broadcast'/>
-<meta property='og:description' content='Real-Time Video Generation with Pyramid Attention Broadcast'/>
-<meta property='og:url' content='https://oahzxl.github.io/PAB/'/>
+<meta property='og:title' content='Real-Time Video Generation with Pyramid Attention Broadcast' />
+<meta property='og:description' content='Real-Time Video Generation with Pyramid Attention Broadcast' />
+<meta property='og:url' content='https://oahzxl.github.io/PAB/' />
 <meta property='og:image:width' content='1200' />
 <meta property='og:image:height' content='663' />
 <!-- TYPE BELOW IS PROBABLY: 'website' or 'article' or look on https://ogp.me/#types -->
-<meta property="og:type" content='website'/>
+<meta property="og:type" content='website' />
+
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Real-Time Video Generation with Pyramid Attention Broadcast">
+  <meta name="description" content="Real-Time Video Generation with Pyramid Attention Broadcast">
   <meta name="keywords" content="Real-Time Video Generation with Pyramid Attention Broadcast">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Real-Time Video Generation with Pyramid Attention Broadcast</title>
-  
+
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./juxtapose/css/button.css">
   <link rel="stylesheet" href="./juxtapose/css/navball.css">
@@ -22,15 +22,14 @@
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/tab_gallery.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
   <link rel="stylesheet" href="juxtapose/css/juxtapose.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {delimiters: [{left: '$', right: '$', display: false}]});"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$', right: '$', display: false}]});"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -44,7 +43,7 @@
   <link rel="stylesheet" href="./static/css/image_card_fader.css">
   <link rel="stylesheet" href="./static/css/image_card_slider.css">
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Patrick+Hand|Google+Sans|Noto+Sans|Castoro|Lato|Open+Sans&effect=shadow-multiple|emboss|3d"> 
+    href="https://fonts.googleapis.com/css?family=Patrick+Hand|Google+Sans|Noto+Sans|Castoro|Lato|Open+Sans&effect=shadow-multiple|emboss|3d">
   <link rel="icon" href="./static/images/pyramid.png" type="image/x-icon">
   <link rel="shortcut icon" href="./static/images/pyramid.png" type="image/x-icon">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -54,32 +53,39 @@
 <style>
   @import url('https://fonts.cdnfonts.com/css/menlo');
 
-  .video-table td, .video-table th {
+  .video-table td,
+  .video-table th {
     padding-top: 2px;
     padding-bottom: 2px;
     padding-left: 4px;
     padding-right: 4px;
     font-weight: normal;
   }
+
   .first-col {
     width: 7%;
     vertical-align: middle;
   }
+
   .other-col {
     width: 31%;
   }
+
   body {
     font-family: "Lato", sans-serif;
     font-size: 1.1em;
   }
+
   .title.is-3 {
     font-weight: 900;
     font-size: 2.0rem;
   }
+
   .title.is-4 {
     font-weight: 700;
     font-size: 1.7rem;
   }
+
   .custom-emoji {
     width: 1em;
     height: 1em;
@@ -89,39 +95,75 @@
     vertical-align: middle;
     line-height: 1;
   }
-   .star {
+
+  .star {
     position: absolute;
     pointer-events: none;
     z-index: 9999;
     will-change: transform, opacity;
   }
+
   .formula {
-  position: absolute;
-  font-size: 20px;
-  transition: opacity 0.8s ease;
-}
-.hidden { opacity: 0; }
-.visible { opacity: 1; }
-.fade-out { opacity: 0; }
-.model-red { fill: #7a003c; transition: fill 2s ease; }
-.model-gray { fill: #ddd; }
-.model-dashed-border { stroke: #888; stroke-width: 2; stroke-dasharray: 4; }
-.model-text-red { fill: white; transition: fill 2s ease; }
-.model-text-gray { fill: #bbb; }
-.blue-arrow { opacity: 0; transition: opacity 0.8s ease; }
-.fade-in { transition: opacity 1s ease; opacity: 1 !important; }
+    position: absolute;
+    font-size: 20px;
+    transition: opacity 0.8s ease;
+  }
 
+  .hidden {
+    opacity: 0;
+  }
 
+  .visible {
+    opacity: 1;
+  }
 
+  .fade-out {
+    opacity: 0;
+  }
+
+  .model-red {
+    fill: #7a003c;
+    transition: fill 2s ease;
+  }
+
+  .model-gray {
+    fill: #ddd;
+  }
+
+  .model-dashed-border {
+    stroke: #888;
+    stroke-width: 2;
+    stroke-dasharray: 4;
+  }
+
+  .model-text-red {
+    fill: white;
+    transition: fill 2s ease;
+  }
+
+  .model-text-gray {
+    fill: #bbb;
+  }
+
+  .blue-arrow {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  .fade-in {
+    transition: opacity 1s ease;
+    opacity: 1 !important;
+  }
 </style>
 
 
 <body>
- <div class="card">
+  <div class="card">
     <a class="social-icons" href="#images">
       <!-- 图像 -->
       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM5 5h14v5l-3.5-4.5-2.5 3.01L9 5l-4 5V5zm0 14v-4.5l3-3.5 2.5 3L15 10l4 5.5V19H5z"/>
+        <path
+          d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM5 5h14v5l-3.5-4.5-2.5 3.01L9 5l-4 5V5zm0 14v-4.5l3-3.5 2.5 3L15 10l4 5.5V19H5z" />
       </svg>
       <p>Image Demo</p>
     </a>
@@ -129,7 +171,7 @@
     <a class="social-icons" href="#videos">
       <!-- 视频 -->
       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M17 10.5V7c0-1.1-.9-2-2-2H5C3.9 5 3 5.9 3 7v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-3.5l4 4v-11l-4 4z"/>
+        <path d="M17 10.5V7c0-1.1-.9-2-2-2H5C3.9 5 3 5.9 3 7v10c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-3.5l4 4v-11l-4 4z" />
       </svg>
       <p>Video Demo</p>
     </a>
@@ -137,465 +179,526 @@
     <a class="social-icons" href="#audios">
       <!-- 音频 -->
       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M9 3v10.55A4 4 0 1 0 11 17V7h8V3H9z"/>
+        <path d="M9 3v10.55A4 4 0 1 0 11 17V7h8V3H9z" />
       </svg>
       <p>Audio Demo</p>
     </a>
 
-    
+
 
     <a class="social-icons" href="#results">
       <!-- 数值结果 -->
       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M3 3h18v2H3V3zm0 16h18v2H3v-2zm0-8h18v2H3v-2z"/>
+        <path d="M3 3h18v2H3V3zm0 16h18v2H3v-2zm0-8h18v2H3v-2z" />
       </svg>
       <p>Quantitative Results</p>
     </a>
-</div>
+  </div>
 
-  
+
 
   <div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
   <section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <br><br>
-          <h1 class="title is-2 publication-title" style="font-size: 2.12rem">
-            <span style="color: #ff0000;">O</span><span style="color: #f80007;">n</span>&nbsp;
-            <span style="color: #f1000e;">T</span><span style="color: #ea0015;">r</span><span style="color: #e4001c;">a</span><span style="color: #dd0022;">i</span><span style="color: #d60029;">n</span><span style="color: #cf0030;">i</span><span style="color: #c80037;">n</span><span style="color: #c1003e;">g</span><span style="color: #ba0045;">-</span>
-            <span style="color: #b3004c;">F</span><span style="color: #ad0053;">r</span><span style="color: #a60059;">e</span><span style="color: #9f0060;">e</span>&nbsp;
-            <span style="color: #980067;">A</span><span style="color: #91006e;">c</span><span style="color: #8a0075;">c</span><span style="color: #83007c;">e</span><span style="color: #7c0083;">l</span><span style="color: #76008a;">e</span><span style="color: #6f0090;">r</span><span style="color: #680097;">a</span><span style="color: #61009e;">t</span><span style="color: #5a00a5;">i</span><span style="color: #5400ac;">o</span><span style="color: #4d00b3;">n</span>&nbsp;
-            of Generative Modeling
-          </h1>
-
-        
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://github.com/Ting-Justin-Jiang" target="_blank">Ting Jiang</a><sup>1*</sup>,&nbsp;
-            </span>
-            <span class="author-block">
-              <a href="https://yixiao-wang-stats.github.io/" target="_blank">Yixiao Wang</a><sup>1*</sup>,&nbsp;
-            </span>
-            <span class="author-block">
-              <a href="https://zishan-shao.github.io/" target="_blank">Zishan Shao</a><sup>1*</sup>,&nbsp;
-            </span>
-            <span class="author-block">
-              <a href="https://github.com/HankYe" target="_blank">Hancheng Ye</a><sup>1</sup>,&nbsp;
-            </span>
-            <span class="author-block">
-              <a href="https://ece.duke.edu/people/yiran-chen/" target="_blank">Yiran Chen</a><sup>1</sup>,&nbsp;
-            </span>
-            <span class="author-block">
-              <a href="https://ece.duke.edu/people/hai-helen-li/" target="_blank">Hai Li</a><sup>1</sup>
-            </span>
-          </div>
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <br><br>
+            <h1 class="title is-2 publication-title" style="font-size: 2.12rem">
+              <span style="color: #ff0000;">O</span><span style="color: #f80007;">n</span>&nbsp;
+              <span style="color: #f1000e;">T</span><span style="color: #ea0015;">r</span><span
+                style="color: #e4001c;">a</span><span style="color: #dd0022;">i</span><span
+                style="color: #d60029;">n</span><span style="color: #cf0030;">i</span><span
+                style="color: #c80037;">n</span><span style="color: #c1003e;">g</span><span
+                style="color: #ba0045;">-</span>
+              <span style="color: #b3004c;">F</span><span style="color: #ad0053;">r</span><span
+                style="color: #a60059;">e</span><span style="color: #9f0060;">e</span>&nbsp;
+              <span style="color: #980067;">A</span><span style="color: #91006e;">c</span><span
+                style="color: #8a0075;">c</span><span style="color: #83007c;">e</span><span
+                style="color: #7c0083;">l</span><span style="color: #76008a;">e</span><span
+                style="color: #6f0090;">r</span><span style="color: #680097;">a</span><span
+                style="color: #61009e;">t</span><span style="color: #5a00a5;">i</span><span
+                style="color: #5400ac;">o</span><span style="color: #4d00b3;">n</span>&nbsp;
+              of Generative Modeling
+            </h1>
 
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Duke University&nbsp;</span>
-          </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://github.com/Ting-Justin-Jiang" target="_blank">Ting Jiang</a><sup>1*</sup>,&nbsp;
+              </span>
+              <span class="author-block">
+                <a href="https://yixiao-wang-stats.github.io/" target="_blank">Yixiao Wang</a><sup>1*</sup>,&nbsp;
+              </span>
+              <span class="author-block">
+                <a href="https://zishan-shao.github.io/" target="_blank">Zishan Shao</a><sup>1*</sup>,&nbsp;
+              </span>
+              <span class="author-block">
+                <a href="https://github.com/HankYe" target="_blank">Hancheng Ye</a><sup>1</sup>,&nbsp;
+              </span>
+              <span class="author-block">
+                <a href="https://ece.duke.edu/people/yiran-chen/" target="_blank">Yiran Chen</a><sup>1</sup>,&nbsp;
+              </span>
+              <span class="author-block">
+                <a href="https://ece.duke.edu/people/hai-helen-li/" target="_blank">Hai Li</a><sup>1</sup>
+              </span>
+            </div>
 
-          <div class="is-size-5 publication-authors">
-            justin.jiang, yixiao.wang, zishan.shao, hancheng.ye, yiran.chen, hai.li@duke.edu
-          </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Duke University&nbsp;</span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              justin.jiang, yixiao.wang, zishan.shao, hancheng.ye, yiran.chen, hai.li@duke.edu
+            </div>
 
 
-          <div class="is-size-5 publication-authors">
-            (* indicates equal contribution)
-          </div>
-           <div class="is-size-5 has-text-centered" style="margin-top: 0.5em; font-weight: bold;">
-             &nbsp;
+            <div class="is-size-5 publication-authors">
+              (* indicates equal contribution)
+            </div>
+            <div class="is-size-5 has-text-centered" style="margin-top: 0.5em; font-weight: bold;">
+              &nbsp;
               🚀 <span style="
   background: linear-gradient(to right, #7b7bff, #cf77ef, #f3a3cd, #ffb68e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;">
-  SADA
-</span> plugs straight into any project built on HuggingFace Diffusers 🤗
+                SADA
+              </span> plugs straight into any project built on HuggingFace Diffusers 🤗
             </div>
-          <!-- <div class="is-size-5 publication-venue">
+            <!-- <div class="is-size-5 publication-venue">
             in XXX
           </div> -->
 
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/NUS-HPC-AI-Lab/VideoSys" target="_blank"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/NUS-HPC-AI-Lab/VideoSys" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
                       <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
+                    </span>
+                    <span>Code</span>
                   </a>
-              </span>
-              <!-- paper -->
-              <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-light" disabled style="pointer-events: none; opacity: 0.6;">
-                  <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper (Coming Soon)</span>
-                </a>
-              </span>
-              
-              <!-- doc -->
-              <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-light" disabled style="pointer-events: none; opacity: 0.6;">
-                  <span class="icon">
-                    <i class="fas fa-book"></i>
-                  </span>
-                  <span>Doc (Coming Soon)</span>
-                </a>
-              </span>
-              
-              <!-- twitter -->
-              <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-light" disabled style="pointer-events: none; opacity: 0.6;">
-                  <span class="icon">
-                    <i class="fab fa-twitter"></i>
-                  </span>
-                  <span>Twitter (Coming Soon)</span>
-                </a>
-              </span>
-              <!-- bibtex -->
-              <span class="link-block">
-                <a href="#bibtex"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
+                </span>
+                <!-- paper -->
+                <span class="link-block">
+                  <a class="external-link button is-normal is-rounded is-light" disabled
+                    style="pointer-events: none; opacity: 0.6;">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper (Coming Soon)</span>
+                  </a>
+                </span>
+
+                <!-- doc -->
+                <span class="link-block">
+                  <a class="external-link button is-normal is-rounded is-light" disabled
+                    style="pointer-events: none; opacity: 0.6;">
+                    <span class="icon">
+                      <i class="fas fa-book"></i>
+                    </span>
+                    <span>Doc (Coming Soon)</span>
+                  </a>
+                </span>
+
+                <!-- twitter -->
+                <span class="link-block">
+                  <a class="external-link button is-normal is-rounded is-light" disabled
+                    style="pointer-events: none; opacity: 0.6;">
+                    <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                    </span>
+                    <span>Twitter (Coming Soon)</span>
+                  </a>
+                </span>
+                <!-- bibtex -->
+                <span class="link-block">
+                  <a href="#bibtex" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
                       <i class="ai ai-obp"></i>
-                  </span>
-                  <span>BibTex</span>
-                </a>
-              </span>
+                    </span>
+                    <span>BibTex</span>
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
 
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="content has-text-justified">
-        <p>
-          <b>Any speedup ratio without quality loss. Any modality. Any model. Any scheduler.</b>  
-          Introducing 
-          <span style="
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="content has-text-justified">
+          <p>
+            <b>Any speedup ratio without quality loss. Any modality. Any model. Any scheduler.</b>
+            Introducing
+            <span style="
             background: linear-gradient(to right, #7b7bff, #cf77ef, #f3a3cd, #ffb68e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: bold;">
-            SADA
-          </span> — a <b>training-free</b> acceleration method for generative models, running with <b>just one line of code</b>. Fully open-source.  
-          Achieve <b>1.9×</b> <b>lossless acceleration</b> or <b>3.6×</b> speedup with LPIPS < 0.2 for <b>ultra-stable quality</b>.  
-          Works seamlessly with <b>images</b>, <b>videos</b>, and <b>audio</b> across U-Net, DiT, and beyond — delivering <b>instant compatibility</b> and <b>breakthrough performance</b>.
-        </p>
+              SADA
+            </span> — a <b>training-free</b> acceleration method for generative models, running with <b>just one line of
+              code</b>. Fully open-source.
+            Achieve <b>1.9×</b> <b>lossless acceleration</b> or <b>3.6×</b> speedup with LPIPS < 0.2 for <b>ultra-stable
+              quality</b>.
+              Works seamlessly with <b>images</b>, <b>videos</b>, and <b>audio</b> across U-Net, DiT, and beyond —
+              delivering <b>instant compatibility</b> and <b>breakthrough performance</b>.
+          </p>
+        </div>
       </div>
-    </div>
-       
+
 
 
       <div class="has-text-centered" style="margin-top:2em;">
-          <div id="main" style="width: 800px; height: 500px; margin: auto;"></div>
+        <div id="main" style="width: 800px; height: 500px; margin: auto;"></div>
         <p id="figure1-caption" style="font-size:0.95em; margin-top:0.5em;">
-          <i><b>Figure 1.</b>  The purple line represents <span style="
+          <i><b>Figure 1.</b> The purple line represents <span style="
             background: linear-gradient(to right, #7b7bff, #cf77ef, #f3a3cd, #ffb68e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: bold;">
-            SADA
-          </span>  results at different speed modes (Quality, Balanced, Medium, Fast, Turbo), <br>
-      showing superior performance in both speedup and LPIPS compared to other methods.</i>
-      </p>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="section" id="implementation">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Implementation</h2>
-
-    <div class="content">
-      <p>
-        At each step, we check stability conditions from the ODE solver to decide whether to reuse cached outputs or perform fresh model evaluation. This enables adaptive acceleration with minimal overhead and strong compatibility with existing solvers like DPM++ and EDM.
-      </p>
-    </div>
-<div style="text-align:center; margin-top:5px;">
-  <button id="replay-btn-mainplot"><span>Replay Animation</span></button>
-</div>
-
-    <div style="position:relative; height:420px;">
-        
-
-<svg id="fig2-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-
-  <!-- 左侧 Model -->
-  <rect x="100" y="80" width="80" height="40" rx="5" fill="#7a003c"/>
-  <text x="140" y="102" font-size="16" fill="white" text-anchor="middle" alignment-baseline="middle">Model</text>
-
-  <!-- 左侧 Solver -->
-  <rect x="90" y="200" width="100" height="40" rx="5" fill="#999"/>
-  <text x="140" y="222" font-size="16" fill="white" text-anchor="middle" alignment-baseline="middle">Solver</text>
-
-  <!-- 右侧 Model（动画变灰 + 虚线框） -->
-<rect id="model-right" x="295" y="80" width="80" height="40" rx="5" class="model-red" stroke="none"/>
-<rect id="model-right-border" x="295" y="80" width="80" height="40" rx="5" fill="none" class="model-dashed-border" style="opacity:0"/>
-<text id="model-right-text" x="335" y="102" font-size="16" class="model-text-red" text-anchor="middle" alignment-baseline="middle">Model</text>
-
-  <!-- 右侧 Solver -->
-  <rect x="285" y="200" width="100" height="40" rx="5" fill="#999"/>
-  <text x="335" y="222" font-size="16" fill="white" text-anchor="middle" alignment-baseline="middle">Solver</text>
-
-  <!-- 所有黑色箭头保留 -->
-  <line x1="325" y1="60" x2="325" y2="75" stroke="black" />
-  <line x1="350" y1="60" x2="350" y2="75" stroke="black" />
-  <line x1="325" y1="120" x2="325" y2="195" stroke="black" marker-end="url(#arrow)"/>
-  <line x1="350" y1="120" x2="350" y2="145" stroke="black" marker-end="url(#arrow)"/>
-  <line x1="350" y1="170" x2="350" y2="195" stroke="black" marker-end="url(#arrow)"/>
-  <line x1="130" y1="60" x2="130" y2="75" stroke="black" />
-  <line x1="155" y1="60" x2="155" y2="75" stroke="black" />
-  <line x1="130" y1="120" x2="130" y2="195" stroke="black" marker-end="url(#arrow)"/>
-  <line x1="155" y1="120" x2="155" y2="145" stroke="black" marker-end="url(#arrow)"/>
-  <line x1="155" y1="170" x2="155" y2="195" stroke="black" marker-end="url(#arrow)"/>
-  <path d="M143 240 V260 H200 V50 H315" fill="none" stroke="black" marker-end="url(#arrow)"/>
-  <!-- Bypass 文字（初始隐藏） -->
-<text id="bypass-text" x="240" y="105" font-size="16" fill="black" style="opacity:0;">Bypass</text>
-
-
-  <!-- 蓝色箭头（初始隐藏） -->
-  <path id="blue-arrow-1" class="blue-arrow" d="M 170 160 Q 260 200 330 170" fill="none" stroke="#3a3a75" stroke-width="3" marker-end="url(#arrow-blue)"/>
-  <path id="blue-arrow-2" class="blue-arrow" d="M 70 180 Q 260 200 330 170" fill="none" stroke="#3a3a75" stroke-width="3" marker-end="url(#arrow-blue)"/>
-
-  <!-- Arrow markers -->
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
-            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="black"/>
-    </marker>
-    <marker id="arrow-blue" viewBox="0 0 10 10" refX="5" refY="5"
-            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3a3a75"/>
-    </marker>
-  </defs>
-</svg>
-
-<!-- 公式 -->
-<div class="formula" style="left:163px; top:43px;">$x_t$</div>
-<div class="formula" style="left:385px; top:43px;">$x_{t-1}$</div>
-<div class="formula" style="left:175px; top:174px;">$\psi_t$</div>
-<div id="psi-prev" class="formula visible" style="left:403px; top:174px;">$\psi_{t-1}$</div>
-<div id="psi-hat" class="formula hidden" style="left:403px; top:174px;">$\hat{\psi}_{t-1}$</div>
-<div id="psi-formula" class="formula hidden" style="left:260px; top:223px;">$2\psi_t - \psi_{t+1}$</div>
+              SADA
+            </span> results at different speed modes (Quality, Balanced, Medium, Fast, Turbo), <br>
+            showing superior performance in both speedup and LPIPS compared to other methods.</i>
+        </p>
       </div>
-     <p style="font-size:0.95em; margin-top:0.5em;">
-        <i><b>Figure 2.</b> Overview paradigm of <b>SADA</b>. The sparsity mode (middle: <code>step-wise</code>, bottom: <code>token-wise</code>) at timestep <i>t – 1</i> is adaptively identified by the stability Criterion after fresh computation at timestep <i>t</i>. Note that “DP” in the pipeline stands for “Data Prediction”. <b>Right:</b> Visualization of SADA and baseline methods’ performance in terms of faithfulness and efficiency. Our method significantly outperforms existing baselines {<code>DeepCache</code>, <code>AdaptiveDiffusion</code>} on both metrics, using {<code>SD-2</code> (Top), <code>SDXL</code> (Bottom)} with DPM-solver++ 50 steps.</i>
+    </div>
+  </section>
+
+
+
+  <section class="section" id="implementation">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Implementation</h2>
+
+      <div class="content">
+        <p>
+          At each step, we check stability conditions from the ODE solver to decide whether to reuse cached outputs or
+          perform fresh model evaluation. This enables adaptive acceleration with minimal overhead and strong
+          compatibility with existing solvers like DPM++ and EDM.
+        </p>
+      </div>
+      <div style="text-align:center; margin-top:5px;">
+        <button id="replay-btn-mainplot"><span>Replay Animation</span></button>
+      </div>
+
+      <div style="position:relative; height:420px;">
+
+
+        <svg id="fig2-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+
+          <!-- 左侧 Model -->
+          <rect x="100" y="80" width="80" height="40" rx="5" fill="#7a003c" />
+          <text x="140" y="102" font-size="16" fill="white" text-anchor="middle"
+            alignment-baseline="middle">Model</text>
+
+          <!-- 左侧 Solver -->
+          <rect x="90" y="200" width="100" height="40" rx="5" fill="#999" />
+          <text x="140" y="222" font-size="16" fill="white" text-anchor="middle"
+            alignment-baseline="middle">Solver</text>
+
+          <!-- 右侧 Model（动画变灰 + 虚线框） -->
+          <rect id="model-right" x="295" y="80" width="80" height="40" rx="5" class="model-red" stroke="none" />
+          <rect id="model-right-border" x="295" y="80" width="80" height="40" rx="5" fill="none"
+            class="model-dashed-border" style="opacity:0" />
+          <text id="model-right-text" x="335" y="102" font-size="16" class="model-text-red" text-anchor="middle"
+            alignment-baseline="middle">Model</text>
+
+          <!-- 右侧 Solver -->
+          <rect x="285" y="200" width="100" height="40" rx="5" fill="#999" />
+          <text x="335" y="222" font-size="16" fill="white" text-anchor="middle"
+            alignment-baseline="middle">Solver</text>
+
+          <!-- 所有黑色箭头保留 -->
+          <line x1="325" y1="60" x2="325" y2="75" stroke="black" />
+          <line x1="350" y1="60" x2="350" y2="75" stroke="black" />
+          <line x1="325" y1="120" x2="325" y2="195" stroke="black" marker-end="url(#arrow)" />
+          <line x1="350" y1="120" x2="350" y2="145" stroke="black" marker-end="url(#arrow)" />
+          <line x1="350" y1="170" x2="350" y2="195" stroke="black" marker-end="url(#arrow)" />
+          <line x1="130" y1="60" x2="130" y2="75" stroke="black" />
+          <line x1="155" y1="60" x2="155" y2="75" stroke="black" />
+          <line x1="130" y1="120" x2="130" y2="195" stroke="black" marker-end="url(#arrow)" />
+          <line x1="155" y1="120" x2="155" y2="145" stroke="black" marker-end="url(#arrow)" />
+          <line x1="155" y1="170" x2="155" y2="195" stroke="black" marker-end="url(#arrow)" />
+          <path d="M143 240 V260 H200 V50 H315" fill="none" stroke="black" marker-end="url(#arrow)" />
+          <!-- Bypass 文字（初始隐藏） -->
+          <text id="bypass-text" x="240" y="105" font-size="16" fill="black" style="opacity:0;">Bypass</text>
+
+
+          <!-- 蓝色箭头（初始隐藏） -->
+          <path id="blue-arrow-1" class="blue-arrow" d="M 170 160 Q 260 200 330 170" fill="none" stroke="#3a3a75"
+            stroke-width="3" marker-end="url(#arrow-blue)" />
+          <path id="blue-arrow-2" class="blue-arrow" d="M 70 180 Q 260 200 330 170" fill="none" stroke="#3a3a75"
+            stroke-width="3" marker-end="url(#arrow-blue)" />
+
+          <!-- Arrow markers -->
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6"
+              orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="black" />
+            </marker>
+            <marker id="arrow-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6"
+              orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#3a3a75" />
+            </marker>
+          </defs>
+        </svg>
+
+        <!-- 公式 -->
+        <div class="formula" style="left:163px; top:43px;">$x_t$</div>
+        <div class="formula" style="left:385px; top:43px;">$x_{t-1}$</div>
+        <div class="formula" style="left:175px; top:174px;">$\psi_t$</div>
+        <div id="psi-prev" class="formula visible" style="left:403px; top:174px;">$\psi_{t-1}$</div>
+        <div id="psi-hat" class="formula hidden" style="left:403px; top:174px;">$\hat{\psi}_{t-1}$</div>
+        <div id="psi-formula" class="formula hidden" style="left:260px; top:223px;">$2\psi_t - \psi_{t+1}$</div>
+      </div>
+      <p style="font-size:0.95em; margin-top:0.5em;">
+        <i><b>Figure 2.</b> Overview paradigm of <b>SADA</b>. The sparsity mode (middle: <code>step-wise</code>, bottom:
+          <code>token-wise</code>) at timestep <i>t – 1</i> is adaptively identified by the stability Criterion after
+          fresh computation at timestep <i>t</i>. Note that “DP” in the pipeline stands for “Data Prediction”.
+          <b>Right:</b> Visualization of SADA and baseline methods’ performance in terms of faithfulness and efficiency.
+          Our method significantly outperforms existing baselines {<code>DeepCache</code>,
+          <code>AdaptiveDiffusion</code>} on both metrics, using {<code>SD-2</code> (Top), <code>SDXL</code> (Bottom)}
+          with DPM-solver++ 50 steps.</i>
       </p>
-  </div>
-</section>
+    </div>
+  </section>
 
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Evaluations</h2>
-        
-        <h2 class="title is-4" id="images">Images</h2>
-        <div class="content has-text-justified">
-          <p>
-            Measured total latency of <span style="color: #e2001d;">P</span><span style="color: #a80057;">A</span><span style="color: #6d0092;">B</span> for different models for generating a single video on 8 NVIDIA H100 GPUs. When utilizing a single GPU, we achieve a speedup ranging from 1.26x to 1.32x, which remains stable across different schedulers. Scaling to multiple GPUs, our method achieves a speedup of up to 10.6x, which almost linearly scales with the number of GPUs due to our efficient improvement of sequence parallel.
-          </p>
-        </div>
-        
-<div style="text-align:center; margin-top:5px;margin-bottom:20px;">
-  <button id="replay-btn"><span>Replay Animation</span></button>
-</div>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Evaluations</h2>
 
-<div class="scene" data-speed="1">
-  <div class="row">
-    <img src="static/images/boat/1.png">
-    <img src="static/images/car/1.png">
-    <img src="static/images/mc/1.png">
-    <img src="static/images/girl/1.png">
-    <img src="static/images/snow/1.png">
-    <img src="static/images/sheep/1.png">
-  </div>
-  <p>Original (1.0x)</p>
-</div>
+          <h2 class="title is-4" id="images">Images</h2>
+          <div class="content has-text-justified">
+            <p>
+              Measured total latency of <span style="color: #e2001d;">P</span><span
+                style="color: #a80057;">A</span><span style="color: #6d0092;">B</span> for different models for
+              generating a single video on 8 NVIDIA H100 GPUs. When utilizing a single GPU, we achieve a speedup ranging
+              from 1.26x to 1.32x, which remains stable across different schedulers. Scaling to multiple GPUs, our
+              method achieves a speedup of up to 10.6x, which almost linearly scales with the number of GPUs due to our
+              efficient improvement of sequence parallel.
+            </p>
+          </div>
 
-<div class="scene" data-speed="1.92">
-  <div class="row">
-    <img src="static/images/boat/2.png">
-    <img src="static/images/car/2.png">
-    <img src="static/images/mc/2.png">
-    <img src="static/images/girl/2.png">
-    <img src="static/images/snow/2.png">
-    <img src="static/images/sheep/2.png">
-  </div>
-  <p>Balanced (1.92x)</p>
-</div>
+          <div style="text-align:center; margin-top:5px;margin-bottom:20px;">
+            <button id="replay-btn"><span>Replay Animation</span></button>
+          </div>
 
-<div class="scene" data-speed="2.25">
-  <div class="row">
-    <img src="static/images/boat/3.png">
-    <img src="static/images/car/3.png">
-    <img src="static/images/mc/3.png">
-    <img src="static/images/girl/3.png">
-    <img src="static/images/snow/3.png">
-    <img src="static/images/sheep/3.png">
-  </div>
-  <p>Medium (2.25x)</p>
-</div>
+          <div class="scene" data-speed="1">
+            <div class="row">
+              <img src="static/images/mc/1.png">
+              <img src="static/images/glass/1.png">
+              <img src="static/images/snow/1.png">
+              <img src="static/images/boat/1.png">
+              <img src="static/images/girl/1.png">
+              <img src="static/images/home/1.png">
+              <img src="static/images/car/1.png">
+              <img src="static/images/sheep/1.png">
+              <img src="static/images/dog/1.png">
+            </div>
+            <p>Original (1.0x)</p>
+          </div>
 
-<div class="scene" data-speed="2.91">
-  <div class="row">
-    <img src="static/images/boat/4.png">
-    <img src="static/images/car/4.png">
-    <img src="static/images/mc/4.png">
-    <img src="static/images/girl/4.png">
-    <img src="static/images/snow/4.png">
-    <img src="static/images/sheep/4.png">
-  </div>
-  <p>Fast (2.91x)</p>
-</div>
+          <div class="scene" data-speed="1.92">
+            <div class="row">
+              <img src="static/images/mc/2.png">
+              <img src="static/images/glass/2.png">
+              <img src="static/images/snow/2.png">
+              <img src="static/images/boat/2.png">
+              <img src="static/images/girl/2.png">
+              <img src="static/images/home/2.png">
+              <img src="static/images/car/2.png">
+              <img src="static/images/sheep/2.png">
+              <img src="static/images/dog/2.png">
+            </div>
+            <p>Balanced (1.92x)</p>
+          </div>
 
-<div class="scene" data-speed="3.64">
-  <div class="row">
-    <img src="static/images/boat/5.png">
-    <img src="static/images/car/5.png">
-    <img src="static/images/mc/5.png">
-    <img src="static/images/girl/5.png">
-    <img src="static/images/snow/5.png">
-    <img src="static/images/sheep/5.png">
-  </div>
-  <p>Turbo (3.64x)</p>
-</div>
+          <div class="scene" data-speed="2.25">
+            <div class="row">
+              <img src="static/images/mc/3.png">
+              <img src="static/images/glass/3.png">
+              <img src="static/images/snow/3.png">
+              <img src="static/images/boat/3.png">
+              <img src="static/images/girl/3.png">
+              <img src="static/images/home/3.png">
+              <img src="static/images/car/3.png">
+              <img src="static/images/sheep/3.png">
+              <img src="static/images/dog/3.png">
+            </div>
+            <p>Medium (2.25x)</p>
+          </div>
 
-<style>
-.scene {
-  margin-bottom: 20px;
-  text-align: center;
-}
-.row {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-.row img {
-  width: 100px;
-  opacity: 0;
-  transition: opacity 0.5s ease-in;
-  border-radius: 5px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.scene p {
-  font-weight: bold;
-  margin-top: 8px;
-  font-size: 1em;
-}
-</style>
+          <div class="scene" data-speed="2.91">
+            <div class="row">
+              <img src="static/images/mc/4.png">
+              <img src="static/images/glass/4.png">
+              <img src="static/images/snow/4.png">
+              <img src="static/images/boat/4.png">
+              <img src="static/images/girl/4.png">
+              <img src="static/images/home/4.png">
+              <img src="static/images/car/4.png">
+              <img src="static/images/sheep/4.png">
+              <img src="static/images/dog/4.png">
+            </div>
+            <p>Fast (2.91x)</p>
+          </div>
+
+          <div class="scene" data-speed="3.64">
+            <div class="row">
+              <img src="static/images/mc/5.png">
+              <img src="static/images/glass/5.png">
+              <img src="static/images/snow/5.png">
+              <img src="static/images/boat/5.png">
+              <img src="static/images/girl/5.png">
+              <img src="static/images/home/5.png">
+              <img src="static/images/car/5.png">
+              <img src="static/images/sheep/5.png">
+              <img src="static/images/dog/5.png">
+            </div>
+            <p>Turbo (3.64x)</p>
+          </div>
+
+          <style>
+            .scene {
+              margin-bottom: 20px;
+              text-align: center;
+            }
+
+            .row {
+              display: flex;
+              gap: 8px;
+              justify-content: center;
+            }
+
+            .row img {
+              width: 100px;
+              opacity: 0;
+              transition: opacity 0.5s ease-in;
+              border-radius: 5px;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .scene p {
+              font-weight: bold;
+              margin-top: 8px;
+              font-size: 1em;
+            }
+          </style>
 
 
-<script>
-function startAnimation() {
-  document.querySelectorAll('.scene').forEach(scene => {
-    let speed = parseFloat(scene.dataset.speed);
-    let imgs = scene.querySelectorAll('img');
+          <script>
+  /* --- keep timeout IDs here --- */
+  let timers = [];
 
-    // reset opacity before animation
-    imgs.forEach(img => img.style.opacity = 0);
+  function startAnimation () {
+    /* 1️⃣  cancel anything still pending from a previous run */
+    timers.forEach(id => clearTimeout(id));
+    timers = [];
 
-    imgs.forEach((img, i) => {
-      setTimeout(() => {
-        img.style.opacity = 1;
-      }, i * (2000 / speed));
+    /* 2️⃣  reset state and launch a fresh set of timers */
+    document.querySelectorAll('.scene').forEach(scene => {
+      const speed = parseFloat(scene.dataset.speed);
+      const imgs  = scene.querySelectorAll('img');
+
+      imgs.forEach(img => { img.style.opacity = 0; });
+
+      imgs.forEach((img, i) => {
+        const id = setTimeout(() => { img.style.opacity = 1; },
+                              i * (2000 / speed));
+        timers.push(id);          // remember so we can clear later
+      });
     });
-  });
-}
+  }
 
-let observer = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      startAnimation();
-      obs.disconnect(); // 只执行一次
-    }
-  });
-}, { threshold: 0.2 });
+  /* ---- intersection-observer (unchanged) ---- */
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        startAnimation();
+        obs.disconnect();         // still run only once on first reveal
+      }
+    });
+  }, { threshold: 0.2 });
 
-// 改成监听第一个 .scene，而不是不存在的 #animation-section
-observer.observe(document.querySelector('.scene'));
-document.getElementById('replay-btn').addEventListener('click', startAnimation);
+  observer.observe(document.querySelector('.scene'));
+  document.getElementById('replay-btn').addEventListener('click', startAnimation);
 </script>
 
+
+        </div>
       </div>
+
+
     </div>
-
-   
-  </div>
-  <br>
+    <br>
 
 
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">        
-        <div class="content has-text-justified">
-          <h2 class="title is-4" id="videos">Videos</h2>
-          <div class="content has-text-centered">
-            <img src="./static/images/eval.png" style="width: 40%;"><br>
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="content has-text-justified">
+            <h2 class="title is-4" id="videos">Videos</h2>
+            <div class="content has-text-centered">
+              <img src="./static/images/eval.png" style="width: 40%;"><br>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
 
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">        
-        <div class="content has-text-justified">
-          <h2 class="title is-4" id="audios">Audios</h2>
-          <div class="content has-text-centered">
-            <img src="./static/images/eval.png" style="width: 40%;"><br>
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="content has-text-justified">
+            <h2 class="title is-4" id="audios">Audios</h2>
+            <div class="content has-text-centered">
+              <img src="./static/images/eval.png" style="width: 40%;"><br>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
 
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">        
-        <div class="content has-text-justified">
-          <h2 class="title is-4" id="results">Quantitive Results</h2>
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="content has-text-justified">
+            <h2 class="title is-4" id="results">Quantitive Results</h2>
 
-          <div class="content has-text-centered">
-            <img src="./static/images/eval.png" style="width: 40%;"><br>
+            <div class="content has-text-centered">
+              <img src="./static/images/eval.png" style="width: 40%;"><br>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title"><a id="bibtex">BibTeX</a></h2>
-    <pre><code>@misc{zhao2024pab,
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title"><a id="bibtex">BibTeX</a></h2>
+      <pre><code>@misc{zhao2024pab,
       title={Real-Time Video Generation with Pyramid Attention Broadcast},
       author={Xuanlei Zhao and Xiaolong Jin and Kai Wang and Yang You},
       year={2024},
@@ -604,18 +707,18 @@ document.getElementById('replay-btn').addEventListener('click', startAnimation);
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/2408.12588},
 }</code></pre>
-  </div>
-</section>
+    </div>
+  </section>
 
 
-<footer class="footer">
+  <footer class="footer">
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
           <p>
             This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
+              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
           <p>
             Website adapted from the following <a href="https://nerfies.github.io">source code</a>.
@@ -623,282 +726,285 @@ document.getElementById('replay-btn').addEventListener('click', startAnimation);
         </div>
       </div>
     </div>
-  </div>
-</footer>
+    </div>
+  </footer>
 
 
-<script src="juxtapose/js/juxtapose.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>    
-<script>
-  let x1=0, y1=0;
-  const 
-    dist_to_draw = 20,
-    delay = 1000,
-    fsize = ['1.1rem', '1.4rem', '.8rem', '1.7rem'],
-    colors = ['#E23636', '#F9F3EE', '#E1F8DC', '#B8AFE6', '#AEE1CD', '#5EB0E5'],
-    rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
-    selRand = (o) => o[rand(0, o.length -1)],
-    distanceTo =  (x1, y1, x2, y2) => Math.sqrt((Math.pow(x2-x1,2))+(Math.pow(y2-y1,2))),
-    shouldDraw = (x, y) => (distanceTo(x1, y1, x, y) >= dist_to_draw),
-    addStr = (x, y) => {
-      const str = document.createElement("div");
-      str.innerHTML = '&#10022;';
-      str.className = 'star';
-      str.style.top = `${y + rand(-20,20)}px`;
-      str.style.left = `${x}px`;
-      str.style.color = selRand(colors);
-      str.style.fontSize = selRand(fsize);
-      document.body.appendChild(str);
-      const fs = 10 + 5 * parseFloat(getComputedStyle(str).fontSize);
-      str.animate({
-        translate: `0 ${fs}px`,
-        opacity: 0,
-        transform: `rotateX(${rand(1, 500)}deg) rotateY(${rand(1, 500)}deg)`
-      }, {
-        duration: delay,
-        fill: 'forwards',
-      });
-      setTimeout(() => str.remove(), delay);
-    };
+  <script src="juxtapose/js/juxtapose.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+  <script>
+    let x1 = 0, y1 = 0;
+    const
+      dist_to_draw = 20,
+      delay = 1000,
+      fsize = ['1.1rem', '1.4rem', '.8rem', '1.7rem'],
+      colors = ['#E23636', '#F9F3EE', '#E1F8DC', '#B8AFE6', '#AEE1CD', '#5EB0E5'],
+      rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
+      selRand = (o) => o[rand(0, o.length - 1)],
+      distanceTo = (x1, y1, x2, y2) => Math.sqrt((Math.pow(x2 - x1, 2)) + (Math.pow(y2 - y1, 2))),
+      shouldDraw = (x, y) => (distanceTo(x1, y1, x, y) >= dist_to_draw),
+      addStr = (x, y) => {
+        const str = document.createElement("div");
+        str.innerHTML = '&#10022;';
+        str.className = 'star';
+        str.style.top = `${y + rand(-20, 20)}px`;
+        str.style.left = `${x}px`;
+        str.style.color = selRand(colors);
+        str.style.fontSize = selRand(fsize);
+        document.body.appendChild(str);
+        const fs = 10 + 5 * parseFloat(getComputedStyle(str).fontSize);
+        str.animate({
+          translate: `0 ${fs}px`,
+          opacity: 0,
+          transform: `rotateX(${rand(1, 500)}deg) rotateY(${rand(1, 500)}deg)`
+        }, {
+          duration: delay,
+          fill: 'forwards',
+        });
+        setTimeout(() => str.remove(), delay);
+      };
 
-  addEventListener("mousemove", (e) => {
-    const { pageX, pageY } = e;
-    if (shouldDraw(pageX, pageY)) {
-      addStr(pageX, pageY);
-      x1 = pageX;
-      y1 = pageY;
-    }
-  });
-</script>
+    addEventListener("mousemove", (e) => {
+      const { pageX, pageY } = e;
+      if (shouldDraw(pageX, pageY)) {
+        addStr(pageX, pageY);
+        x1 = pageX;
+        y1 = pageY;
+      }
+    });
+  </script>
 
 
 
-<script>
+  <script>
     const otherData = [
-        { name: 'ToCa', x: 1.36, y: 0.3469, color: '#3B5B92', offset: 0.008 },
-        { name: 'DiTFastAttn2', x: 1.42, y: 0.3430, color: '#4FA3B5', offset: -0.008 },
-        { name: 'TeaCache', x: 2.00, y: 0.2160, color: '#8CA77B', offset: 0.011 },
-        { name: 'SADA', x: 2.02, y: 0.0600, color: '#E1B168', offset: -0.005 },
-        { name: 'TaylorSeer', x: 3.18, y: 0.4259, color: '#D46A6A', offset: 0.000 }
+      { name: 'ToCa', x: 1.36, y: 0.3469, color: '#3B5B92', offset: 0.008 },
+      { name: 'DiTFastAttn2', x: 1.42, y: 0.3430, color: '#4FA3B5', offset: -0.008 },
+      { name: 'TeaCache', x: 2.00, y: 0.2160, color: '#8CA77B', offset: 0.011 },
+      { name: 'SADA', x: 2.02, y: 0.0600, color: '#E1B168', offset: -0.005 },
+      { name: 'TaylorSeer', x: 3.18, y: 0.4259, color: '#D46A6A', offset: 0.000 }
     ];
 
     const oursData = [
-        { name: 'Quality', x: 1.70, y: 0.0417, offset: 0.015 },
-        { name: 'Balanced', x: 1.92, y: 0.0436, offset: -0.005 },
-        { name: 'Medium', x: 2.25, y: 0.0655, offset: 0.012 },
-        { name: 'Fast', x: 2.91, y: 0.1353, offset: 0.008 },
-        { name: 'Turbo', x: 3.65, y: 0.2239, offset: 0.015 }
+      { name: 'Quality', x: 1.70, y: 0.0417, offset: 0.015 },
+      { name: 'Balanced', x: 1.92, y: 0.0436, offset: -0.005 },
+      { name: 'Medium', x: 2.25, y: 0.0655, offset: 0.012 },
+      { name: 'Fast', x: 2.91, y: 0.1353, offset: 0.008 },
+      { name: 'Turbo', x: 3.65, y: 0.2239, offset: 0.015 }
     ];
     const chart = echarts.init(document.getElementById('main'));
     const option = {
-        backgroundColor: 'white',
-        tooltip: { 
-            trigger: 'axis',
-            formatter: function (params) {
-                // params 里可能包含多条数据，取折线的数据点
-                let linePoint = params.find(p => p.seriesType === 'line');
-                if (linePoint) {
-                    let speedup = linePoint.value[0].toFixed(2); // 两位小数
-                    let lpips = linePoint.value[1].toFixed(3);   // 三位小数
-                    return `Speedup: ${speedup}<br/>LPIPS: ${lpips}`;
-                }
-                return '';
-            }
-        },
-        grid: { left: 70, right: 20, top: 50, bottom: 60 },
-        xAxis: {
-            type: 'value',
-            name: 'Speedup (×)',
-            nameLocation: 'middle',
-            nameGap: 30,
-            min: 0.8,
-            max: 3.8,
-            axisLabel: { fontSize: 16, fontFamily: 'Times New Roman' },
-            nameTextStyle: { fontSize: 16, fontFamily: 'Times New Roman' }
-        },
-        yAxis: {
-            type: 'value',
-            name: 'LPIPS ↓',
-            nameLocation: 'middle',
-            nameGap: 40,
-            min: 0,
-            max: 0.45,
-            interval: 0.1,
-            axisLabel: { fontSize: 16, fontFamily: 'Times New Roman' },
-            nameTextStyle: { fontSize: 16, fontFamily: 'Times New Roman' }
-        },
-        series: [
-            {
-                type: 'custom',
-                renderItem: function (params, api) {
-                    const barWidthAbs = 0.10; // 固定宽度
-                    const idx = params.dataIndex;
-                    const item = otherData[idx];
-                    const xVal = api.value(0);
-                    const yVal = api.value(1);
+      backgroundColor: 'white',
+      tooltip: {
+        trigger: 'axis',
+        formatter: function (params) {
+          // params 里可能包含多条数据，取折线的数据点
+          let linePoint = params.find(p => p.seriesType === 'line');
+          if (linePoint) {
+            let speedup = linePoint.value[0].toFixed(2); // 两位小数
+            let lpips = linePoint.value[1].toFixed(3);   // 三位小数
+            return `Speedup: ${speedup}<br/>LPIPS: ${lpips}`;
+          }
+          return '';
+        }
+      },
+      grid: { left: 70, right: 20, top: 50, bottom: 60 },
+      xAxis: {
+        type: 'value',
+        name: 'Speedup (×)',
+        nameLocation: 'middle',
+        nameGap: 30,
+        min: 0.8,
+        max: 3.8,
+        axisLabel: { fontSize: 16, fontFamily: 'Times New Roman' },
+        nameTextStyle: { fontSize: 16, fontFamily: 'Times New Roman' }
+      },
+      yAxis: {
+        type: 'value',
+        name: 'LPIPS ↓',
+        nameLocation: 'middle',
+        nameGap: 40,
+        min: 0,
+        max: 0.45,
+        interval: 0.1,
+        axisLabel: { fontSize: 16, fontFamily: 'Times New Roman' },
+        nameTextStyle: { fontSize: 16, fontFamily: 'Times New Roman' }
+      },
+      series: [
+        {
+          type: 'custom',
+          renderItem: function (params, api) {
+            const barWidthAbs = 0.10; // 固定宽度
+            const idx = params.dataIndex;
+            const item = otherData[idx];
+            const xVal = api.value(0);
+            const yVal = api.value(1);
 
-                    const coordLeft = api.coord([xVal - barWidthAbs / 2, yVal]);
-                    const coordRight = api.coord([xVal + barWidthAbs / 2, 0]);
-                    const coordTop = api.coord([xVal, yVal]);
-                    const coordBottom = api.coord([xVal, 0]);
+            const coordLeft = api.coord([xVal - barWidthAbs / 2, yVal]);
+            const coordRight = api.coord([xVal + barWidthAbs / 2, 0]);
+            const coordTop = api.coord([xVal, yVal]);
+            const coordBottom = api.coord([xVal, 0]);
 
-                    return {
-                        type: 'group',
-                        children: [
-                            {
-                                type: 'rect',
-                                shape: {
-                                    x: coordLeft[0],
-                                    y: coordTop[1],
-                                    width: coordRight[0] - coordLeft[0],
-                                    height: coordBottom[1] - coordTop[1]
-                                },
-                                style: {
-                                    fill: item.color,
-                                    opacity: 0.4
-                                }
-                            },
-                            {
-                                type: 'text',
-                                style: {
-                                    text: item.name,
-                                    x: coordTop[0],
-                                    y: coordTop[1] - 5,
-                                    textAlign: 'center',
-                                    textVerticalAlign: 'bottom',
-                                    fill: item.color,
-                                    fontWeight: 'bold',
-                                    fontFamily: 'Times New Roman',
-                                    fontSize: 14
-                                }
-                            }
-                        ]
-                    };
+            return {
+              type: 'group',
+              children: [
+                {
+                  type: 'rect',
+                  shape: {
+                    x: coordLeft[0],
+                    y: coordTop[1],
+                    width: coordRight[0] - coordLeft[0],
+                    height: coordBottom[1] - coordTop[1]
+                  },
+                  style: {
+                    fill: item.color,
+                    opacity: 0.4
+                  }
                 },
-                encode: { x: 0, y: 1 },
-                data: otherData.map(d => [d.x, d.y, d.color]),
-                tooltip: { show: false }
-            },
-            {
-                type: 'line',
-                data: [[1.0, 0.0], ...oursData.map(d => [d.x, d.y])],
-                symbol: 'circle',
-                symbolSize: 8,
-                itemStyle: { color: '#750014' },
-                lineStyle: { width: 3, color: '#750014' },
-                areaStyle: { color: 'rgba(117,0,20,0.2)' },
-                label: {
-                    show: true,
-                    position: 'top',
+                {
+                  type: 'text',
+                  style: {
+                    text: item.name,
+                    x: coordTop[0],
+                    y: coordTop[1] - 5,
+                    textAlign: 'center',
+                    textVerticalAlign: 'bottom',
+                    fill: item.color,
                     fontWeight: 'bold',
                     fontFamily: 'Times New Roman',
-                    fontSize: 14,
-                    formatter: function (params) {
-                        const point = oursData.find(o => o.x === params.value[0]);
-                        return point ? point.name : '';
-                    }
-                },
-                animationDuration: 2000,
-                animationEasing: 'linear'
+                    fontSize: 14
+                  }
+                }
+              ]
+            };
+          },
+          encode: { x: 0, y: 1 },
+          data: otherData.map(d => [d.x, d.y, d.color]),
+          tooltip: { show: false }
+        },
+        {
+          type: 'line',
+          data: [[1.0, 0.0], ...oursData.map(d => [d.x, d.y])],
+          symbol: 'circle',
+          symbolSize: 8,
+          itemStyle: { color: '#750014' },
+          lineStyle: { width: 3, color: '#750014' },
+          areaStyle: { color: 'rgba(117,0,20,0.2)' },
+          label: {
+            show: true,
+            position: 'top',
+            fontWeight: 'bold',
+            fontFamily: 'Times New Roman',
+            fontSize: 14,
+            formatter: function (params) {
+              const point = oursData.find(o => o.x === params.value[0]);
+              return point ? point.name : '';
             }
-        ]
+          },
+          animationDuration: 2000,
+          animationEasing: 'linear'
+        }
+      ]
     };
 
     // 正常初始化图表并渲染一次（无动画）
 
-const initialOption = {
-    ...option,
-    series: [
+    const initialOption = {
+      ...option,
+      series: [
         option.series[0], // 只保留柱状图
-        { 
-            ...option.series[1],
-            data: [], // 折线图先空
-            animation: false 
+        {
+          ...option.series[1],
+          data: [], // 折线图先空
+          animation: false
         }
-    ]
-};
-chart.setOption(initialOption, true);
+      ]
+    };
+    chart.setOption(initialOption, true);
 
-// 控制动画播放
-let animationPlayed = false;
-function playAnimation() {
-  if (animationPlayed) return;
-  animationPlayed = true;
-  chart.clear();                  // 清空画布
-  chart.setOption(option, true);  // 重新渲染，触发动画
-}
-
-// 观察 Figure 1 说明文字进入视口
-const observermain = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      playAnimation();
-      obs.disconnect();
+    // 控制动画播放
+    let animationPlayed = false;
+    function playAnimation() {
+      if (animationPlayed) return;
+      animationPlayed = true;
+      chart.clear();                  // 清空画布
+      chart.setOption(option, true);  // 重新渲染，触发动画
     }
-  });
-}, { threshold: 0.3 });
 
-observermain.observe(document.getElementById('figure1-caption'));
+    // 观察 Figure 1 说明文字进入视口
+    const observermain = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          playAnimation();
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
 
-</script>
+    observermain.observe(document.getElementById('figure1-caption'));
+
+  </script>
 
 
-<script>
-function playImplementationAnimation() {
-  // 先重置（保证可以重复播放）
-  document.getElementById('model-right').classList.remove('model-gray');
-  document.getElementById('psi-prev').classList.remove('fade-out');
-  document.getElementById('bypass-text').classList.remove('fade-in');
-  document.getElementById('model-right-border').style.opacity = 0;
-  document.getElementById('blue-arrow-1').style.opacity = 0;
-  document.getElementById('blue-arrow-2').style.opacity = 0;
-  document.getElementById('psi-formula').classList.remove('visible');
-  document.getElementById('psi-formula').classList.add('hidden');
-  document.getElementById('psi-hat').classList.add('hidden');
-  document.getElementById('psi-hat').classList.remove('visible');
+  <script>
+    function playImplementationAnimation() {
+      // 先重置（保证可以重复播放）
+      document.getElementById('model-right').classList.remove('model-gray');
+      document.getElementById('psi-prev').classList.remove('fade-out');
+      document.getElementById('bypass-text').classList.remove('fade-in');
+      document.getElementById('model-right-border').style.opacity = 0;
+      document.getElementById('blue-arrow-1').style.opacity = 0;
+      document.getElementById('blue-arrow-2').style.opacity = 0;
+      document.getElementById('psi-formula').classList.remove('visible');
+      document.getElementById('psi-formula').classList.add('hidden');
+      document.getElementById('psi-hat').classList.add('hidden');
+      document.getElementById('psi-hat').classList.remove('visible');
 
-  // 按原来的时间顺序播放
-  setTimeout(() => {
-    document.getElementById('model-right').classList.add('model-gray');
-    document.getElementById('psi-prev').classList.add('fade-out');
-    document.getElementById('bypass-text').classList.add('fade-in');
-    document.getElementById('model-right-border').style.opacity = 1;
-  }, 3000);
+      // 按原来的时间顺序播放
+      setTimeout(() => {
+        document.getElementById('model-right').classList.add('model-gray');
+        document.getElementById('psi-prev').classList.add('fade-out');
+        document.getElementById('bypass-text').classList.add('fade-in');
+        document.getElementById('model-right-border').style.opacity = 1;
+      }, 3000);
 
-  setTimeout(() => {
-    document.getElementById('blue-arrow-1').style.opacity = 1;
-    document.getElementById('blue-arrow-2').style.opacity = 1;
-    document.getElementById('psi-formula').classList.remove('hidden');
-    document.getElementById('psi-formula').classList.add('visible');
-  }, 4000);
+      setTimeout(() => {
+        document.getElementById('blue-arrow-1').style.opacity = 1;
+        document.getElementById('blue-arrow-2').style.opacity = 1;
+        document.getElementById('psi-formula').classList.remove('hidden');
+        document.getElementById('psi-formula').classList.add('visible');
+      }, 4000);
 
-  setTimeout(() => {
-    document.getElementById('psi-hat').classList.remove('hidden');
-    document.getElementById('psi-hat').classList.add('visible');
-  }, 4800);
-}
+      setTimeout(() => {
+        document.getElementById('psi-hat').classList.remove('hidden');
+        document.getElementById('psi-hat').classList.add('visible');
+      }, 4800);
+    }
 
-// 监听 Figure 2 SVG 进入视口
-let fig2Played = false;
-const fig2Observer = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !fig2Played) {
+    // 监听 Figure 2 SVG 进入视口
+    let fig2Played = false;
+    const fig2Observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !fig2Played) {
+          playImplementationAnimation();
+          fig2Played = true;
+        }
+      });
+    }, { threshold: 0.3 });
+
+    fig2Observer.observe(document.getElementById('fig2-svg'));
+
+    // Replay 按钮绑定
+    document.getElementById('replay-btn-mainplot').addEventListener('click', () => {
       playImplementationAnimation();
-      fig2Played = true;
-    }
-  });
-}, { threshold: 0.3 });
+    });
 
-fig2Observer.observe(document.getElementById('fig2-svg'));
-
-// Replay 按钮绑定
-document.getElementById('replay-btn-mainplot').addEventListener('click', () => {
-  playImplementationAnimation();
-});
-
-</script>
+  </script>
 
 
 </body>
+
 </html>
