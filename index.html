@@ -853,6 +853,7 @@ function playImplementationAnimation() {
   document.getElementById('model-right-border').style.opacity = 0;
   document.getElementById('blue-arrow-1').style.opacity = 0;
   document.getElementById('blue-arrow-2').style.opacity = 0;
+  document.getElementById('psi-formula').classList.remove('visible');
   document.getElementById('psi-formula').classList.add('hidden');
   document.getElementById('psi-hat').classList.add('hidden');
   document.getElementById('psi-hat').classList.remove('visible');
@@ -863,7 +864,7 @@ function playImplementationAnimation() {
     document.getElementById('psi-prev').classList.add('fade-out');
     document.getElementById('bypass-text').classList.add('fade-in');
     document.getElementById('model-right-border').style.opacity = 1;
-  }, 1500);
+  }, 3000);
 
   setTimeout(() => {
     document.getElementById('blue-arrow-1').style.opacity = 1;
