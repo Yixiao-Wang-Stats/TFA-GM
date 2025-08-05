@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Animated Diagram</title>
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$', right: '$', display: false}]});"></script>
+
+<style>
+  body {
+    background: white;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+  }
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .formula {
+    position: absolute;
+    font-size: 28px;
+    transition: opacity 0.8s ease;
+  }
+  /* 初始隐藏 */
+  .hidden {
+    opacity: 0;
+  }
+  /* 渐显 */
+  .visible {
+    opacity: 1;
+  }
+  /* 渐隐 */
+  .fade-out {
+    opacity: 0;
+  }
+  /* 红色变灰动画 */
+  .model-red {
+    fill: #7a003c;
+    transition: fill 2s ease;
+  }
+  .model-gray {
+    fill: #ddd;
+  }
+  .model-dashed-border {
+  stroke: #888;
+  stroke-width: 2;
+  stroke-dasharray: 4;
+}
+  .model-text-red {
+    fill: white;
+    transition: fill 2s ease;
+  }
+  .model-text-gray {
+    fill: #bbb;
+  }
+  /* 蓝色箭头线条 */
+  .blue-arrow {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  /* 渐显动画通用类 */
+.fade-in {
+  transition: opacity 1s ease;
+  opacity: 1 !important;
+}
+
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+
+  <!-- 左侧 Model -->
+  <rect x="100" y="80" width="80" height="40" rx="5" fill="#7a003c"/>
+  <text x="140" y="102" font-size="16" fill="white" text-anchor="middle" alignment-baseline="middle">Model</text>
+
+  <!-- 左侧 Solver -->
+  <rect x="90" y="200" width="100" height="40" rx="5" fill="#999"/>
+  <text x="140" y="222" font-size="16" fill="white" text-anchor="middle" alignment-baseline="middle">Solver</text>
+
+  <!-- 右侧 Model（动画变灰 + 虚线框） -->
+<rect id="model-right" x="295" y="80" width="80" height="40" rx="5" class="model-red" stroke="none"/>
+<rect id="model-right-border" x="295" y="80" width="80" height="40" rx="5" fill="none" class="model-dashed-border" style="opacity:0"/>
+<text id="model-right-text" x="335" y="102" font-size="16" class="model-text-red" text-anchor="middle" alignment-baseline="middle">Model</text>
+
+  <!-- 右侧 Solver -->
+  <rect x="285" y="200" width="100" height="40" rx="5" fill="#999"/>
+  <text x="335" y="222" font-size="16" fill="white" text-anchor="middle" alignment-baseline="middle">Solver</text>
+
+  <!-- 所有黑色箭头保留 -->
+  <line x1="325" y1="60" x2="325" y2="75" stroke="black" />
+  <line x1="350" y1="60" x2="350" y2="75" stroke="black" />
+  <line x1="325" y1="120" x2="325" y2="195" stroke="black" marker-end="url(#arrow)"/>
+  <line x1="350" y1="120" x2="350" y2="145" stroke="black" marker-end="url(#arrow)"/>
+  <line x1="350" y1="170" x2="350" y2="195" stroke="black" marker-end="url(#arrow)"/>
+  <line x1="130" y1="60" x2="130" y2="75" stroke="black" />
+  <line x1="155" y1="60" x2="155" y2="75" stroke="black" />
+  <line x1="130" y1="120" x2="130" y2="195" stroke="black" marker-end="url(#arrow)"/>
+  <line x1="155" y1="120" x2="155" y2="145" stroke="black" marker-end="url(#arrow)"/>
+  <line x1="155" y1="170" x2="155" y2="195" stroke="black" marker-end="url(#arrow)"/>
+  <path d="M143 240 V260 H200 V50 H315" fill="none" stroke="black" marker-end="url(#arrow)"/>
+  <!-- Bypass 文字（初始隐藏） -->
+<text id="bypass-text" x="240" y="105" font-size="16" fill="black" style="opacity:0;">Bypass</text>
+
+
+  <!-- 蓝色箭头（初始隐藏） -->
+  <path id="blue-arrow-1" class="blue-arrow" d="M 170 160 Q 260 200 330 170" fill="none" stroke="#3a3a75" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <path id="blue-arrow-2" class="blue-arrow" d="M 70 180 Q 260 200 330 170" fill="none" stroke="#3a3a75" stroke-width="3" marker-end="url(#arrow-blue)"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="black"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="5" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3a3a75"/>
+    </marker>
+  </defs>
+</svg>
+
+<!-- 公式 -->
+<div class="formula" style="left:260px; top:70px;">$x_t$</div>
+<div class="formula" style="left:610px; top:70px;">$x_{t-1}$</div>
+<div class="formula" style="left:280px; top:275px;">$\psi_t$</div>
+<div id="psi-prev" class="formula visible" style="left:630px; top:275px;">$\psi_{t-1}$</div>
+<div id="psi-hat" class="formula hidden" style="left:630px; top:275px;">$\hat{\psi}_{t-1}$</div>
+<div id="psi-formula" class="formula hidden" style="left:400px; top:350px;">$2\psi_t - \psi_{t+1}$</div>
+
+<script>
+window.onload = function() {
+  // 阶段 1: 右侧 Model 变灰
+  setTimeout(() => {
+  document.getElementById('model-right').classList.add('model-gray');
+  document.getElementById('model-right-text').classList.add('model-text-white');
+  document.getElementById('psi-prev').classList.add('fade-out');
+  document.getElementById('bypass-text').classList.add('fade-in');
+  
+  // 显示灰色虚线框
+  document.getElementById('model-right-border').style.opacity = 1;
+}, 1500);
+
+
+  // 阶段 2: psi_{t-1} 渐隐 + 蓝色箭头渐显 + 公式渐显
+  setTimeout(() => {
+    document.getElementById('blue-arrow-1').style.opacity = 1;
+    document.getElementById('blue-arrow-2').style.opacity = 1;
+    document.getElementById('psi-formula').classList.remove('hidden');
+    document.getElementById('psi-formula').classList.add('visible');
+  }, 2500);
+
+  // 阶段 3: hat{psi}_{t-1} 渐显
+  setTimeout(() => {
+    document.getElementById('psi-hat').classList.remove('hidden');
+    document.getElementById('psi-hat').classList.add('visible');
+  }, 3300);
+};
+</script>
+
+</body>
+</html>

@@ -27,6 +27,10 @@
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
   <link rel="stylesheet" href="juxtapose/css/juxtapose.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$', right: '$', display: false}]});"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -91,6 +95,23 @@
     z-index: 9999;
     will-change: transform, opacity;
   }
+  .formula {
+  position: absolute;
+  font-size: 20px;
+  transition: opacity 0.8s ease;
+}
+.hidden { opacity: 0; }
+.visible { opacity: 1; }
+.fade-out { opacity: 0; }
+.model-red { fill: #7a003c; transition: fill 2s ease; }
+.model-gray { fill: #ddd; }
+.model-dashed-border { stroke: #888; stroke-width: 2; stroke-dasharray: 4; }
+.model-text-red { fill: white; transition: fill 2s ease; }
+.model-text-gray { fill: #bbb; }
+.blue-arrow { opacity: 0; transition: opacity 0.8s ease; }
+.fade-in { transition: opacity 1s ease; opacity: 1 !important; }
+
+
 
 </style>
 
@@ -299,6 +320,90 @@
 
 
 
+<section class="section" id="implementation">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Implementation</h2>
+
+    <div class="content">
+      <p>
+        At each step, we check stability conditions from the ODE solver to decide whether to reuse cached outputs or perform fresh model evaluation. This enables adaptive acceleration with minimal overhead and strong compatibility with existing solvers like DPM++ and EDM.
+      </p>
+    </div>
+<div style="text-align:center; margin-top:5px;">
+  <button id="replay-btn-mainplot"><span>Replay Animation</span></button>
+</div>
+
+    <div style="position:relative; height:420px;">
+        
+
+<svg id="fig2-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+
+  <!-- 左侧 Model -->
+  <rect x="100" y="80" width="80" height="40" rx="5" fill="#7a003c"/>
+  <text x="140" y="102" font-size="16" fill="white" text-anchor="middle" alignment-baseline="middle">Model</text>
+
+  <!-- 左侧 Solver -->
+  <rect x="90" y="200" width="100" height="40" rx="5" fill="#999"/>
+  <text x="140" y="222" font-size="16" fill="white" text-anchor="middle" alignment-baseline="middle">Solver</text>
+
+  <!-- 右侧 Model（动画变灰 + 虚线框） -->
+<rect id="model-right" x="295" y="80" width="80" height="40" rx="5" class="model-red" stroke="none"/>
+<rect id="model-right-border" x="295" y="80" width="80" height="40" rx="5" fill="none" class="model-dashed-border" style="opacity:0"/>
+<text id="model-right-text" x="335" y="102" font-size="16" class="model-text-red" text-anchor="middle" alignment-baseline="middle">Model</text>
+
+  <!-- 右侧 Solver -->
+  <rect x="285" y="200" width="100" height="40" rx="5" fill="#999"/>
+  <text x="335" y="222" font-size="16" fill="white" text-anchor="middle" alignment-baseline="middle">Solver</text>
+
+  <!-- 所有黑色箭头保留 -->
+  <line x1="325" y1="60" x2="325" y2="75" stroke="black" />
+  <line x1="350" y1="60" x2="350" y2="75" stroke="black" />
+  <line x1="325" y1="120" x2="325" y2="195" stroke="black" marker-end="url(#arrow)"/>
+  <line x1="350" y1="120" x2="350" y2="145" stroke="black" marker-end="url(#arrow)"/>
+  <line x1="350" y1="170" x2="350" y2="195" stroke="black" marker-end="url(#arrow)"/>
+  <line x1="130" y1="60" x2="130" y2="75" stroke="black" />
+  <line x1="155" y1="60" x2="155" y2="75" stroke="black" />
+  <line x1="130" y1="120" x2="130" y2="195" stroke="black" marker-end="url(#arrow)"/>
+  <line x1="155" y1="120" x2="155" y2="145" stroke="black" marker-end="url(#arrow)"/>
+  <line x1="155" y1="170" x2="155" y2="195" stroke="black" marker-end="url(#arrow)"/>
+  <path d="M143 240 V260 H200 V50 H315" fill="none" stroke="black" marker-end="url(#arrow)"/>
+  <!-- Bypass 文字（初始隐藏） -->
+<text id="bypass-text" x="240" y="105" font-size="16" fill="black" style="opacity:0;">Bypass</text>
+
+
+  <!-- 蓝色箭头（初始隐藏） -->
+  <path id="blue-arrow-1" class="blue-arrow" d="M 170 160 Q 260 200 330 170" fill="none" stroke="#3a3a75" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <path id="blue-arrow-2" class="blue-arrow" d="M 70 180 Q 260 200 330 170" fill="none" stroke="#3a3a75" stroke-width="3" marker-end="url(#arrow-blue)"/>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="black"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="5" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3a3a75"/>
+    </marker>
+  </defs>
+</svg>
+
+<!-- 公式 -->
+<div class="formula" style="left:163px; top:43px;">$x_t$</div>
+<div class="formula" style="left:385px; top:43px;">$x_{t-1}$</div>
+<div class="formula" style="left:175px; top:174px;">$\psi_t$</div>
+<div id="psi-prev" class="formula visible" style="left:403px; top:174px;">$\psi_{t-1}$</div>
+<div id="psi-hat" class="formula hidden" style="left:403px; top:174px;">$\hat{\psi}_{t-1}$</div>
+<div id="psi-formula" class="formula hidden" style="left:260px; top:223px;">$2\psi_t - \psi_{t+1}$</div>
+      </div>
+     <p style="font-size:0.95em; margin-top:0.5em;">
+        <i><b>Figure 2.</b> Overview paradigm of <b>SADA</b>. The sparsity mode (middle: <code>step-wise</code>, bottom: <code>token-wise</code>) at timestep <i>t – 1</i> is adaptively identified by the stability Criterion after fresh computation at timestep <i>t</i>. Note that “DP” in the pipeline stands for “Data Prediction”. <b>Right:</b> Visualization of SADA and baseline methods’ performance in terms of faithfulness and efficiency. Our method significantly outperforms existing baselines {<code>DeepCache</code>, <code>AdaptiveDiffusion</code>} on both metrics, using {<code>SD-2</code> (Top), <code>SDXL</code> (Bottom)} with DPM-solver++ 50 steps.</i>
+      </p>
+  </div>
+</section>
+
+
+
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -312,7 +417,7 @@
           </p>
         </div>
         
-<div style="text-align:center; margin-top:20px;">
+<div style="text-align:center; margin-top:5px;margin-bottom:20px;">
   <button id="replay-btn"><span>Replay Animation</span></button>
 </div>
 
@@ -320,7 +425,9 @@
   <div class="row">
     <img src="static/images/boat/1.png">
     <img src="static/images/car/1.png">
+    <img src="static/images/mc/1.png">
     <img src="static/images/girl/1.png">
+    <img src="static/images/snow/1.png">
     <img src="static/images/sheep/1.png">
   </div>
   <p>Original (1.0x)</p>
@@ -330,7 +437,9 @@
   <div class="row">
     <img src="static/images/boat/2.png">
     <img src="static/images/car/2.png">
+    <img src="static/images/mc/2.png">
     <img src="static/images/girl/2.png">
+    <img src="static/images/snow/2.png">
     <img src="static/images/sheep/2.png">
   </div>
   <p>Balanced (1.92x)</p>
@@ -340,7 +449,9 @@
   <div class="row">
     <img src="static/images/boat/3.png">
     <img src="static/images/car/3.png">
+    <img src="static/images/mc/3.png">
     <img src="static/images/girl/3.png">
+    <img src="static/images/snow/3.png">
     <img src="static/images/sheep/3.png">
   </div>
   <p>Medium (2.25x)</p>
@@ -350,7 +461,9 @@
   <div class="row">
     <img src="static/images/boat/4.png">
     <img src="static/images/car/4.png">
+    <img src="static/images/mc/4.png">
     <img src="static/images/girl/4.png">
+    <img src="static/images/snow/4.png">
     <img src="static/images/sheep/4.png">
   </div>
   <p>Fast (2.91x)</p>
@@ -360,7 +473,9 @@
   <div class="row">
     <img src="static/images/boat/5.png">
     <img src="static/images/car/5.png">
+    <img src="static/images/mc/5.png">
     <img src="static/images/girl/5.png">
+    <img src="static/images/snow/5.png">
     <img src="static/images/sheep/5.png">
   </div>
   <p>Turbo (3.64x)</p>
@@ -727,6 +842,62 @@ const observermain = new IntersectionObserver((entries, obs) => {
 observermain.observe(document.getElementById('figure1-caption'));
 
 </script>
+
+
+<script>
+function playImplementationAnimation() {
+  // 先重置（保证可以重复播放）
+  document.getElementById('model-right').classList.remove('model-gray');
+  document.getElementById('psi-prev').classList.remove('fade-out');
+  document.getElementById('bypass-text').classList.remove('fade-in');
+  document.getElementById('model-right-border').style.opacity = 0;
+  document.getElementById('blue-arrow-1').style.opacity = 0;
+  document.getElementById('blue-arrow-2').style.opacity = 0;
+  document.getElementById('psi-formula').classList.add('hidden');
+  document.getElementById('psi-hat').classList.add('hidden');
+  document.getElementById('psi-hat').classList.remove('visible');
+
+  // 按原来的时间顺序播放
+  setTimeout(() => {
+    document.getElementById('model-right').classList.add('model-gray');
+    document.getElementById('psi-prev').classList.add('fade-out');
+    document.getElementById('bypass-text').classList.add('fade-in');
+    document.getElementById('model-right-border').style.opacity = 1;
+  }, 1500);
+
+  setTimeout(() => {
+    document.getElementById('blue-arrow-1').style.opacity = 1;
+    document.getElementById('blue-arrow-2').style.opacity = 1;
+    document.getElementById('psi-formula').classList.remove('hidden');
+    document.getElementById('psi-formula').classList.add('visible');
+  }, 2500);
+
+  setTimeout(() => {
+    document.getElementById('psi-hat').classList.remove('hidden');
+    document.getElementById('psi-hat').classList.add('visible');
+  }, 3300);
+}
+
+// 监听 Figure 2 SVG 进入视口
+let fig2Played = false;
+const fig2Observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !fig2Played) {
+      playImplementationAnimation();
+      fig2Played = true;
+    }
+  });
+}, { threshold: 0.3 });
+
+fig2Observer.observe(document.getElementById('fig2-svg'));
+
+// Replay 按钮绑定
+document.getElementById('replay-btn-mainplot').addEventListener('click', () => {
+  playImplementationAnimation();
+});
+
+</script>
+
 
 </body>
 </html>
