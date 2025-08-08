@@ -396,6 +396,17 @@
 
 
         <svg id="fig2-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+          <defs>
+          <!-- 深蓝箭头 -->
+          <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#3a3a75" />
+          </marker>
+
+          <!-- 浅蓝箭头（新的） -->
+          <marker id="arrow-lightblue" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#7d8cc4" />
+          </marker>
+        </defs>
 
           <!-- 左侧 Model -->
           <rect x="100" y="80" width="80" height="40" rx="5" fill="#7a003c" />
@@ -414,32 +425,73 @@
           <text id="model-right-text" x="335" y="102" font-size="16" class="model-text-red" text-anchor="middle"
             alignment-baseline="middle">Model</text>
 
+
+          <!-- 右侧3 Model（动画变灰 + 虚线框） -->
+          <rect id="model-right2" x="490" y="80" width="80" height="40" rx="5" class="model-red" stroke="none" />
+          <rect id="model-right-border2" x="490" y="80" width="80" height="40" rx="5" fill="none"
+            class="model-dashed-border" style="opacity:0" />
+          <text id="model-right-text2" x="530" y="102" font-size="16" class="model-text-red" text-anchor="middle"
+            alignment-baseline="middle">Model</text>
+
           <!-- 右侧 Solver -->
           <rect x="285" y="200" width="100" height="40" rx="5" fill="#999" />
           <text x="335" y="222" font-size="16" fill="white" text-anchor="middle"
             alignment-baseline="middle">Solver</text>
 
+          <!-- 第三列 Solver -->
+          <rect x="480" y="200" width="100" height="40" rx="5" fill="#999" />
+          <text x="530" y="222" font-size="16" fill="white" text-anchor="middle"
+            alignment-baseline="middle">Solver</text>
+
           <!-- 所有黑色箭头保留 -->
+          <line x1="100" y1="50" x2="120" y2="50" stroke="black" marker-end="url(#arrow)" />
+
+          <line x1="520" y1="60" x2="520" y2="75" stroke="black" />
+          <line x1="545" y1="60" x2="545" y2="75" stroke="black" />
+          <line x1="520" y1="120" x2="520" y2="195" stroke="black" marker-end="url(#arrow)" />
+          <line x1="545" y1="120" x2="545" y2="145" stroke="black" marker-end="url(#arrow)" />
+          <line x1="545" y1="170" x2="545" y2="195" stroke="black" marker-end="url(#arrow)" />
+
           <line x1="325" y1="60" x2="325" y2="75" stroke="black" />
           <line x1="350" y1="60" x2="350" y2="75" stroke="black" />
           <line x1="325" y1="120" x2="325" y2="195" stroke="black" marker-end="url(#arrow)" />
           <line x1="350" y1="120" x2="350" y2="145" stroke="black" marker-end="url(#arrow)" />
           <line x1="350" y1="170" x2="350" y2="195" stroke="black" marker-end="url(#arrow)" />
+
           <line x1="130" y1="60" x2="130" y2="75" stroke="black" />
           <line x1="155" y1="60" x2="155" y2="75" stroke="black" />
           <line x1="130" y1="120" x2="130" y2="195" stroke="black" marker-end="url(#arrow)" />
           <line x1="155" y1="120" x2="155" y2="145" stroke="black" marker-end="url(#arrow)" />
           <line x1="155" y1="170" x2="155" y2="195" stroke="black" marker-end="url(#arrow)" />
           <path d="M143 240 V260 H200 V50 H315" fill="none" stroke="black" marker-end="url(#arrow)" />
+          <path d="M338 240 V260 H395 V50 H510" fill="none" stroke="black" marker-end="url(#arrow)" />
+          <path d="M533 240 V260 H560" fill="none" stroke="black" marker-end="url(#arrow)" />
           <!-- Bypass 文字（初始隐藏） -->
           <text id="bypass-text" x="240" y="105" font-size="16" fill="black" style="opacity:0;">Bypass</text>
+          <text id="bypass-text2" x="435" y="105" font-size="16" fill="black" style="opacity:0;">Bypass</text>
+          <text  x="70" y="50" font-size="16" fill="black" style="opacity:1;">...</text>
+          <text  x="570" y="260" font-size="16" fill="black" style="opacity:1;">...</text>
+          <text id="continue" x="650" y="75" font-size="16" fill="black" style="opacity:0;">If continue skip...</text>
+          
 
+          
 
           <!-- 蓝色箭头（初始隐藏） -->
           <path id="blue-arrow-1" class="blue-arrow" d="M 170 160 Q 260 200 330 170" fill="none" stroke="#3a3a75"
             stroke-width="3" marker-end="url(#arrow-blue)" />
           <path id="blue-arrow-2" class="blue-arrow" d="M 70 180 Q 260 200 330 170" fill="none" stroke="#3a3a75"
             stroke-width="3" marker-end="url(#arrow-blue)" />
+          <path id="blue-arrow-3" class="blue-arrow" d="M 170 160 Q 330 100 523 155" fill="none" stroke="#7d8cc4"
+            stroke-width="3" marker-end="url(#arrow-lightblue)" />
+
+
+          <path id="blue-arrow-4" class="blue-arrow" d="M 580 160 Q 670 200 740 170" fill="none" stroke="#3a3a75"
+            stroke-width="3" marker-end="url(#arrow-blue)" />
+          <path id="blue-arrow-5" class="blue-arrow" d="M 370 180 Q 670 200 740 170" fill="none" stroke="#3a3a75"
+            stroke-width="3" marker-end="url(#arrow-blue)" />
+          <path id="blue-arrow-6" class="blue-arrow" d="M 580 160 Q 740 100 933 155" fill="none" stroke="#7d8cc4"
+            stroke-width="3" marker-end="url(#arrow-lightblue)" />
+
 
           <!-- Arrow markers -->
           <defs>
@@ -457,11 +509,16 @@
         <!-- 公式 -->
         <div class="formula" style="left:163px; top:43px;">$x_t$</div>
         <div class="formula" style="left:385px; top:43px;">$x_{t-1}$</div>
+        <div class="formula" style="left:620px; top:43px;">$x_{t-2}$</div>
         <div class="formula" style="left:175px; top:174px;">$\psi_t$</div>
         <div id="psi-prev" class="formula visible" style="left:403px; top:174px;">$\psi_{t-1}$</div>
+        <div id="psi-prev2" class="formula visible" style="left:638px; top:174px;">$\psi_{t-2}$</div>
         <div id="psi-hat" class="formula hidden" style="left:403px; top:174px;">$\hat{\psi}_{t-1}$</div>
+        <div id="psi-hat2" class="formula hidden" style="left:638px; top:174px;">$\hat{\psi}_{t-2}$</div>
         <div id="psi-formula" class="formula hidden" style="left:260px; top:223px;">$2\psi_t - \psi_{t+1}$</div>
+        <div id="psi-formula2" class="formula hidden" style="left:550px; top:140px;">$\psi_t$</div>
       </div>
+      <div>
       <p style="font-size:0.95em; margin-top:0.5em;">
         <i><b>Figure 2.</b> Overview paradigm of <b>SADA</b>. The sparsity mode (middle: <code>step-wise</code>, bottom:
           <code>token-wise</code>) at timestep <i>t – 1</i> is adaptively identified by the stability Criterion after
@@ -948,62 +1005,110 @@
 
   </script>
 
+ <script>
+// 💡 所有 timeout 句柄存储数组（全局）
+let fig2Timers = [];
 
-  <script>
-    function playImplementationAnimation() {
-      // 先重置（保证可以重复播放）
-      document.getElementById('model-right').classList.remove('model-gray');
-      document.getElementById('psi-prev').classList.remove('fade-out');
-      document.getElementById('bypass-text').classList.remove('fade-in');
-      document.getElementById('model-right-border').style.opacity = 0;
-      document.getElementById('blue-arrow-1').style.opacity = 0;
-      document.getElementById('blue-arrow-2').style.opacity = 0;
-      document.getElementById('psi-formula').classList.remove('visible');
-      document.getElementById('psi-formula').classList.add('hidden');
-      document.getElementById('psi-hat').classList.add('hidden');
-      document.getElementById('psi-hat').classList.remove('visible');
+// 🎬 动画播放函数（支持任意时刻点击 replay）
+function playImplementationAnimation() {
+  // ✅ 清除所有旧的 setTimeout 调用
+  fig2Timers.forEach(clearTimeout);
+  fig2Timers = [];
 
-      // 按原来的时间顺序播放
-      setTimeout(() => {
-        document.getElementById('model-right').classList.add('model-gray');
-        document.getElementById('psi-prev').classList.add('fade-out');
-        document.getElementById('bypass-text').classList.add('fade-in');
-        document.getElementById('model-right-border').style.opacity = 1;
-      }, 3000);
+  // ✅ 定义统一的 setTimeout 包装器
+  const addTimer = (cb, delay) => fig2Timers.push(setTimeout(cb, delay));
 
-      setTimeout(() => {
-        document.getElementById('blue-arrow-1').style.opacity = 1;
-        document.getElementById('blue-arrow-2').style.opacity = 1;
-        document.getElementById('psi-formula').classList.remove('hidden');
-        document.getElementById('psi-formula').classList.add('visible');
-      }, 4000);
+  // ✅ 重置 DOM 状态（初始状态）
+  document.getElementById('model-right').classList.remove('model-gray');
+  document.getElementById('psi-prev').classList.remove('fade-out');
+  document.getElementById('bypass-text').classList.remove('fade-in');
+  document.getElementById('model-right-border').style.opacity = 0;
 
-      setTimeout(() => {
-        document.getElementById('psi-hat').classList.remove('hidden');
-        document.getElementById('psi-hat').classList.add('visible');
-      }, 4800);
-    }
+  document.getElementById('model-right2').classList.remove('model-gray');
+  document.getElementById('psi-prev2').classList.remove('fade-out');
+  document.getElementById('bypass-text2').classList.remove('fade-in');
+  document.getElementById('model-right-border2').style.opacity = 0;
 
-    // 监听 Figure 2 SVG 进入视口
-    let fig2Played = false;
-    const fig2Observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !fig2Played) {
-          playImplementationAnimation();
-          fig2Played = true;
-        }
-      });
-    }, { threshold: 0.3 });
+  document.getElementById('continue').classList.remove('fade-in');
 
-    fig2Observer.observe(document.getElementById('fig2-svg'));
+  for (let i = 1; i <= 6; i++) {
+    document.getElementById(`blue-arrow-${i}`).style.opacity = 0;
+  }
 
-    // Replay 按钮绑定
-    document.getElementById('replay-btn-mainplot').addEventListener('click', () => {
+  document.getElementById('psi-formula').classList.remove('visible');
+  document.getElementById('psi-formula').classList.add('hidden');
+  document.getElementById('psi-formula2').classList.remove('visible');
+  document.getElementById('psi-formula2').classList.add('hidden');
+
+  document.getElementById('psi-hat').classList.add('hidden');
+  document.getElementById('psi-hat').classList.remove('visible');
+  document.getElementById('psi-hat2').classList.add('hidden');
+  document.getElementById('psi-hat2').classList.remove('visible');
+
+  // ✅ 播放每一帧动画
+  addTimer(() => {
+    document.getElementById('model-right').classList.add('model-gray');
+    document.getElementById('psi-prev').classList.add('fade-out');
+    document.getElementById('bypass-text').classList.add('fade-in');
+    document.getElementById('model-right-border').style.opacity = 1;
+  }, 3000);
+
+  addTimer(() => {
+    document.getElementById('blue-arrow-1').style.opacity = 1;
+    document.getElementById('blue-arrow-2').style.opacity = 1;
+    document.getElementById('psi-formula').classList.remove('hidden');
+    document.getElementById('psi-formula').classList.add('visible');
+  }, 4000);
+
+  addTimer(() => {
+    document.getElementById('psi-hat').classList.remove('hidden');
+    document.getElementById('psi-hat').classList.add('visible');
+  }, 4800);
+
+  addTimer(() => {
+    document.getElementById('model-right2').classList.add('model-gray');
+    document.getElementById('psi-prev2').classList.add('fade-out');
+    document.getElementById('bypass-text2').classList.add('fade-in');
+    document.getElementById('model-right-border2').style.opacity = 1;
+  }, 5800);
+
+  addTimer(() => {
+    document.getElementById('blue-arrow-3').style.opacity = 1;
+    document.getElementById('psi-formula2').classList.remove('hidden');
+    document.getElementById('psi-formula2').classList.add('visible');
+    document.getElementById('psi-hat2').classList.remove('hidden');
+    document.getElementById('psi-hat2').classList.add('visible');
+  }, 6600);
+
+  addTimer(() => {
+    document.getElementById('psi-hat2').classList.remove('hidden');
+    document.getElementById('psi-hat2').classList.add('visible');
+  }, 7800);
+
+  addTimer(() => {
+    document.getElementById('continue').classList.add('fade-in');
+    document.getElementById('blue-arrow-4').style.opacity = 1;
+    document.getElementById('blue-arrow-5').style.opacity = 1;
+    document.getElementById('blue-arrow-6').style.opacity = 1;
+  }, 9000);
+}
+
+// 📦 首次滚动到 Figure 2 时自动播放（只触发一次）
+let fig2Played = false;
+const fig2Observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !fig2Played) {
       playImplementationAnimation();
-    });
+      fig2Played = true;
+    }
+  });
+}, { threshold: 0.3 });
 
-  </script>
+fig2Observer.observe(document.getElementById('fig2-svg'));
 
+// 🧠 Replay 按钮绑定（无限次点击都安全）
+document.getElementById('replay-btn-mainplot').addEventListener('click', playImplementationAnimation);
+</script>
 
 </body>
 
