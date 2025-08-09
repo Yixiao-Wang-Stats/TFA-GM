@@ -363,12 +363,12 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
             <b>Any speedup ratio without quality loss. Any modality. Any model. Any scheduler.</b>
             Introducing
             <span style="
-            background: linear-gradient(to right, #7b7bff, #cf77ef, #f3a3cd, #ffb68e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;">
-              SADA
-            </span> — a <b>training-free</b> acceleration method for generative models, running with <b>just one line of
+  background: linear-gradient(to right,  #dd1818,#333333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;">
+  ZEUS
+</span> — a <b>training-free</b> acceleration method for generative models, running with <b>just one line of
               code</b>. Fully open-source.
             Achieve <b>1.9×</b> <b>lossless acceleration</b> or <b>3.6×</b> speedup with LPIPS < 0.2 for <b>ultra-stable
               quality</b>.
@@ -383,13 +383,13 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
       <div class="has-text-centered" style="margin-top:2em;">
         <div id="main" style="width: 800px; height: 500px; margin: auto;"></div>
         <p id="figure1-caption" style="font-size:0.95em; margin-top:0.5em;">
-          <i><b>Figure 1.</b> The purple line represents <span style="
-            background: linear-gradient(to right, #7b7bff, #cf77ef, #f3a3cd, #ffb68e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;">
-              SADA
-            </span> results at different speed modes (Quality, Balanced, Medium, Fast, Turbo), <br>
+          <i><b>Figure 1.</b> The purple line represents<span style="
+  background: linear-gradient(to right,  #dd1818,#333333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;">
+  ZEUS
+</span> results at different speed modes (Quality, Balanced, Medium, Fast, Turbo), <br>
             showing superior performance in both speedup and LPIPS compared to other methods.</i>
         </p>
       </div>
@@ -542,7 +542,13 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
       </div>
       <div>
       <p style="font-size:0.95em; margin-top:0.5em;">
-        <i><b>Figure 2.</b> Overview paradigm of <b>SADA</b>. The sparsity mode (middle: <code>step-wise</code>, bottom:
+        <i><b>Figure 2.</b> Overview paradigm of <span style="
+  background: linear-gradient(to right,  #dd1818,#333333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;">
+  ZEUS
+</span>. The sparsity mode (middle: <code>step-wise</code>, bottom:
           <code>token-wise</code>) at timestep <i>t – 1</i> is adaptively identified by the stability Criterion after
           fresh computation at timestep <i>t</i>. Note that “DP” in the pipeline stands for “Data Prediction”.
           <b>Right:</b> Visualization of SADA and baseline methods’ performance in terms of faithfulness and efficiency.
@@ -564,8 +570,13 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
           <h2 class="title is-4" id="images">Images</h2>
           <div class="content has-text-justified">
             <p>
-              Measured total latency of <span style="color: #e2001d;">P</span><span
-                style="color: #a80057;">A</span><span style="color: #6d0092;">B</span> for different models for
+              Measured total latency of <span style="
+  background: linear-gradient(to right,  #dd1818,#333333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;">
+  ZEUS
+</span>for different models for
               generating a single video on 8 NVIDIA H100 GPUs. When utilizing a single GPU, we achieve a speedup ranging
               from 1.26x to 1.32x, which remains stable across different schedulers. Scaling to multiple GPUs, our
               method achieves a speedup of up to 10.6x, which almost linearly scales with the number of GPUs due to our
