@@ -210,8 +210,15 @@ body {
 .hero.has-zeus .content-wrap { position: relative; z-index: 1; }
 
 
-.publication-authors a {
+/* .publication-authors a {
   background: linear-gradient(90deg, #dd1818, #333333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+} */
+
+.publication-authors a {
+  background: linear-gradient(90deg,  #666,#666);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
