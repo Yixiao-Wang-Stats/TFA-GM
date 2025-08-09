@@ -24,7 +24,7 @@
   position: relative;
   transition: all 0.3s;
   color: white;
-  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  background-image: linear-gradient(90deg, #dd1818, #333333);
   border-radius: 50%;
   box-shadow: rgba(151, 65, 252, 0.2) 0 8px 15px -3px;
   height: 50px;
@@ -38,7 +38,7 @@
   left: calc(100% + 10px);
   top: 50%;
   transform: translateY(-50%) scale(1);
-  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  background-image: linear-gradient(90deg, #dd1818, #333333);
   border-radius: 7px;
   opacity: 0;
   padding: 3px 8px;

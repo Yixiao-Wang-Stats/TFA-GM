@@ -185,3 +185,41 @@ body {
   width: 0px;
   height: 0px;
 }
+
+
+
+
+/* 让这个 section 成为定位上下文，并且别让图溢出 */
+.hero.has-zeus { position: relative; overflow: hidden; }
+
+/* 底层 Zeus 图：在文字下、在 particles 上 */
+.hero.has-zeus .zeus-bg {
+  position: absolute;
+  right: 15%;                /* 离右边留一些空隙 */
+  bottom: 20%;              /* 离底部稍微抬一点 */
+  width: min(22vw, 240px);  /* 比较小的装饰尺寸 */
+  opacity: 0.12;            /* 更淡，不抢眼 */
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,.25));
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+
+/* 把正文包一层，抬高到图片上面 */
+.hero.has-zeus .content-wrap { position: relative; z-index: 1; }
+
+
+.publication-authors a {
+  background: linear-gradient(90deg, #dd1818, #333333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+
+.duke-logo {
+  height: 80px;             /* 控制 logo 高度 */
+  vertical-align: middle;   /* 和文字垂直居中 */
+  margin-left: 6px;         /* 和文字之间的间距 */
+}
