@@ -46,6 +46,8 @@
     href="https://fonts.googleapis.com/css?family=Patrick+Hand|Google+Sans|Noto+Sans|Castoro|Lato|Open+Sans&effect=shadow-multiple|emboss|3d">
   <link rel="icon" href="./static/images/zeus.png" type="image/x-icon">
   <link rel="shortcut icon" href="./static/images/zeus.png" type="image/x-icon">
+  <link rel="preload" as="image" href="./static/images/zeus.png">
+  <link rel="preload" as="audio" href="./static/audios/thunder.mp3">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -154,10 +156,144 @@
     transition: opacity 1s ease;
     opacity: 1 !important;
   }
+
+
+  :root{ --zeus-red:#dd1818; --zeus-dark:#333333; }
+  body.lock-scroll{ overflow:hidden; }
+  /* 开场时把下面首屏 hero 和左侧悬浮按钮藏起来，避免“透底” */
+  body.splashing .hero.has-zeus,
+  body.splashing .card{ opacity:0!important; pointer-events:none!important; }
+
+  #zeus-splash{
+    position:relative; height:100vh; width:100%;
+    background:#000; color:#fff; overflow:hidden;
+    display:grid; place-items:center; z-index:50;
+  }
+  #zeus-splash .content{
+    position:relative; z-index:5; text-align:center;
+    opacity:0; transform:translateY(14px) scale(.985);
+    transition:opacity .8s ease .55s, transform .9s cubic-bezier(.2,.8,.2,1) .55s;
+  }
+  #zeus-splash.open .content{ opacity:1; transform:none; }
+
+  #intro-logo{
+  width:clamp(110px,16vw,190px);
+  height:auto;
+  image-rendering:auto;
+  filter: brightness(0) invert(1) drop-shadow(0 0 22px rgba(150,150,150,.68));
+}
+
+  #intro-title{
+    margin-top:.6rem; line-height:1.14; font-weight:900;
+    font-size:clamp(30px,5vw,66px); letter-spacing:.02em;
+    background:linear-gradient(90deg,var(--zeus-red),var(--zeus-dark));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:none!important; text-rendering:geometricPrecision;
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  }
+  #intro-subtitle{
+    margin-top:.35rem; font-size:clamp(14px,2vw,18px); color:#e6e6e6; opacity:.95;
+  }
+
+  /* 左右“幕布”被劈开 */
+  .veil{ position:absolute; inset:0 auto 0 0; width:50%; background:#000; z-index:10;
+         transition:transform 1s cubic-bezier(.19,1,.22,1); }
+  .veil.right{ left:auto; right:0; }
+  .veil.left{
+    clip-path: polygon(0 0, 100% 0, 96% 20%, 100% 40%, 96% 60%, 100% 80%, 96% 100%, 0 100%);
+    border-right:1px dashed rgba(255,255,255,.08);
+  }
+  .veil.right{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 4% 80%, 0 60%, 4% 40%, 0 20%);
+    border-left:1px dashed rgba(255,255,255,.08);
+  }
+  #zeus-splash.open .veil.left{  transform:translateX(-110%) rotateZ(-.6deg); }
+  #zeus-splash.open .veil.right{ transform:translateX(110%)  rotateZ(.6deg);  }
+
+  /* 闪电：上粗下细 + 红→黑渐变 + 轻微发光，结束后淡出 */
+  #lightning{ position:absolute; inset:-6% 0 -4% 0; width:100%; height:110%; z-index:12; pointer-events:none; }
+  #lightning .glow, #lightning .core{
+    fill:none; stroke:url(#boltGrad); stroke-linecap:butt; stroke-linejoin:miter;stroke-miterlimit: 10;
+    stroke-dasharray:360; stroke-dashoffset:360;
+    animation: bolt-draw 1.05s ease-out forwards, bolt-flicker 140ms steps(2,end) 6 .95s;
+  }
+  #lightning .glow{
+    stroke-width:3; opacity:.35;
+    filter:drop-shadow(0 0 16px rgba(221,24,24,.45)) drop-shadow(0 0 32px rgba(255,255,255,.3));
+  }
+  #lightning .core{ stroke-width:2; }
+  /* 用 mask 做“上粗下细” */
+  #zeus-splash.done #lightning{ opacity:0; transition:opacity .25s ease .2s; }
+
+  /* 屏闪 + 轻微震屏 */
+  .flash{ position:absolute; inset:0; z-index:11; pointer-events:none;
+          background: radial-gradient(ellipse at 50% 35%, rgba(255,255,255,.9), rgba(255,255,255,0) 55%);
+          opacity:0; animation: flash 1.05s ease-out .9s 1 forwards; }
+  .shake{ animation: shake .38s linear 2 .95s; }
+  @keyframes bolt-draw{ to{ stroke-dashoffset:0; } }
+  @keyframes bolt-flicker{ 0%{opacity:1} 50%{opacity:.35} 100%{opacity:1} }
+  @keyframes flash{ 0%{opacity:0} 12%{opacity:.95} 28%{opacity:.15} 60%{opacity:0} }
+  @keyframes shake{
+    0%{ transform:translateX(0) } 20%{ transform:translateX(-6px) }
+    40%{ transform:translateX(5px) } 60%{ transform:translateX(-4px) }
+    80%{ transform:translateX(3px) } 100%{ transform:translateX(0) }
+  }
+
+  /* 冬季小雪点缀 */
+  #snow{ position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.35; }
+
+  @media (prefers-reduced-motion: reduce){
+    #lightning .glow, #lightning .core, .flash, .shake, .veil, .content{ animation:none!important; transition:none!important; }
+    #zeus-splash .content{ opacity:1; transform:none; }
+    .veil{ display:none; }
+  }
 </style>
 
 
+
+
 <body>
+
+
+
+
+  <!-- ========== ZEUS 开场动画（一屏） ========== -->
+<section id="zeus-splash" aria-label="ZEUS intro" class="shake">
+  <canvas id="snow"></canvas>
+
+  <div class="content">
+    <img id="intro-logo" src="./static/images/zeus.png" alt="ZEUS logo">
+    <h1 id="intro-title">ZEUS: Zero‑shot Efficient Unified Sparsity<br><span style="font-weight:700">for Generative Models</span></h1>
+    <div id="intro-subtitle">Training‑free acceleration • One‑line integration</div>
+  </div>
+
+  <!-- 闪电：上粗下细 + 红->黑 -->
+  <svg id="lightning" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <!-- 纵向颜色渐变（红 -> 深红 -> 黑） -->
+      <linearGradient id="boltGrad" x1="50" y1="-10" x2="50" y2="110" gradientUnits="userSpaceOnUse">
+        <stop offset="0%"   stop-color="#dd1818"/>
+        <stop offset="65%"  stop-color="#7a0e11"/>
+        <stop offset="100%" stop-color="#1b1b1b"/>
+      </linearGradient>
+    </defs>
+
+    <!-- 发光外沿 -->
+    <polyline class="glow" mask="url(#taperMask)"
+      points="50,-8  49,8  56,16  46,26  59,38  52,50  63,62  54,74  66,86  58,100" />
+    <!-- 主干 -->
+    <polyline class="core" mask="url(#taperMask)"
+      points="50,-8  49,8  56,16  46,26  59,38  52,50  63,62  54,74  66,86  58,100" />
+  </svg>
+
+  <!-- 屏闪 -->
+  <div class="flash"></div>
+
+  <!-- 雷声（可选） -->
+  <audio id="thunder" preload="auto" src="./static/audios/thunder.mp3"></audio>
+</section>
+
+
   <div class="card">
     <a class="social-icons" href="#images">
       <!-- 图像 -->
@@ -1219,6 +1355,86 @@ fig2Observer.observe(document.getElementById('fig2-svg'));
 
 // 🧠 Replay 按钮绑定（无限次点击都安全）
 document.getElementById('replay-btn-mainplot').addEventListener('click', playImplementationAnimation);
+</script>
+
+
+
+
+
+
+<script>
+  (function(){
+    const splash  = document.getElementById('zeus-splash');
+    const thunder = document.getElementById('thunder');
+
+    // 置顶 & 锁滚 & 隐藏底下首屏
+    window.scrollTo(0,0);
+    document.body.classList.add('lock-scroll','splashing');
+
+    // 首次交互“武装”音频
+    const armAudio = () => {
+      if (!thunder) return;
+      thunder.play().then(()=>{ thunder.pause(); thunder.currentTime = 0; }).catch(()=>{});
+      window.removeEventListener('pointerdown', armAudio);
+    };
+    window.addEventListener('pointerdown', armAudio, { once:true });
+
+    // 时间线：雷声 -> 幕布打开 -> 闪电淡出
+    setTimeout(()=>{ if (thunder) thunder.play().catch(()=>{}); }, 950);
+    setTimeout(()=>{ splash.classList.add('open'); }, 1200);
+    setTimeout(()=>{ splash.classList.add('done'); }, 1650);
+
+    // “轻微滚动/按键/上滑触控”就整屏滚到下一页
+    let jumped = false, touchStartY = 0;
+    const goNext = () => {
+      if (jumped) return;
+      jumped = true;
+      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+      setTimeout(()=>{ document.body.classList.remove('lock-scroll','splashing'); }, 650);
+    };
+
+    function onWheel(e){ if (!jumped){ e.preventDefault(); goNext(); } }
+    function onKey(e){
+      const k = e.key;
+      if (k===' ' || k==='Spacebar' || k==='ArrowDown' || k==='PageDown' || k==='Enter'){
+        e.preventDefault(); goNext();
+      }
+    }
+    function onTouchStart(e){ touchStartY = e.touches[0].clientY; }
+    function onTouchMove(e){
+      const dy = touchStartY - e.touches[0].clientY;
+      if (dy > 6 && !jumped){ e.preventDefault(); goNext(); }
+    }
+
+    window.addEventListener('wheel', onWheel, { passive:false });
+    window.addEventListener('keydown', onKey);
+    window.addEventListener('touchstart', onTouchStart, { passive:true });
+    window.addEventListener('touchmove', onTouchMove, { passive:false });
+
+    // 小雪（与之前一致，轻量）
+    const canvas = document.getElementById('snow');
+    if (canvas && canvas.getContext){
+      const ctx = canvas.getContext('2d'); let W=0,H=0, flakes=[];
+      function resize(){
+        W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight;
+        flakes = Array.from({length: Math.round(W*H/12000)+80}, () => ({
+          x: Math.random()*W, y: Math.random()*H, r: Math.random()*2+0.6,
+          vx: (Math.random()*0.6-0.3), vy: Math.random()*0.9+0.4
+        }));
+      }
+      window.addEventListener('resize', resize); resize();
+      (function draw(){
+        ctx.clearRect(0,0,W,H); ctx.fillStyle = 'rgba(255,255,255,.95)';
+        const t = Date.now()*0.0012;
+        for (const f of flakes){
+          f.x += f.vx + Math.sin(t + f.y*0.015)*0.15; f.y += f.vy;
+          if (f.y>H){ f.y=-5; f.x=Math.random()*W; } if (f.x<-5) f.x=W+5; if (f.x>W+5) f.x=-5;
+          ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,Math.PI*2); ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      })();
+    }
+  })();
 </script>
 
 </body>
