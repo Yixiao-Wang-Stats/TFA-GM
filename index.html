@@ -158,94 +158,256 @@
   }
 
 
-  :root{ --zeus-red:#dd1818; --zeus-dark:#333333; }
-  body.lock-scroll{ overflow:hidden; }
+  :root {
+    --zeus-red: #dd1818;
+    --zeus-dark: #333333;
+  }
+
+  body.lock-scroll {
+    overflow: hidden;
+  }
+
   /* 开场时把下面首屏 hero 和左侧悬浮按钮藏起来，避免“透底” */
   body.splashing .hero.has-zeus,
-  body.splashing .card{ opacity:0!important; pointer-events:none!important; }
-
-  #zeus-splash{
-    position:relative; height:100vh; width:100%;
-    background:#000; color:#fff; overflow:hidden;
-    display:grid; place-items:center; z-index:50;
+  body.splashing .card {
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
-  #zeus-splash .content{
-    position:relative; z-index:5; text-align:center;
-    opacity:0; transform:translateY(14px) scale(.985);
-    transition:opacity .8s ease .55s, transform .9s cubic-bezier(.2,.8,.2,1) .55s;
-  }
-  #zeus-splash.open .content{ opacity:1; transform:none; }
 
-  #intro-logo{
-  width:clamp(110px,16vw,190px);
-  height:auto;
-  image-rendering:auto;
-  filter: brightness(0) invert(1) drop-shadow(0 0 22px rgba(150,150,150,.68));
-}
-
-  #intro-title{
-    margin-top:.6rem; line-height:1.14; font-weight:900;
-    font-size:clamp(30px,5vw,66px); letter-spacing:.02em;
-    background:linear-gradient(90deg,var(--zeus-red),var(--zeus-dark));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    text-shadow:none!important; text-rendering:geometricPrecision;
-    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  #zeus-splash {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    z-index: 50;
   }
-  #intro-subtitle{
-    margin-top:.35rem; font-size:clamp(14px,2vw,18px); color:#e6e6e6; opacity:.95;
+
+  #zeus-splash .content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(14px) scale(.985);
+    transition: opacity .8s ease .55s, transform .9s cubic-bezier(.2, .8, .2, 1) .55s;
+  }
+
+  #zeus-splash.open .content {
+    opacity: 1;
+    transform: none;
+  }
+
+  #intro-logo {
+    width: clamp(110px, 16vw, 190px);
+    height: auto;
+    image-rendering: auto;
+    filter: brightness(0) invert(1) drop-shadow(0 0 22px rgba(150, 150, 150, .68));
+  }
+
+  #intro-title {
+    margin-top: .6rem;
+    line-height: 1.14;
+    font-weight: 900;
+    font-size: clamp(30px, 5vw, 66px);
+    letter-spacing: .02em;
+    background: linear-gradient(90deg, var(--zeus-red), var(--zeus-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none !important;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #intro-subtitle {
+    margin-top: .35rem;
+    font-size: clamp(14px, 2vw, 18px);
+    color: #e6e6e6;
+    opacity: .95;
   }
 
   /* 左右“幕布”被劈开 */
-  .veil{ position:absolute; inset:0 auto 0 0; width:50%; background:#000; z-index:10;
-         transition:transform 1s cubic-bezier(.19,1,.22,1); }
-  .veil.right{ left:auto; right:0; }
-  .veil.left{
+  .veil {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 50%;
+    background: #000;
+    z-index: 10;
+    transition: transform 1s cubic-bezier(.19, 1, .22, 1);
+  }
+
+  .veil.right {
+    left: auto;
+    right: 0;
+  }
+
+  .veil.left {
     clip-path: polygon(0 0, 100% 0, 96% 20%, 100% 40%, 96% 60%, 100% 80%, 96% 100%, 0 100%);
-    border-right:1px dashed rgba(255,255,255,.08);
+    border-right: 1px dashed rgba(255, 255, 255, .08);
   }
-  .veil.right{
+
+  .veil.right {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 4% 80%, 0 60%, 4% 40%, 0 20%);
-    border-left:1px dashed rgba(255,255,255,.08);
+    border-left: 1px dashed rgba(255, 255, 255, .08);
   }
-  #zeus-splash.open .veil.left{  transform:translateX(-110%) rotateZ(-.6deg); }
-  #zeus-splash.open .veil.right{ transform:translateX(110%)  rotateZ(.6deg);  }
+
+  #zeus-splash.open .veil.left {
+    transform: translateX(-110%) rotateZ(-.6deg);
+  }
+
+  #zeus-splash.open .veil.right {
+    transform: translateX(110%) rotateZ(.6deg);
+  }
 
   /* 闪电：上粗下细 + 红→黑渐变 + 轻微发光，结束后淡出 */
-  #lightning{ position:absolute; inset:-6% 0 -4% 0; width:100%; height:110%; z-index:12; pointer-events:none; }
-  #lightning .glow, #lightning .core{
-    fill:none; stroke:url(#boltGrad); stroke-linecap:butt; stroke-linejoin:miter;stroke-miterlimit: 10;
-    stroke-dasharray:360; stroke-dashoffset:360;
-    animation: bolt-draw 1.05s ease-out forwards, bolt-flicker 140ms steps(2,end) 6 .95s;
+  #lightning {
+    position: absolute;
+    inset: -6% 0 -4% 0;
+    width: 100%;
+    height: 110%;
+    z-index: 12;
+    pointer-events: none;
   }
-  #lightning .glow{
-    stroke-width:3; opacity:.35;
-    filter:drop-shadow(0 0 16px rgba(221,24,24,.45)) drop-shadow(0 0 32px rgba(255,255,255,.3));
+
+  #lightning .glow,
+  #lightning .core {
+    fill: none;
+    stroke: url(#boltGrad);
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-miterlimit: 10;
+    stroke-dasharray: 360;
+    stroke-dashoffset: 360;
+    animation: bolt-draw 1.05s ease-out forwards, bolt-flicker 140ms steps(2, end) 6 .95s;
   }
-  #lightning .core{ stroke-width:2; }
+
+  #lightning .glow {
+    stroke-width: 3;
+    opacity: .35;
+    filter: drop-shadow(0 0 16px rgba(221, 24, 24, .45)) drop-shadow(0 0 32px rgba(255, 255, 255, .3));
+  }
+
+  #lightning .core {
+    stroke-width: 2;
+  }
+
   /* 用 mask 做“上粗下细” */
-  #zeus-splash.done #lightning{ opacity:0; transition:opacity .25s ease .2s; }
+  #zeus-splash.done #lightning {
+    opacity: 0;
+    transition: opacity .25s ease .2s;
+  }
 
   /* 屏闪 + 轻微震屏 */
-  .flash{ position:absolute; inset:0; z-index:11; pointer-events:none;
-          background: radial-gradient(ellipse at 50% 35%, rgba(255,255,255,.9), rgba(255,255,255,0) 55%);
-          opacity:0; animation: flash 1.05s ease-out .9s 1 forwards; }
-  .shake{ animation: shake .38s linear 2 .95s; }
-  @keyframes bolt-draw{ to{ stroke-dashoffset:0; } }
-  @keyframes bolt-flicker{ 0%{opacity:1} 50%{opacity:.35} 100%{opacity:1} }
-  @keyframes flash{ 0%{opacity:0} 12%{opacity:.95} 28%{opacity:.15} 60%{opacity:0} }
-  @keyframes shake{
-    0%{ transform:translateX(0) } 20%{ transform:translateX(-6px) }
-    40%{ transform:translateX(5px) } 60%{ transform:translateX(-4px) }
-    80%{ transform:translateX(3px) } 100%{ transform:translateX(0) }
+  .flash {
+    position: absolute;
+    inset: 0;
+    z-index: 11;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 50% 35%, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0) 55%);
+    opacity: 0;
+    animation: flash 1.05s ease-out .9s 1 forwards;
+  }
+
+  .shake {
+    animation: shake .38s linear 2 .95s;
+  }
+
+  @keyframes bolt-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes bolt-flicker {
+    0% {
+      opacity: 1
+    }
+
+    50% {
+      opacity: .35
+    }
+
+    100% {
+      opacity: 1
+    }
+  }
+
+  @keyframes flash {
+    0% {
+      opacity: 0
+    }
+
+    12% {
+      opacity: .95
+    }
+
+    28% {
+      opacity: .15
+    }
+
+    60% {
+      opacity: 0
+    }
+  }
+
+  @keyframes shake {
+    0% {
+      transform: translateX(0)
+    }
+
+    20% {
+      transform: translateX(-6px)
+    }
+
+    40% {
+      transform: translateX(5px)
+    }
+
+    60% {
+      transform: translateX(-4px)
+    }
+
+    80% {
+      transform: translateX(3px)
+    }
+
+    100% {
+      transform: translateX(0)
+    }
   }
 
   /* 冬季小雪点缀 */
-  #snow{ position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.35; }
+  #snow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: .35;
+  }
 
-  @media (prefers-reduced-motion: reduce){
-    #lightning .glow, #lightning .core, .flash, .shake, .veil, .content{ animation:none!important; transition:none!important; }
-    #zeus-splash .content{ opacity:1; transform:none; }
-    .veil{ display:none; }
+  @media (prefers-reduced-motion: reduce) {
+
+    #lightning .glow,
+    #lightning .core,
+    .flash,
+    .shake,
+    .veil,
+    .content {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    #zeus-splash .content {
+      opacity: 1;
+      transform: none;
+    }
+
+    .veil {
+      display: none;
+    }
   }
 </style>
 
@@ -253,45 +415,42 @@
 
 
 <body>
-
-
-
-
   <!-- ========== ZEUS 开场动画（一屏） ========== -->
-<section id="zeus-splash" aria-label="ZEUS intro" class="shake">
-  <canvas id="snow"></canvas>
+  <section id="zeus-splash" aria-label="ZEUS intro" class="shake">
+    <canvas id="snow"></canvas>
 
-  <div class="content">
-    <img id="intro-logo" src="./static/images/zeus.png" alt="ZEUS logo">
-    <h1 id="intro-title">ZEUS: Zero‑shot Efficient Unified Sparsity<br><span style="font-weight:700">for Generative Models</span></h1>
-    <div id="intro-subtitle">Training‑free acceleration • One‑line integration</div>
-  </div>
+    <div class="content">
+      <img id="intro-logo" src="./static/images/zeus.png" alt="ZEUS logo">
+      <h1 id="intro-title">ZEUS: Zero‑shot Efficient Unified Sparsity<br><span style="font-weight:700">for Generative
+          Models</span></h1>
+      <div id="intro-subtitle">Training‑free acceleration • One‑line integration</div>
+    </div>
 
-  <!-- 闪电：上粗下细 + 红->黑 -->
-  <svg id="lightning" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-    <defs>
-      <!-- 纵向颜色渐变（红 -> 深红 -> 黑） -->
-      <linearGradient id="boltGrad" x1="50" y1="-10" x2="50" y2="110" gradientUnits="userSpaceOnUse">
-        <stop offset="0%"   stop-color="#dd1818"/>
-        <stop offset="65%"  stop-color="#7a0e11"/>
-        <stop offset="100%" stop-color="#1b1b1b"/>
-      </linearGradient>
-    </defs>
+    <!-- 闪电：上粗下细 + 红->黑 -->
+    <svg id="lightning" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <!-- 纵向颜色渐变（红 -> 深红 -> 黑） -->
+        <linearGradient id="boltGrad" x1="50" y1="-10" x2="50" y2="110" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#dd1818" />
+          <stop offset="65%" stop-color="#7a0e11" />
+          <stop offset="100%" stop-color="#1b1b1b" />
+        </linearGradient>
+      </defs>
 
-    <!-- 发光外沿 -->
-    <polyline class="glow" mask="url(#taperMask)"
-      points="50,-8  49,8  56,16  46,26  59,38  52,50  63,62  54,74  66,86  58,100" />
-    <!-- 主干 -->
-    <polyline class="core" mask="url(#taperMask)"
-      points="50,-8  49,8  56,16  46,26  59,38  52,50  63,62  54,74  66,86  58,100" />
-  </svg>
+      <!-- 发光外沿 -->
+      <polyline class="glow" mask="url(#taperMask)"
+        points="50,-8  49,8  56,16  46,26  59,38  52,50  63,62  54,74  66,86  58,100" />
+      <!-- 主干 -->
+      <polyline class="core" mask="url(#taperMask)"
+        points="50,-8  49,8  56,16  46,26  59,38  52,50  63,62  54,74  66,86  58,100" />
+    </svg>
 
-  <!-- 屏闪 -->
-  <div class="flash"></div>
+    <!-- 屏闪 -->
+    <div class="flash"></div>
 
-  <!-- 雷声（可选） -->
-  <audio id="thunder" preload="auto" src="./static/audios/thunder.mp3"></audio>
-</section>
+    <!-- 雷声（可选） -->
+    <audio id="thunder" preload="auto" src="./static/audios/thunder.mp3"></audio>
+  </section>
 
 
   <div class="card">
@@ -333,32 +492,34 @@
 
 
 
-<div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
+  <div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
 
-<section class="hero is-small has-zeus">
-  <div class="hero-body">
-    <img src="static/images/zeus.png" alt="" class="zeus-bg" aria-hidden="true" role="presentation">
-    <div class="container is-max-desktop content-wrap">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <br><br>
-          <h1 class="title is-2 publication-title" style="font-size: 2.12rem;">
-              <svg xmlns="http://www.w3.org/2000/svg" 
-     style="width:1.2em;height:1.2em;vertical-align:middle;" 
-     viewBox="0 0 24 24">
-  <defs>
-    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)"/>
-</svg>
-            <span style="background: linear-gradient(to right, #dd1818, #333333); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">ZEUS</span>:
-            <span style="background: linear-gradient(to right, #dd1818, #333333); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">Zero-shot Efficient Unified Sparsity</span>
-            for Generative Models
-          </h1>
-          <!-- 下面保持不变 -->
+  <section class="hero is-small has-zeus">
+    <div class="hero-body">
+      <img src="static/images/zeus.png" alt="" class="zeus-bg" aria-hidden="true" role="presentation">
+      <div class="container is-max-desktop content-wrap">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <br><br>
+            <h1 class="title is-2 publication-title" style="font-size: 2.12rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" style="width:1.2em;height:1.2em;vertical-align:middle;"
+                viewBox="0 0 24 24">
+                <defs>
+                  <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)" />
+              </svg>
+              <span
+                style="background: linear-gradient(to right, #dd1818, #333333); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">ZEUS</span>:
+              <span
+                style="background: linear-gradient(to right, #dd1818, #333333); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">Zero-shot
+                Efficient Unified Sparsity</span>
+              for Generative Models
+            </h1>
+            <!-- 下面保持不变 -->
 
 
 
@@ -389,9 +550,10 @@
 
             <div class="is-size-5 publication-authors">
               <span class="author-block"><sup>1</sup>Duke University&nbsp;</span>
-              <img src="static/images/duke.png" alt="Duke Logo" class="duke-logo" aria-hidden="true" role="presentation">
+              <img src="static/images/duke.png" alt="Duke Logo" class="duke-logo" aria-hidden="true"
+                role="presentation">
             </div>
-<!--        
+            <!--        
             
             <div class="is-size-5 publication-authors">
               justin.jiang, yixiao.wang, zishan.shao, hancheng.ye, yiran.chen, hai.li@duke.edu
@@ -403,25 +565,24 @@
             </div>
             <div class="is-size-5 has-text-centered" style="margin-top: 0.5em; font-weight: bold;">
               &nbsp;
-              <svg xmlns="http://www.w3.org/2000/svg" 
-     style="width:1.2em;height:1.2em;vertical-align:middle;" 
-     viewBox="0 0 24 24">
-  <defs>
-    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)"/>
-</svg>
- <span style="
+              <svg xmlns="http://www.w3.org/2000/svg" style="width:1.2em;height:1.2em;vertical-align:middle;"
+                viewBox="0 0 24 24">
+                <defs>
+                  <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)" />
+              </svg>
+              <span style="
   background: linear-gradient(to right,  #dd1818,#333333);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;">
-  ZEUS
-</span>
-plugs straight into any project built on HuggingFace Diffusers 🤗
+                ZEUS
+              </span>
+              plugs straight into any project built on HuggingFace Diffusers 🤗
             </div>
             <!-- <div class="is-size-5 publication-venue">
             in XXX
@@ -492,8 +653,8 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;">
-  ZEUS
-</span> — a <b>training-free</b> acceleration method for generative models, running with <b>just one line of
+              ZEUS
+            </span> — a <b>training-free</b> acceleration method for generative models, running with <b>just one line of
               code</b>. Fully open-source.
             Achieve <b>1.9×</b> <b>lossless acceleration</b> or <b>3.6×</b> speedup with LPIPS < 0.2 for <b>ultra-stable
               quality</b>.
@@ -513,8 +674,8 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;">
-  ZEUS
-</span> results at different speed modes (Quality, Balanced, Medium, Fast, Turbo), <br>
+              ZEUS
+            </span> results at different speed modes (Quality, Balanced, Medium, Fast, Turbo), <br>
             showing superior performance in both speedup and LPIPS compared to other methods.</i>
         </p>
       </div>
@@ -543,16 +704,18 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
 
         <svg id="fig2-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
           <defs>
-          <!-- 深蓝箭头 -->
-          <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="#3a3a75" />
-          </marker>
+            <!-- 深蓝箭头 -->
+            <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"
+              markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#3a3a75" />
+            </marker>
 
-          <!-- 浅蓝箭头（新的） -->
-          <marker id="arrow-lightblue" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="#7d8cc4" />
-          </marker>
-        </defs>
+            <!-- 浅蓝箭头（新的） -->
+            <marker id="arrow-lightblue" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"
+              markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#7d8cc4" />
+            </marker>
+          </defs>
 
           <!-- 左侧 Model -->
           <rect x="100" y="80" width="80" height="40" rx="5" fill="#7a003c" />
@@ -615,12 +778,12 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
           <!-- Bypass 文字（初始隐藏） -->
           <text id="bypass-text" x="240" y="105" font-size="16" fill="black" style="opacity:0;">Bypass</text>
           <text id="bypass-text2" x="435" y="105" font-size="16" fill="black" style="opacity:0;">Bypass</text>
-          <text  x="70" y="50" font-size="16" fill="black" style="opacity:1;">...</text>
-          <text  x="570" y="260" font-size="16" fill="black" style="opacity:1;">...</text>
+          <text x="70" y="50" font-size="16" fill="black" style="opacity:1;">...</text>
+          <text x="570" y="260" font-size="16" fill="black" style="opacity:1;">...</text>
           <text id="continue" x="650" y="75" font-size="16" fill="black" style="opacity:0;">If continue skip...</text>
-          
 
-          
+
+
 
           <!-- 蓝色箭头（初始隐藏） -->
           <path id="blue-arrow-1" class="blue-arrow" d="M 170 160 Q 260 200 330 170" fill="none" stroke="#3a3a75"
@@ -634,7 +797,7 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
           <!-- <path id="blue-arrow-4" class="blue-arrow" d="M 580 160 Q 670 200 740 170" fill="none" stroke="#3a3a75"
             stroke-width="3" marker-end="url(#arrow-blue)" /> -->
           <path id="blue-arrow-4" class="blue-arrow" d="M 370 160 Q 570 230 740 170" fill="none" stroke="#3a3a75"
-            stroke-width="3" marker-end="url(#arrow-blue)" /> 
+            stroke-width="3" marker-end="url(#arrow-blue)" />
           <path id="blue-arrow-5" class="blue-arrow" d="M 580 160 Q 740 100 933 155" fill="none" stroke="#7d8cc4"
             stroke-width="3" marker-end="url(#arrow-lightblue)" />
 
@@ -666,22 +829,23 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
         <div id="psi-formula2" class="formula hidden" style="left:550px; top:140px;">$\psi_t$</div>
       </div>
       <div>
-      <p style="font-size:0.95em; margin-top:0.5em;">
-        <i><b>Figure 2.</b> Overview paradigm of <span style="
+        <p style="font-size:0.95em; margin-top:0.5em;">
+          <i><b>Figure 2.</b> Overview paradigm of <span style="
   background: linear-gradient(to right,  #dd1818,#333333);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;">
-  ZEUS
-</span>. The sparsity mode (middle: <code>step-wise</code>, bottom:
-          <code>token-wise</code>) at timestep <i>t – 1</i> is adaptively identified by the stability Criterion after
-          fresh computation at timestep <i>t</i>. Note that “DP” in the pipeline stands for “Data Prediction”.
-          <b>Right:</b> Visualization of SADA and baseline methods’ performance in terms of faithfulness and efficiency.
-          Our method significantly outperforms existing baselines {<code>DeepCache</code>,
-          <code>AdaptiveDiffusion</code>} on both metrics, using {<code>SD-2</code> (Top), <code>SDXL</code> (Bottom)}
-          with DPM-solver++ 50 steps.</i>
-      </p>
-    </div>
+              ZEUS
+            </span>. The sparsity mode (middle: <code>step-wise</code>, bottom:
+            <code>token-wise</code>) at timestep <i>t – 1</i> is adaptively identified by the stability Criterion after
+            fresh computation at timestep <i>t</i>. Note that “DP” in the pipeline stands for “Data Prediction”.
+            <b>Right:</b> Visualization of SADA and baseline methods’ performance in terms of faithfulness and
+            efficiency.
+            Our method significantly outperforms existing baselines {<code>DeepCache</code>,
+            <code>AdaptiveDiffusion</code>} on both metrics, using {<code>SD-2</code> (Top), <code>SDXL</code> (Bottom)}
+            with DPM-solver++ 50 steps.</i>
+        </p>
+      </div>
   </section>
 
 
@@ -700,8 +864,8 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;">
-  ZEUS
-</span>for different models for
+                ZEUS
+              </span>for different models for
               generating a single video on 8 NVIDIA H100 GPUs. When utilizing a single GPU, we achieve a speedup ranging
               from 1.26x to 1.32x, which remains stable across different schedulers. Scaling to multiple GPUs, our
               method achieves a speedup of up to 10.6x, which almost linearly scales with the number of GPUs due to our
@@ -817,42 +981,42 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
 
 
           <script>
-  /* --- keep timeout IDs here --- */
-  let timers = [];
+            /* --- keep timeout IDs here --- */
+            let timers = [];
 
-  function startAnimation () {
-    /* 1️⃣  cancel anything still pending from a previous run */
-    timers.forEach(id => clearTimeout(id));
-    timers = [];
+            function startAnimation() {
+              /* 1️⃣  cancel anything still pending from a previous run */
+              timers.forEach(id => clearTimeout(id));
+              timers = [];
 
-    /* 2️⃣  reset state and launch a fresh set of timers */
-    document.querySelectorAll('.scene').forEach(scene => {
-      const speed = parseFloat(scene.dataset.speed);
-      const imgs  = scene.querySelectorAll('img');
+              /* 2️⃣  reset state and launch a fresh set of timers */
+              document.querySelectorAll('.scene').forEach(scene => {
+                const speed = parseFloat(scene.dataset.speed);
+                const imgs = scene.querySelectorAll('img');
 
-      imgs.forEach(img => { img.style.opacity = 0; });
+                imgs.forEach(img => { img.style.opacity = 0; });
 
-      imgs.forEach((img, i) => {
-        const id = setTimeout(() => { img.style.opacity = 1; },
-                              i * (2000 / speed));
-        timers.push(id);          // remember so we can clear later
-      });
-    });
-  }
+                imgs.forEach((img, i) => {
+                  const id = setTimeout(() => { img.style.opacity = 1; },
+                    i * (2000 / speed));
+                  timers.push(id);          // remember so we can clear later
+                });
+              });
+            }
 
-  /* ---- intersection-observer (unchanged) ---- */
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        startAnimation();
-        obs.disconnect();         // still run only once on first reveal
-      }
-    });
-  }, { threshold: 0.2 });
+            /* ---- intersection-observer (unchanged) ---- */
+            const observer = new IntersectionObserver((entries, obs) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  startAnimation();
+                  obs.disconnect();         // still run only once on first reveal
+                }
+              });
+            }, { threshold: 0.2 });
 
-  observer.observe(document.querySelector('.scene'));
-  document.getElementById('replay-btn').addEventListener('click', startAnimation);
-</script>
+            observer.observe(document.querySelector('.scene'));
+            document.getElementById('replay-btn').addEventListener('click', startAnimation);
+          </script>
 
 
         </div>
@@ -864,12 +1028,12 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
 
 
     <div class="container is-max-desktop">
-  <div class="columns is-centered">
-    <div class="column is-full-width">
-      <div class="content has-text-justified">
-        <h2 class="title is-4" id="videos">Videos</h2>
-        <div class="content has-text-centered" style="margin-top: 2em;">
-          <span style="
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="content has-text-justified">
+            <h2 class="title is-4" id="videos">Videos</h2>
+            <div class="content has-text-centered" style="margin-top: 2em;">
+              <span style="
             display: inline-block;
             padding: 1em 2.5em;
             border: 2px solid transparent;
@@ -884,52 +1048,58 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
             box-shadow: 0 0 15px rgba(221,24,24,0.5), 0 0 25px rgba(51,51,51,0.4);
             animation: pulseGlow 2s infinite;
           ">
-             <svg xmlns="http://www.w3.org/2000/svg" 
-     style="width:1.2em;height:1.2em;vertical-align:middle;" 
-     viewBox="0 0 24 24">
-  <defs>
-    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)"/>
-</svg> Coming Soon  <svg xmlns="http://www.w3.org/2000/svg" 
-     style="width:1.2em;height:1.2em;vertical-align:middle;" 
-     viewBox="0 0 24 24">
-  <defs>
-    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)"/>
-</svg>
-          </span>
+                <svg xmlns="http://www.w3.org/2000/svg" style="width:1.2em;height:1.2em;vertical-align:middle;"
+                  viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)" />
+                </svg> Coming Soon <svg xmlns="http://www.w3.org/2000/svg"
+                  style="width:1.2em;height:1.2em;vertical-align:middle;" viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)" />
+                </svg>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<style>
-@keyframes pulseGlow {
-  0% { box-shadow: 0 0 15px rgba(221,24,24,0.5), 0 0 25px rgba(51,51,51,0.4); }
-  50% { box-shadow: 0 0 25px rgba(221,24,24,0.8), 0 0 35px rgba(51,51,51,0.6); }
-  100% { box-shadow: 0 0 15px rgba(221,24,24,0.5), 0 0 25px rgba(51,51,51,0.4); }
-}
-</style>
+    <style>
+      @keyframes pulseGlow {
+        0% {
+          box-shadow: 0 0 15px rgba(221, 24, 24, 0.5), 0 0 25px rgba(51, 51, 51, 0.4);
+        }
+
+        50% {
+          box-shadow: 0 0 25px rgba(221, 24, 24, 0.8), 0 0 35px rgba(51, 51, 51, 0.6);
+        }
+
+        100% {
+          box-shadow: 0 0 15px rgba(221, 24, 24, 0.5), 0 0 25px rgba(51, 51, 51, 0.4);
+        }
+      }
+    </style>
 
 
 
 
     <div class="container is-max-desktop">
-  <div class="columns is-centered">
-    <div class="column is-full-width">
-      <div class="content has-text-justified">
-        <h2 class="title is-4" id="audios">Audios</h2>
-        <div class="content has-text-centered" style="margin-top: 2em;">
-          <span style="
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="content has-text-justified">
+            <h2 class="title is-4" id="audios">Audios</h2>
+            <div class="content has-text-centered" style="margin-top: 2em;">
+              <span style="
             display: inline-block;
             padding: 1em 2.5em;
             border: 2px solid transparent;
@@ -944,33 +1114,31 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
             box-shadow: 0 0 15px rgba(221,24,24,0.5), 0 0 25px rgba(51,51,51,0.4);
             animation: pulseGlow 2s infinite;
           ">
-             <svg xmlns="http://www.w3.org/2000/svg" 
-     style="width:1.2em;height:1.2em;vertical-align:middle;" 
-     viewBox="0 0 24 24">
-  <defs>
-    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)"/>
-</svg> Coming Soon  <svg xmlns="http://www.w3.org/2000/svg" 
-     style="width:1.2em;height:1.2em;vertical-align:middle;" 
-     viewBox="0 0 24 24">
-  <defs>
-    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)"/>
-</svg>
-          </span>
+                <svg xmlns="http://www.w3.org/2000/svg" style="width:1.2em;height:1.2em;vertical-align:middle;"
+                  viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)" />
+                </svg> Coming Soon <svg xmlns="http://www.w3.org/2000/svg"
+                  style="width:1.2em;height:1.2em;vertical-align:middle;" viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)" />
+                </svg>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
 
 
@@ -1248,194 +1416,194 @@ plugs straight into any project built on HuggingFace Diffusers 🤗
 
   </script>
 
- <script>
-// 💡 所有 timeout 句柄存储数组（全局）
-let fig2Timers = [];
+  <script>
+    // 💡 所有 timeout 句柄存储数组（全局）
+    let fig2Timers = [];
 
-// 🎬 动画播放函数（支持任意时刻点击 replay）
-function playImplementationAnimation() {
-  // ✅ 清除所有旧的 setTimeout 调用
-  fig2Timers.forEach(clearTimeout);
-  fig2Timers = [];
+    // 🎬 动画播放函数（支持任意时刻点击 replay）
+    function playImplementationAnimation() {
+      // ✅ 清除所有旧的 setTimeout 调用
+      fig2Timers.forEach(clearTimeout);
+      fig2Timers = [];
 
-  // ✅ 定义统一的 setTimeout 包装器
-  const addTimer = (cb, delay) => fig2Timers.push(setTimeout(cb, delay));
+      // ✅ 定义统一的 setTimeout 包装器
+      const addTimer = (cb, delay) => fig2Timers.push(setTimeout(cb, delay));
 
-  // ✅ 重置 DOM 状态（初始状态）
-  document.getElementById('model-right').classList.remove('model-gray');
-  document.getElementById('psi-prev').classList.remove('fade-out');
-  document.getElementById('bypass-text').classList.remove('fade-in');
-  document.getElementById('model-right-border').style.opacity = 0;
+      // ✅ 重置 DOM 状态（初始状态）
+      document.getElementById('model-right').classList.remove('model-gray');
+      document.getElementById('psi-prev').classList.remove('fade-out');
+      document.getElementById('bypass-text').classList.remove('fade-in');
+      document.getElementById('model-right-border').style.opacity = 0;
 
-  document.getElementById('model-right2').classList.remove('model-gray');
-  document.getElementById('psi-prev2').classList.remove('fade-out');
-  document.getElementById('bypass-text2').classList.remove('fade-in');
-  document.getElementById('model-right-border2').style.opacity = 0;
+      document.getElementById('model-right2').classList.remove('model-gray');
+      document.getElementById('psi-prev2').classList.remove('fade-out');
+      document.getElementById('bypass-text2').classList.remove('fade-in');
+      document.getElementById('model-right-border2').style.opacity = 0;
 
-  document.getElementById('continue').classList.remove('fade-in');
+      document.getElementById('continue').classList.remove('fade-in');
 
-  for (let i = 1; i <= 5; i++) {
-    document.getElementById(`blue-arrow-${i}`).style.opacity = 0;
-  }
-
-  document.getElementById('psi-formula').classList.remove('visible');
-  document.getElementById('psi-formula').classList.add('hidden');
-  document.getElementById('psi-formula2').classList.remove('visible');
-  document.getElementById('psi-formula2').classList.add('hidden');
-
-  document.getElementById('psi-hat').classList.add('hidden');
-  document.getElementById('psi-hat').classList.remove('visible');
-   document.getElementById('psi-hat-reuse').classList.add('hidden');
-  document.getElementById('psi-hat-reuse').classList.remove('visible');
-  document.getElementById('psi-hat2').classList.add('hidden');
-  document.getElementById('psi-hat2').classList.remove('visible');
-
-  // ✅ 播放每一帧动画
-  addTimer(() => {
-    document.getElementById('model-right').classList.add('model-gray');
-    document.getElementById('psi-prev').classList.add('fade-out');
-    document.getElementById('bypass-text').classList.add('fade-in');
-    document.getElementById('model-right-border').style.opacity = 1;
-  }, 3000);
-
-  addTimer(() => {
-    document.getElementById('blue-arrow-1').style.opacity = 1;
-    document.getElementById('blue-arrow-2').style.opacity = 1;
-    document.getElementById('psi-formula').classList.remove('hidden');
-    document.getElementById('psi-formula').classList.add('visible');
-  }, 4000);
-
-  addTimer(() => {
-    document.getElementById('psi-hat').classList.remove('hidden');
-    document.getElementById('psi-hat').classList.add('visible');
-  }, 4800);
-
-  addTimer(() => {
-    document.getElementById('model-right2').classList.add('model-gray');
-    document.getElementById('psi-prev2').classList.add('fade-out');
-    document.getElementById('bypass-text2').classList.add('fade-in');
-    document.getElementById('model-right-border2').style.opacity = 1;
-  }, 5800);
-
-  addTimer(() => {
-    document.getElementById('blue-arrow-3').style.opacity = 1;
-    document.getElementById('psi-formula2').classList.remove('hidden');
-    document.getElementById('psi-formula2').classList.add('visible');
-    document.getElementById('psi-hat2').classList.remove('hidden');
-    document.getElementById('psi-hat2').classList.add('visible');
-  }, 6600);
-
-  addTimer(() => {
-    document.getElementById('psi-hat2').classList.remove('hidden');
-    document.getElementById('psi-hat2').classList.add('visible');
-  }, 7800);
-
-  addTimer(() => {
-    document.getElementById('continue').classList.add('fade-in');
-    // document.getElementById('blue-arrow-4').style.opacity = 1;
-    document.getElementById('blue-arrow-4').style.opacity = 1;
-    document.getElementById('blue-arrow-5').style.opacity = 1;
-     document.getElementById('psi-hat-reuse').classList.remove('hidden');
-    document.getElementById('psi-hat-reuse').classList.add('visible');
-  }, 9000);
-}
-
-// 📦 首次滚动到 Figure 2 时自动播放（只触发一次）
-let fig2Played = false;
-const fig2Observer = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !fig2Played) {
-      playImplementationAnimation();
-      fig2Played = true;
-    }
-  });
-}, { threshold: 0.3 });
-
-fig2Observer.observe(document.getElementById('fig2-svg'));
-
-// 🧠 Replay 按钮绑定（无限次点击都安全）
-document.getElementById('replay-btn-mainplot').addEventListener('click', playImplementationAnimation);
-</script>
-
-
-
-
-
-
-<script>
-  (function(){
-    const splash  = document.getElementById('zeus-splash');
-    const thunder = document.getElementById('thunder');
-
-    // 置顶 & 锁滚 & 隐藏底下首屏
-    window.scrollTo(0,0);
-    document.body.classList.add('lock-scroll','splashing');
-
-    // 首次交互“武装”音频
-    const armAudio = () => {
-      if (!thunder) return;
-      thunder.play().then(()=>{ thunder.pause(); thunder.currentTime = 0; }).catch(()=>{});
-      window.removeEventListener('pointerdown', armAudio);
-    };
-    window.addEventListener('pointerdown', armAudio, { once:true });
-
-    // 时间线：雷声 -> 幕布打开 -> 闪电淡出
-    setTimeout(()=>{ if (thunder) thunder.play().catch(()=>{}); }, 950);
-    setTimeout(()=>{ splash.classList.add('open'); }, 1200);
-    setTimeout(()=>{ splash.classList.add('done'); }, 1650);
-
-    // “轻微滚动/按键/上滑触控”就整屏滚到下一页
-    let jumped = false, touchStartY = 0;
-    const goNext = () => {
-      if (jumped) return;
-      jumped = true;
-      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-      setTimeout(()=>{ document.body.classList.remove('lock-scroll','splashing'); }, 650);
-    };
-
-    function onWheel(e){ if (!jumped){ e.preventDefault(); goNext(); } }
-    function onKey(e){
-      const k = e.key;
-      if (k===' ' || k==='Spacebar' || k==='ArrowDown' || k==='PageDown' || k==='Enter'){
-        e.preventDefault(); goNext();
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById(`blue-arrow-${i}`).style.opacity = 0;
       }
-    }
-    function onTouchStart(e){ touchStartY = e.touches[0].clientY; }
-    function onTouchMove(e){
-      const dy = touchStartY - e.touches[0].clientY;
-      if (dy > 6 && !jumped){ e.preventDefault(); goNext(); }
+
+      document.getElementById('psi-formula').classList.remove('visible');
+      document.getElementById('psi-formula').classList.add('hidden');
+      document.getElementById('psi-formula2').classList.remove('visible');
+      document.getElementById('psi-formula2').classList.add('hidden');
+
+      document.getElementById('psi-hat').classList.add('hidden');
+      document.getElementById('psi-hat').classList.remove('visible');
+      document.getElementById('psi-hat-reuse').classList.add('hidden');
+      document.getElementById('psi-hat-reuse').classList.remove('visible');
+      document.getElementById('psi-hat2').classList.add('hidden');
+      document.getElementById('psi-hat2').classList.remove('visible');
+
+      // ✅ 播放每一帧动画
+      addTimer(() => {
+        document.getElementById('model-right').classList.add('model-gray');
+        document.getElementById('psi-prev').classList.add('fade-out');
+        document.getElementById('bypass-text').classList.add('fade-in');
+        document.getElementById('model-right-border').style.opacity = 1;
+      }, 3000);
+
+      addTimer(() => {
+        document.getElementById('blue-arrow-1').style.opacity = 1;
+        document.getElementById('blue-arrow-2').style.opacity = 1;
+        document.getElementById('psi-formula').classList.remove('hidden');
+        document.getElementById('psi-formula').classList.add('visible');
+      }, 4000);
+
+      addTimer(() => {
+        document.getElementById('psi-hat').classList.remove('hidden');
+        document.getElementById('psi-hat').classList.add('visible');
+      }, 4800);
+
+      addTimer(() => {
+        document.getElementById('model-right2').classList.add('model-gray');
+        document.getElementById('psi-prev2').classList.add('fade-out');
+        document.getElementById('bypass-text2').classList.add('fade-in');
+        document.getElementById('model-right-border2').style.opacity = 1;
+      }, 5800);
+
+      addTimer(() => {
+        document.getElementById('blue-arrow-3').style.opacity = 1;
+        document.getElementById('psi-formula2').classList.remove('hidden');
+        document.getElementById('psi-formula2').classList.add('visible');
+        document.getElementById('psi-hat2').classList.remove('hidden');
+        document.getElementById('psi-hat2').classList.add('visible');
+      }, 6600);
+
+      addTimer(() => {
+        document.getElementById('psi-hat2').classList.remove('hidden');
+        document.getElementById('psi-hat2').classList.add('visible');
+      }, 7800);
+
+      addTimer(() => {
+        document.getElementById('continue').classList.add('fade-in');
+        // document.getElementById('blue-arrow-4').style.opacity = 1;
+        document.getElementById('blue-arrow-4').style.opacity = 1;
+        document.getElementById('blue-arrow-5').style.opacity = 1;
+        document.getElementById('psi-hat-reuse').classList.remove('hidden');
+        document.getElementById('psi-hat-reuse').classList.add('visible');
+      }, 9000);
     }
 
-    window.addEventListener('wheel', onWheel, { passive:false });
-    window.addEventListener('keydown', onKey);
-    window.addEventListener('touchstart', onTouchStart, { passive:true });
-    window.addEventListener('touchmove', onTouchMove, { passive:false });
-
-    // 小雪（与之前一致，轻量）
-    const canvas = document.getElementById('snow');
-    if (canvas && canvas.getContext){
-      const ctx = canvas.getContext('2d'); let W=0,H=0, flakes=[];
-      function resize(){
-        W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight;
-        flakes = Array.from({length: Math.round(W*H/12000)+80}, () => ({
-          x: Math.random()*W, y: Math.random()*H, r: Math.random()*2+0.6,
-          vx: (Math.random()*0.6-0.3), vy: Math.random()*0.9+0.4
-        }));
-      }
-      window.addEventListener('resize', resize); resize();
-      (function draw(){
-        ctx.clearRect(0,0,W,H); ctx.fillStyle = 'rgba(255,255,255,.95)';
-        const t = Date.now()*0.0012;
-        for (const f of flakes){
-          f.x += f.vx + Math.sin(t + f.y*0.015)*0.15; f.y += f.vy;
-          if (f.y>H){ f.y=-5; f.x=Math.random()*W; } if (f.x<-5) f.x=W+5; if (f.x>W+5) f.x=-5;
-          ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,Math.PI*2); ctx.fill();
+    // 📦 首次滚动到 Figure 2 时自动播放（只触发一次）
+    let fig2Played = false;
+    const fig2Observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !fig2Played) {
+          playImplementationAnimation();
+          fig2Played = true;
         }
-        requestAnimationFrame(draw);
-      })();
-    }
-  })();
-</script>
+      });
+    }, { threshold: 0.3 });
+
+    fig2Observer.observe(document.getElementById('fig2-svg'));
+
+    // 🧠 Replay 按钮绑定（无限次点击都安全）
+    document.getElementById('replay-btn-mainplot').addEventListener('click', playImplementationAnimation);
+  </script>
+
+
+
+
+
+
+  <script>
+    (function () {
+      const splash = document.getElementById('zeus-splash');
+      const thunder = document.getElementById('thunder');
+
+      // 置顶 & 锁滚 & 隐藏底下首屏
+      window.scrollTo(0, 0);
+      document.body.classList.add('lock-scroll', 'splashing');
+
+      // 首次交互“武装”音频
+      const armAudio = () => {
+        if (!thunder) return;
+        thunder.play().then(() => { thunder.pause(); thunder.currentTime = 0; }).catch(() => { });
+        window.removeEventListener('pointerdown', armAudio);
+      };
+      window.addEventListener('pointerdown', armAudio, { once: true });
+
+      // 时间线：雷声 -> 幕布打开 -> 闪电淡出
+      setTimeout(() => { if (thunder) thunder.play().catch(() => { }); }, 950);
+      setTimeout(() => { splash.classList.add('open'); }, 1200);
+      setTimeout(() => { splash.classList.add('done'); }, 1650);
+
+      // “轻微滚动/按键/上滑触控”就整屏滚到下一页
+      let jumped = false, touchStartY = 0;
+      const goNext = () => {
+        if (jumped) return;
+        jumped = true;
+        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+        setTimeout(() => { document.body.classList.remove('lock-scroll', 'splashing'); }, 650);
+      };
+
+      function onWheel(e) { if (!jumped) { e.preventDefault(); goNext(); } }
+      function onKey(e) {
+        const k = e.key;
+        if (k === ' ' || k === 'Spacebar' || k === 'ArrowDown' || k === 'PageDown' || k === 'Enter') {
+          e.preventDefault(); goNext();
+        }
+      }
+      function onTouchStart(e) { touchStartY = e.touches[0].clientY; }
+      function onTouchMove(e) {
+        const dy = touchStartY - e.touches[0].clientY;
+        if (dy > 6 && !jumped) { e.preventDefault(); goNext(); }
+      }
+
+      window.addEventListener('wheel', onWheel, { passive: false });
+      window.addEventListener('keydown', onKey);
+      window.addEventListener('touchstart', onTouchStart, { passive: true });
+      window.addEventListener('touchmove', onTouchMove, { passive: false });
+
+      // 小雪（与之前一致，轻量）
+      const canvas = document.getElementById('snow');
+      if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext('2d'); let W = 0, H = 0, flakes = [];
+        function resize() {
+          W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight;
+          flakes = Array.from({ length: Math.round(W * H / 12000) + 80 }, () => ({
+            x: Math.random() * W, y: Math.random() * H, r: Math.random() * 2 + 0.6,
+            vx: (Math.random() * 0.6 - 0.3), vy: Math.random() * 0.9 + 0.4
+          }));
+        }
+        window.addEventListener('resize', resize); resize();
+        (function draw() {
+          ctx.clearRect(0, 0, W, H); ctx.fillStyle = 'rgba(255,255,255,.95)';
+          const t = Date.now() * 0.0012;
+          for (const f of flakes) {
+            f.x += f.vx + Math.sin(t + f.y * 0.015) * 0.15; f.y += f.vy;
+            if (f.y > H) { f.y = -5; f.x = Math.random() * W; } if (f.x < -5) f.x = W + 5; if (f.x > W + 5) f.x = -5;
+            ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2); ctx.fill();
+          }
+          requestAnimationFrame(draw);
+        })();
+      }
+    })();
+  </script>
 
 </body>
 
