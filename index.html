@@ -784,7 +784,7 @@
         <p>
           As sampling marches, the network’s outputs <span class="math">$\psi_t$</span> (i.e.,
           <span class="math">$\epsilon$</span>, <span class="math">$v$</span>, <span class="math">$x_0$</span>, or flow)
-          do gently align.
+          do not gently align.
           Empirically and theoretically, we find a <strong>anti-correlation</strong> between neighbors:
         </p>
 
@@ -1042,13 +1042,8 @@
         <div class="column is-full-width">
           <h2 class="title is-3">Evaluations</h2>
           <p>
-            We evaluate end-to-end latency per sample on a single A100 GPUs across Diffusers image pipelines (U-Net/DiT,
-            standard
-            schedulers).
-            ZEUS exposes a single aggressiveness knob that drives the ODE-stability gate introduced in our
-            implementation: at each solver step,
-            the gate decides whether to <b>bypass</b> using cached outputs (step-wise / token-wise) or to perform a
-            fresh model call.
+            We evaluate the end-to-end performance of ZEUS on a single A100 GPU. 
+Controlled by a sparsity ratio, ZEUS demonstrates a efficiency-fidelity tradeoff.
           </p>
           <h2 class="title is-4" id="images" style="margin-top: 1.5em;">Images</h2>
           <div class="content has-text-justified">
