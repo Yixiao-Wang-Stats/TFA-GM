@@ -600,7 +600,7 @@
               <div class="publication-links">
                 <!-- Code Link. -->
                 <span class="link-block">
-                  <a href="https://github.com/NUS-HPC-AI-Lab/VideoSys" target="_blank"
+                  <a href="https://github.com/Ting-Justin-Jiang/ZEUS" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -652,25 +652,29 @@
   <section class="hero is-small">
     <div class="hero-body">
       <div class="container is-max-desktop">
-        <div class="content has-text-justified">
-          <p>
-            <b>Any speedup ratio without quality loss. Any modality. Any model. Any scheduler.</b>
-            Introducing
+      <div class="content has-text-justified">
+        <p>
+          <b>
             <span style="
-  background: linear-gradient(to right,  #dd1818,#333333);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bold;">
+              background: linear-gradient(to right,  #dd1818,#333333);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              font-weight: bold;">
               ZEUS
-            </span> — a <b>training-free</b> acceleration method for generative models, running with <b>just one line of
-              code</b>. Fully open-source.
-            Achieve <b>1.9×</b> <b>lossless acceleration</b> or <b>3.6×</b> speedup with LPIPS < 0.2 for <b>ultra-stable
-              quality</b>.
-              Works seamlessly with <b>images</b>, <b>videos</b>, and <b>audio</b> across U-Net, DiT, and beyond —
-              delivering <b>instant compatibility</b> and <b>breakthrough performance</b>.
-          </p>
-        </div>
+            </span>: Lightning-Fast, Training-Free
+          </b> — <b>What does it minimally take to accelerate generative models—without training?</b> 
+          <span style="
+            background: linear-gradient(to right,  #dd1818,#333333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;">
+            ZEUS
+          </span> shows that a tiny, <b>second-order finite-difference</b> extrapolator plus a 
+          <b>parity-aware reuse</b> schedule is enough. Skip denoiser calls, keep fidelity, and outrun training-free baselines. 
+          <b>{Any modality. Any model. Any scheduler.}</b>
+        </p>
       </div>
+    </div>
 
 
 
@@ -701,7 +705,13 @@
 
   <section class="section" id="introduction">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Introduction</h2>
+      <h2 class="title is-3">Meet <span style="
+          background: linear-gradient(to right,  #dd1818,#333333);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;">
+            ZEUS
+          </span></h2>
       <div class="content">
         <p>
           Meet <span style="
@@ -839,8 +849,7 @@
                 to estimate <span class="math">$\psi_{t-1}$</span> when skipping a step.
                 <b>Left:</b> Naive Interpolation overshoots because <span class="math">$\psi_t$</span> fluctuates
                 between timesteps.
-                <b>Right:</b> Cache reuse prevents overshoot by reusing <span class="math">$\psi_t$</span> when the
-                criterion fires <code>True</code> at two consecutive steps.</i>
+                <b>Right:</b> Cache reuse prevents overshoot by reusing <span class="math">$\psi_t$</span>.</i>
             </p>
           </div>
         </div>
@@ -855,14 +864,25 @@
 
   <section class="section" id="implementation">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Implementation</h2>
+      <h2 class="title is-3">How <span style="
+          background: linear-gradient(to right,  #dd1818,#333333);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;">
+            ZEUS
+          </span> Fly</h2>
 
       <div class="content">
         <p>
-          At each step, we check stability conditions from the ODE solver to decide whether to reuse cached outputs or
-          perform fresh model evaluation. This enables adaptive acceleration with minimal overhead and strong
-          compatibility with existing solvers like DPM++ and EDM.
-        </p>
+  Motivated by this observation, 
+  <span style="
+    background: linear-gradient(to right,  #dd1818,#333333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;">
+    ZEUS
+  </span> extrapolates <span class="math">$\psi_t$</span> with a bounded second-order finite-difference predictor and applies a parity-aware reuse schedule that exploits adjacent anti-alignment, as shown in Figure&nbsp;3.
+</p>
       </div>
       <div style="text-align:center; margin-top:5px;">
         <button id="replay-btn-mainplot"><span>Replay Animation</span></button>
@@ -1381,8 +1401,9 @@
   author       = {Yixiao Wang and Ting Jiang and Zishan Shao and Hancheng Ye and Jingwei Sun and Mingyuan Ma and Jianyi Zhang and Yiran Chen and Hai Li},
   year         = {2025},
   howpublished = {https://yixiao-wang-stats.github.io/TFA-GM/},
-  note         = {Code and project page available at \url{https://zeus-project-page-link}}
+  note         = {Code and project page available at {https://github.com/Ting-Justin-Jiang/ZEUS}}
 }
+
 </code></pre>
     </div>
   </section>
