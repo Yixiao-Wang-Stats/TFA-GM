@@ -667,20 +667,182 @@
 
 
       <div class="has-text-centered" style="margin-top:2em;">
-        <div id="main" style="width: 800px; height: 500px; margin: auto;"></div>
-        <p id="figure1-caption" style="font-size:0.95em; margin-top:0.5em;">
-          <i><b>Figure 1.</b> The purple line represents<span style="
-  background: linear-gradient(to right,  #dd1818,#333333);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bold;">
-              ZEUS
-            </span> results at different speed modes (Quality, Balanced, Medium, Fast, Turbo), <br>
-            showing superior performance in both speedup and LPIPS compared to other methods.</i>
+        <div style="width: 800px; margin: auto;">
+          <div id="main" style="height: 500px;"></div>
+          <p id="figure1-caption" style="font-size:0.95em; margin-top:0.5em; text-align: left;">
+            <i><b>Figure 1.</b>
+              <span style="
+    background: linear-gradient(to right,  #dd1818,#333333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;">
+                ZEUS
+              </span> exhibits near-linear speed–quality scaling controlled by sparsity pattern. By varying a single
+              control parameter (Quality → Turbo) moves <span style="
+    background: linear-gradient(to right,  #dd1818,#333333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;">
+                ZEUS
+              </span> along a near-linear speedup curve from 1.0× to 3.6× while keeping LPIPS low. The ZEUS curve forms
+              a Pareto frontier: at matched speed it attains lower LPIPS than corresponding baselines (e.g., 2.2×/0.05 lpips vs.
+              TeaCache (2.0×/0.22 lpips); 3.6×/0.22 lpips vs. TaylorSeer (3.2×/0.42 lpips)). Lower LPIPS is better.</i>
+          </p>
+        </div>
+      </div>
+  </section>
+
+  <section class="section" id="introduction">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Introduction</h2>
+      <div class="content">
+        <p>
+          Meet <span style="
+          background: linear-gradient(to right,  #dd1818,#333333);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;">
+            ZEUS
+          </span>&mdash;<em>Zero-shot Efficient Unified Sparsity for Generative Models</em>&mdash;our latest library
+          that accelerate generative models with a groundbreaking end-to-end performance.
+          <span style="
+          background: linear-gradient(to right,  #dd1818,#333333);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;">
+            ZEUS
+          </span> offers a controllable efficiency&ndash;fidelity trade-off via tuning an inference-time sparsity ratio.
+          Under a simple, principled design,
+          <span style="
+          background: linear-gradient(to right,  #dd1818,#333333);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;">
+            ZEUS
+          </span> combines (i) zero-compute bypassing of the denoiser, (ii) second-order interpolation of the model
+          output
+          <span class="math">$\psi$</span> (theoretically equivalent across common prediction objectives), and (iii) a
+          zigzag-style retrieval schedule&mdash;the &ldquo;<span style="
+          background: linear-gradient(to right,  #dd1818,#333333);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;">
+            ZEUS
+          </span> pattern.&rdquo;
+          Across architectures, solvers, and modalities,
+          <span style="
+          background: linear-gradient(to right,  #dd1818,#333333);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;">
+            ZEUS
+          </span> consistently surpasses prior state of the art, making it a practical path toward faster, faithful
+          generation.
         </p>
       </div>
     </div>
   </section>
+
+
+
+  <section class="section" id="tale-lightning-of-zeus">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">A Tale: Lightning of
+        <span style="
+        background: linear-gradient(to right,  #dd1818,#333333);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;">
+          ZEUS
+        </span>
+      </h2>
+
+      <div class="content">
+        <p>
+          In probability-flow ODE sampling, we asked a simple question: what happens to the denoiser’s prediction
+          <span class="math">$\psi$</span> from one reverse-time step to the next?
+          The answer <strong><em>drew a lightning bolt</em></strong>.
+        </p>
+
+        <p>
+          As sampling marches, the network’s outputs <span class="math">$\psi_t$</span> (i.e.,
+          <span class="math">$\epsilon$</span>, <span class="math">$v$</span>, <span class="math">$x_0$</span>, or flow)
+          do gently align.
+          Empirically and theoretically, we find a <strong>anti-correlation</strong> between neighbors:
+        </p>
+
+        <p class="math">
+          $\langle \psi_t,\ \psi_{t-h} \rangle &lt; 0$
+        </p>
+
+        <p>
+          while predictions two steps apart tend to <strong>realign</strong>:
+        </p>
+
+        <p class="math">
+          $\langle \psi_t,\ \psi_{t-2h} \rangle &gt; 0$
+        </p>
+
+        <p>
+          This alternating geometry forms a crisp zig-zag—the
+          <span style="
+          background: linear-gradient(to right,  #dd1818,#333333);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;">
+            ZEUS
+          </span> pattern.
+        </p>
+
+        <p>
+          <span style="
+          background: linear-gradient(to right,  #dd1818,#333333);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;">
+            ZEUS
+          </span> turns this pattern into acceleration, as shown in Figure 2.
+          <span style="
+          background: linear-gradient(to right,  #dd1818,#333333);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;">
+            ZEUS
+          </span> uses a <em>minimal second-order finite-difference predictor</em> to achieve principled approximation
+          and a <em>reuse schedule</em> to prevent overshooting:
+        </p>
+
+        <p class="math">
+          $\psi_{t-1}\ \approx\ 2\,\psi_t - \psi_{t+1}\quad\text{(extrapolate first)},\qquad
+          \psi_{t-2}\ \leftarrow\ \psi_t\quad\text{(reuse then)}.$
+        </p>
+      </div>
+
+
+      <figure style="text-align: center; margin-top: 1.5em;">
+        <img src="static/images/zeus pattern.png" alt="ZEUS pattern illustration"
+          style="max-width: 100%; height: auto;">
+        <div class="has-text-centered" style="margin-top:1em;">
+          <div style="width: 800px; margin: auto;">
+            <p id="figure2-caption" style="font-size:0.95em; margin-top:0.5em; text-align: left;">
+              <i><b>Figure 2.</b> Illustration of the reuse schedule. The purple curve shows the true stochastic
+                trajectory
+                <span class="math">$\psi^*$</span>; the green segments show the model‐computed <span
+                  class="math">$\psi_t$</span> values; and the blue segments depict the second‐order extrapolation used
+                to estimate <span class="math">$\psi_{t-1}$</span> when skipping a step.
+                <b>Left:</b> Naive Interpolation overshoots because <span class="math">$\psi_t$</span> fluctuates
+                between timesteps.
+                <b>Right:</b> Cache reuse prevents overshoot by reusing <span class="math">$\psi_t$</span> when the
+                criterion fires <code>True</code> at two consecutive steps.</i>
+            </p>
+          </div>
+        </div>
+
+      </figure>
+
+    </div>
+  </section>
+
 
 
 
@@ -699,7 +861,7 @@
         <button id="replay-btn-mainplot"><span>Replay Animation</span></button>
       </div>
 
-      <div style="position:relative; height:420px;">
+      <div style="position:relative; height:320px;">
 
 
         <svg id="fig2-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
@@ -828,24 +990,21 @@
         <div id="psi-formula" class="formula hidden" style="left:260px; top:223px;">$2\psi_t - \psi_{t+1}$</div>
         <div id="psi-formula2" class="formula hidden" style="left:550px; top:140px;">$\psi_t$</div>
       </div>
-      <div>
-        <p style="font-size:0.95em; margin-top:0.5em;">
-          <i><b>Figure 2.</b> Overview paradigm of <span style="
+
+
+      <div class="has-text-centered" style="margin-top:2em;">
+        <div style="width: 800px; margin: auto;">
+          <p id="figure2-caption" style="font-size:0.95em; margin-top:0.5em; text-align: left;">
+            <i><b>Figure 3.</b> Overview paradigm of <span style="
   background: linear-gradient(to right,  #dd1818,#333333);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;">
-              ZEUS
-            </span>. The sparsity mode (middle: <code>step-wise</code>, bottom:
-            <code>token-wise</code>) at timestep <i>t – 1</i> is adaptively identified by the stability Criterion after
-            fresh computation at timestep <i>t</i>. Note that “DP” in the pipeline stands for “Data Prediction”.
-            <b>Right:</b> Visualization of SADA and baseline methods’ performance in terms of faithfulness and
-            efficiency.
-            Our method significantly outperforms existing baselines {<code>DeepCache</code>,
-            <code>AdaptiveDiffusion</code>} on both metrics, using {<code>SD-2</code> (Top), <code>SDXL</code> (Bottom)}
-            with DPM-solver++ 50 steps.</i>
-        </p>
-      </div>
+                ZEUS
+              </span>.</i>
+          </p>
+        </div>
+
   </section>
 
 
@@ -855,23 +1014,34 @@
       <div class="columns is-centered">
         <div class="column is-full-width">
           <h2 class="title is-3">Evaluations</h2>
-
-          <h2 class="title is-4" id="images">Images</h2>
+          <p>
+            We evaluate end-to-end latency per sample on a single A100 GPUs across Diffusers image pipelines (U-Net/DiT,
+            standard
+            schedulers).
+            ZEUS exposes a single aggressiveness knob that drives the ODE-stability gate introduced in our
+            implementation: at each solver step,
+            the gate decides whether to <b>bypass</b> using cached outputs (step-wise / token-wise) or to perform a
+            fresh model call.
+          </p>
+          <h2 class="title is-4" id="images" style="margin-top: 1.5em;">Images</h2>
           <div class="content has-text-justified">
             <p>
-              Measured total latency of <span style="
-  background: linear-gradient(to right,  #dd1818,#333333);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: bold;">
+              <span style="
+                background: linear-gradient(to right,  #dd1818,#333333);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: bold;">
                 ZEUS
-              </span>for different models for
-              generating a single video on 8 NVIDIA H100 GPUs. When utilizing a single GPU, we achieve a speedup ranging
-              from 1.26x to 1.32x, which remains stable across different schedulers. Scaling to multiple GPUs, our
-              method achieves a speedup of up to 10.6x, which almost linearly scales with the number of GPUs due to our
-              efficient improvement of sequence parallel.
+              </span> — As the sparsity increases from <strong>Original → Turbo</strong>, we yield
+              <strong>near-linear speedups</strong>:
+              <strong>1.00× (Original)</strong>,
+              <strong>1.92× (Balanced)</strong>,
+              <strong>2.25× (Medium)</strong>,
+              <strong>2.91× (Fast)</strong>, and
+              <strong>3.64× (Turbo)</strong>.
             </p>
           </div>
+
 
           <div style="text-align:center; margin-top:5px;margin-bottom:20px;">
             <button id="replay-btn"><span>Replay Animation</span></button>
@@ -1144,21 +1314,54 @@
 
 
 
-
-
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column is-full-width">
           <div class="content has-text-justified">
-            <h2 class="title is-4" id="results">Quantitive Results</h2>
+             <h2 class="title is-4" id="results">Quantitive Results</h2>
 
-            <div class="content has-text-centered">
-              <img src="./static/images/eval.png" style="width: 40%;"><br>
+            <div class="content has-text-centered" style="margin-top: 2em;">
+              <span style="
+            display: inline-block;
+            padding: 1em 2.5em;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            font-size: 1.8em;
+            font-weight: bold;
+            background: linear-gradient(90deg, #dd1818, #333333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(221,24,24,0.5), 0 0 25px rgba(51,51,51,0.4);
+            animation: pulseGlow 2s infinite;
+          ">
+                <svg xmlns="http://www.w3.org/2000/svg" style="width:1.2em;height:1.2em;vertical-align:middle;"
+                  viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)" />
+                </svg> Coming Soon <svg xmlns="http://www.w3.org/2000/svg"
+                  style="width:1.2em;height:1.2em;vertical-align:middle;" viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="zeus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#dd1818;stop-opacity:1" />
+                      <stop offset="100%" style="stop-color:#333333;stop-opacity:1" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M7 2v11h3v9l7-12h-4l4-8z" fill="url(#zeus-gradient)" />
+                </svg>
+              </span>
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </section>
 
 
