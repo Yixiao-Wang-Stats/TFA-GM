@@ -178,7 +178,7 @@
     position: relative;
     height: 100vh;
     width: 100%;
-    background: #000;
+    background: #03002a;
     color: #fff;
     overflow: hidden;
     display: grid;
@@ -213,7 +213,7 @@
     font-weight: 900;
     font-size: clamp(30px, 5vw, 66px);
     letter-spacing: .02em;
-    background: linear-gradient(90deg, var(--zeus-red), var(--zeus-dark));
+    background: linear-gradient(90deg, #ffffff, #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: none !important;
@@ -251,7 +251,7 @@
 
   .veil.right {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 4% 80%, 0 60%, 4% 40%, 0 20%);
-    border-left: 1px dashed rgba(255, 255, 255, .08);
+    border-left: 1px dashed rgba(255, 255, 255, 0.08);
   }
 
   #zeus-splash.open .veil.left {
@@ -431,9 +431,9 @@
       <defs>
         <!-- 纵向颜色渐变（红 -> 深红 -> 黑） -->
         <linearGradient id="boltGrad" x1="50" y1="-10" x2="50" y2="110" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#dd1818" />
-          <stop offset="65%" stop-color="#7a0e11" />
-          <stop offset="100%" stop-color="#1b1b1b" />
+          <stop offset="0%" stop-color="#ffffff" />
+          <stop offset="65%" stop-color="#ffffff" />
+          <stop offset="100%" stop-color="#ffffff" />
         </linearGradient>
       </defs>
 
@@ -446,7 +446,7 @@
     </svg>
 
     <!-- 屏闪 -->
-    <div class="flash"></div>
+    <!-- <div class="flash"></div -->
 
     <!-- 雷声（可选） -->
     <audio id="thunder" preload="auto" src="./static/audios/thunder.mp3"></audio>
