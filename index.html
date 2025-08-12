@@ -528,10 +528,10 @@
 
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://github.com/Ting-Justin-Jiang" target="_blank">Ting Jiang</a><sup>1*</sup>,&nbsp;
+                <a href="https://yixiao-wang-stats.github.io/" target="_blank">Yixiao Wang</a><sup>1*</sup>,&nbsp;
               </span>
               <span class="author-block">
-                <a href="https://yixiao-wang-stats.github.io/" target="_blank">Yixiao Wang</a><sup>1*</sup>,&nbsp;
+                <a href="https://github.com/Ting-Justin-Jiang" target="_blank">Ting Jiang</a><sup>1*</sup>,&nbsp;
               </span>
               <span class="author-block">
                 <a href="https://zishan-shao.github.io/" target="_blank">Zishan Shao</a><sup>1*</sup>,&nbsp;
@@ -539,6 +539,14 @@
               <span class="author-block">
                 <a href="https://github.com/HankYe" target="_blank">Hancheng Ye</a><sup>1</sup>,&nbsp;
               </span>
+              <span class="author-block"><a href="https://jingwei-sun.com/"
+                  target="_blank">Jingwei Sun</a><sup>1</sup>,&nbsp;</span>
+
+               <span class="author-block">
+                <a href="https://scholars.duke.edu/person/mingyuan.ma" target="_blank">Mingyuan Ma</a><sup>1</sup>,&nbsp;
+              </span>
+              
+               <span class="author-block"><a href="https://jayzhang42.github.io/" target="_blank">Jianyi Zhang</a><sup>1</sup>,&nbsp;</span>
               <span class="author-block">
                 <a href="https://ece.duke.edu/people/yiran-chen/" target="_blank">Yiran Chen</a><sup>1</sup>,&nbsp;
               </span>
@@ -677,16 +685,15 @@
     -webkit-text-fill-color: transparent;
     font-weight: bold;">
                 ZEUS
-              </span> exhibits near-linear speed–quality scaling controlled by sparsity pattern. By varying a single
-              control parameter (Quality → Turbo) moves <span style="
+              </span> exhibits near-linear efficiency-fidelity scaling controlled by sparsity pattern. Under the same
+              acceleration ratio, <span style="
     background: linear-gradient(to right,  #dd1818,#333333);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;">
                 ZEUS
-              </span> along a near-linear speedup curve from 1.0× to 3.6× while keeping LPIPS low. The ZEUS curve forms
-              a Pareto frontier: at matched speed it attains lower LPIPS than corresponding baselines (e.g., 2.2×/0.05 lpips vs.
-              TeaCache (2.0×/0.22 lpips); 3.6×/0.22 lpips vs. TaylorSeer (3.2×/0.42 lpips)). Lower LPIPS is better.</i>
+              </span> achieves signifiacnt better faithfulness compared to previous strategies, measured in LPIPS (e.g.,
+              2.2×/0.05 lpips vs. TeaCache (2.0×/0.22 lpips); 3.6×/0.22 lpips vs. TaylorSeer (3.2×/0.42 lpips)).</i>
           </p>
         </div>
       </div>
@@ -771,7 +778,7 @@
           Empirically and theoretically, we find a <strong>anti-correlation</strong> between neighbors:
         </p>
 
-        <p class="math">
+        <p class="math" style="text-align: center;">
           $\langle \psi_t,\ \psi_{t-h} \rangle &lt; 0$
         </p>
 
@@ -779,7 +786,7 @@
           while predictions two steps apart tend to <strong>realign</strong>:
         </p>
 
-        <p class="math">
+        <p class="math" style="text-align: center;">
           $\langle \psi_t,\ \psi_{t-2h} \rangle &gt; 0$
         </p>
 
@@ -812,7 +819,7 @@
           and a <em>reuse schedule</em> to prevent overshooting:
         </p>
 
-        <p class="math">
+        <p class="math" style="text-align: center;">
           $\psi_{t-1}\ \approx\ 2\,\psi_t - \psi_{t+1}\quad\text{(extrapolate first)},\qquad
           \psi_{t-2}\ \leftarrow\ \psi_t\quad\text{(reuse then)}.$
         </p>
@@ -1318,7 +1325,7 @@
       <div class="columns is-centered">
         <div class="column is-full-width">
           <div class="content has-text-justified">
-             <h2 class="title is-4" id="results">Quantitive Results</h2>
+            <h2 class="title is-4" id="results">Quantitive Results</h2>
 
             <div class="content has-text-centered" style="margin-top: 2em;">
               <span style="
@@ -1369,15 +1376,14 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title"><a id="bibtex">BibTeX</a></h2>
-      <pre><code>@misc{zhao2024pab,
-      title={ZEUS: Zero-shot Efficient Unified Sparsity for Generative Models},
-      author={Xuanlei Zhao and Xiaolong Jin and Kai Wang and Yang You},
-      year={2024},
-      eprint={2408.12588},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2408.12588},
-}</code></pre>
+      <pre><code>@misc{zeus2025,
+  title        = {ZEUS: Zero-shot Efficient Unified Sparsity for Generative Models},
+  author       = {Yixiao Wang and Ting Jiang and Zishan Shao and Hancheng Ye and Jingwei Sun and Mingyuan Ma and Jianyi Zhang and Yiran Chen and Hai Li},
+  year         = {2025},
+  howpublished = {https://yixiao-wang-stats.github.io/TFA-GM/},
+  note         = {Code and project page available at \url{https://zeus-project-page-link}}
+}
+</code></pre>
     </div>
   </section>
 
